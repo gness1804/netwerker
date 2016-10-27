@@ -37,6 +37,7 @@ export default class Application extends Component {
         : <button className='auth-button' onClick={() => signIn()}>Sign In</button> }
         <button onClick={()=>this.addNewContact()}>Add Contact</button>
         </div>
+        
         <NewContactForm/>
       </div>
     )
