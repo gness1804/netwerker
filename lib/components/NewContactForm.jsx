@@ -42,10 +42,10 @@ export default class NewContactForm extends Component {
     console.log(this.state);
     return(
       <div className = 'input-field-container'>
-        <InputField className='firstName-Input' type='text' handleChange={this.updateState.bind(this)} name = 'firstName'/>
-        <InputField className='lastName-Input' type='text' handleChange={this.updateState.bind(this)} name = 'lastName'/>
-        <InputField className='companyName-Input' type='text' handleChange={this.updateState.bind(this)} name = 'companyName'/>
-        <InputField className='primaryNumber-Input' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'primary'/>
+        <InputField className='firstName-Input' placeholder = 'First Name' type='text' handleChange={this.updateState.bind(this)} name = 'firstName'/>
+        <InputField className='lastName-Input' placeholder = 'Last Name' type='text' handleChange={this.updateState.bind(this)} name = 'lastName'/>
+        <InputField className='companyName-Input' placeholder = 'Company Name' type='text' handleChange={this.updateState.bind(this)} name = 'companyName'/>
+        <InputField className='primaryNumber-Input' placeholder = 'Primary Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'primary'/>
       </div>
     )
   }
