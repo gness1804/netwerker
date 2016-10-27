@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import firebase, { contactsFromDatabase, signIn, signOut } from '../firebase';
 import {split, pick, map, extend } from 'lodash';
 import moment from 'moment';
+import NewContactForm from './NewContactForm.jsx';
 
 // let contactsFromDatabase;
 
@@ -36,7 +37,7 @@ export default class Application extends Component {
         : <button className='auth-button' onClick={() => signIn()}>Sign In</button> }
         <button onClick={()=>this.addNewContact()}>Add Contact</button>
         </div>
-
+        <NewContactForm/>
       </div>
     )
   }
