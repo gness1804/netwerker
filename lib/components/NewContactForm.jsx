@@ -39,7 +39,7 @@ export default class NewContactForm extends Component {
   }
 
   render(){
-    // console.log(this.state);
+    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes } = this.state
     return(
       <div className = 'input-field-container'>
         <InputField className='firstName-Input' placeholder = 'First Name' type='text' handleChange={this.updateState.bind(this)} name = 'firstName'/>
@@ -57,7 +57,7 @@ export default class NewContactForm extends Component {
         <InputField className='instagram-Input' placeholder = 'instagram' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'instagram'/>
         <InputField className='notes-input' placeholder = 'Notes' type='text' handleChange={this.updateState.bind(this)} name = 'notes'/>
 
-        <ContactCard contactInfo= {this.state} />
+        <ContactCard firstName={firstName} lastName={lastName} companyName={companyName} numbers={numbers} emails={emails} socialMedia={socialMedia} notes={notes} />
 
       </div>
     )
