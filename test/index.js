@@ -20,4 +20,14 @@ describe("NewContactForm", ()=>{
     firstNameInput.simulate('change', {target: {value: 'Hello World'}});
     assert.strictEqual(wrapper.state('firstName'), 'Hello World');
   }); //end of change state when user enters info in a field
+
+  it("should change state on entry of a more complex data item like cell phone number", ()=>{
+    const wrapper = mount(<NewContactForm/>);
+    const cellNumberInput = wrapper.find('.cellNumber-Input');
+    assert.strictEqual(wrapper.state().numbers.cell, '');
+    cellNumberInput.simulate('change', {target: {value: '99999999'}});
+    assert.strictEqual(wrapper.state().numbers.cell, '99999999');
+  }); //end of
+
+
 }); //end of describe NewContactForm
