@@ -14,6 +14,7 @@ export default class ContactCard extends Component {
 
   addImage(){
     this.setState({imageSrc:'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550'});
+    //we will need to allow user to upload a photo and save to Firebase
   } //end of addImage
 
   toggleExpand(){
@@ -65,6 +66,7 @@ export default class ContactCard extends Component {
         <button onClick={()=>this.toggleEdit()}>Edit Card</button>
         {display}
         <div className="image">{this.state.imageSrc ? <img src={this.state.imageSrc} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
+        <div className="delete-image">{this.state.imageSrc ? <DeleteImageButton/> : ''}</div>
       </div>
 
     )
