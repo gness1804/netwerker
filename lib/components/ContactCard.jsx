@@ -36,7 +36,8 @@ export default class ContactCard extends Component {
       display = <div className='fullname firstName lastName'>{firstName} {lastName}</div>
     }
     return(
-      <div className='contactCardContainer' onClick={()=>this.toggleExpand()}>
+      <div className='contactCardContainer'>
+        <button onClick={()=>this.toggleExpand()}>Expand Card</button>
         {display}
       </div>
 
