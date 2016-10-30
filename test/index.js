@@ -57,6 +57,8 @@ describe("ContactCard", ()=>{
     };
     const wrapper = render(<ContactCard {...newContact}/>);
     let company = wrapper.find('.companyName').text();
-    assert.strictEqual(company, 'Monty Python')
+    assert.strictEqual(company, 'Monty Python');
+    let cell = wrapper.find('.cell').text();
+    assert.strictEqual(+cell, 44);
   }); //end of display contact info when user enters it
 }); //end of describe ContactCard
