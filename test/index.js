@@ -60,5 +60,9 @@ describe("ContactCard", ()=>{
     assert.strictEqual(company, 'Monty Python');
     let cell = wrapper.find('.cell').text();
     assert.strictEqual(+cell, 44);
+    let primEmail = wrapper.find('.primary-email').text();
+    assert.strictEqual(primEmail, 'john@schoolofsillywalks.com');
+    let github = wrapper.find('.github').text();
+    assert.strictEqual(github, 'jcleese');
   }); //end of display contact info when user enters it
 }); //end of describe ContactCard
