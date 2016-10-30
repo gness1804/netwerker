@@ -15,7 +15,7 @@ export default class ContactCard extends Component {
   }
 
   toggleEdit(){
-    this.setState({editable: !this.state.editable})
+    this.setState({editable: !this.state.editable});
   }
 
   submitEdit(){
@@ -58,8 +58,15 @@ export default class ContactCard extends Component {
         <button onClick={()=>this.toggleExpand()}>Expand Card</button>
         <button onClick={()=>this.toggleEdit()}>Edit Card</button>
         {display}
-
+        <div className="image">{this.props.image ? <img src={this.props.imgSrc} /> : <button>Add Image</button>}</div>
       </div>
+
+      // <div className='active-user'>{user ?
+      //   <p>Logged in as <span className="bold">{user.displayName}</span> ({user.email})  <button className='auth-button button' onClick={()=> signOut()}>Sign Out</button>
+      //   </p>
+      // : <button className='auth-button' onClick={() => signIn()}>Sign In</button> }
+      // <button onClick={()=>this.addNewContact()}>Add Contact</button>
+      // </div>
 
     )
   }

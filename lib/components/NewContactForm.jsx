@@ -25,8 +25,9 @@ export default class NewContactForm extends Component {
         github: this.props.socialMedia.github || '',
         instagram: this.props.socialMedia.instagram || ''
       },
-      notes: this.props.notes || ''
-    }
+      notes: this.props.notes || '',
+      image: this.props.image || ''
+    };
   }
 
   updateState(e, keyName){
