@@ -4,6 +4,8 @@ import {split, pick, map, extend } from 'lodash';
 import moment from 'moment';
 import NewContactForm from './NewContactForm.jsx';
 import ContactCard from './ContactCard.jsx'
+import ContactCardList from './ContactCardList.jsx';
+
 
 
 // let contactsFromDatabase;
@@ -48,8 +50,7 @@ export default class Application extends Component {
         <button onClick={()=>this.addNewContact()}>Add Contact</button>
         </div>
 
-        {/* <ContactCard firstName={firstName} lastName={lastName} companyName={companyName} numbers={numbers} emails={emails} socialMedia={socialMedia} notes={notes} /> */}
-
+        <ContactCardList contacts = {this.state.contacts}/>
         <NewContactForm handleNewContact={this.addNewContact.bind(this)}/>
       </div>
     )

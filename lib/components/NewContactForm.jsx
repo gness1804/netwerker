@@ -38,6 +38,7 @@ export default class NewContactForm extends Component {
     objState[keyName] = e.target.value;
     this.setState([objName]: objState)
   }
+
   submitNewContact(){
     console.log('test');
     const newContact = {
