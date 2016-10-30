@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NewContactForm from './NewContactForm.jsx';
 import AddImageButton from './AddImageButton';
+import DeleteImageButton from './DeleteImageButton';
 
 export default class ContactCard extends Component {
   constructor() {
