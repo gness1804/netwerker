@@ -19,7 +19,16 @@ export default class Application extends Component {
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => this.setState({ user, contactDatabase: firebase.database().ref(user.uid) }));
+    firebase.auth().onAuthStateChanged(user => this.setState({ user, contactDatabase: firebase.database().ref(user.uid) }, ()=>{
+
+    firebase.database().ref(user.uid).on('value', (snapshot) => {
+      const contacts = snapshot.val() || {};
+      this.setState({
+        contacts: map(contacts, (val, key) => extend(val, { key }))
+        });
+      })
+    }
+  ));
   }
 
   addNewContact(contact){
