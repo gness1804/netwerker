@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import firebase, { contactsFromDatabase, signIn, signOut } from '../firebase';
 import {split, pick, map, extend } from 'lodash';
 import moment from 'moment';
+import NewContactForm from './NewContactForm.jsx';
+import ContactCard from './ContactCard.jsx'
+import ContactCardList from './ContactCardList.jsx';
+
+
 
 // let contactsFromDatabase;
 
@@ -16,13 +21,21 @@ export default class Application extends Component {
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => this.setState({ user, contactDatabase: firebase.database().ref(user.uid) }));
+    firebase.auth().onAuthStateChanged(user => this.setState({ user, contactDatabase: firebase.database().ref(user.uid) }, ()=>{
+
+    firebase.database().ref(user.uid).on('value', (snapshot) => {
+      const contacts = snapshot.val() || {};
+      this.setState({
+        contacts: map(contacts, (val, key) => extend(val, { key }))
+        });
+      })
+    }
+  ));
   }
 
-  addNewContact(){
-    this.state.contactDatabase.push('hello');
+  addNewContact(contact){
+    this.state.contactDatabase.push(contact)
   }
-
 
   render() {
     const { user } = this.state;
@@ -37,6 +50,8 @@ export default class Application extends Component {
         <button onClick={()=>this.addNewContact()}>Add Contact</button>
         </div>
 
+        <ContactCardList contacts = {this.state.contacts}/>
+        <NewContactForm handleNewContact={this.addNewContact.bind(this)}/>
       </div>
     )
   }
