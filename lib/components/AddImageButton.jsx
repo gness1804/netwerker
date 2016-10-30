@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
+import ContactCard from './ContactCard';
 
 export default class AddImageButton extends Component {
   constructor() {
     super();
-    this.state = {
-
-    };
+    
   } //end of constructor
 
   render() {
     return(
-      <div>Hi</div>
+      <button onClick={this.props.handleClick}>Add Image</button>
     );
   }
 

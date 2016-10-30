@@ -7,9 +7,14 @@ export default class ContactCard extends Component {
     super();
     this.state = {
       expanded: false,
-      editable: false
+      editable: false,
+      image: ''
     };
   }
+
+  addImage(){
+    console.log("test2");
+  } //end of addImage
 
   toggleExpand(){
     this.setState({expanded: !this.state.expanded});
@@ -59,7 +64,7 @@ export default class ContactCard extends Component {
         <button onClick={()=>this.toggleExpand()}>Expand Card</button>
         <button onClick={()=>this.toggleEdit()}>Edit Card</button>
         {display}
-        <div className="image">{this.props.image ? <img src={this.props.imgSrc} /> : <AddImageButton/>}</div>
+        <div className="image">{this.state.image ? <img src='' /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
       </div>
 
     )
