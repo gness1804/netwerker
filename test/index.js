@@ -4,6 +4,7 @@ import { assert,expect } from 'chai';
 
 import Application from '../lib/components/Application';
 import NewContactForm from '../lib/components/NewContactForm';
+import ContactCard from '../lib/components/ContactCard';
 
 describe("application", ()=>{
   it("should render as a div", ()=>{
@@ -27,7 +28,35 @@ describe("NewContactForm", ()=>{
     assert.strictEqual(wrapper.state().numbers.cell, '');
     cellNumberInput.simulate('change', {target: {value: '99999999'}});
     assert.strictEqual(wrapper.state().numbers.cell, '99999999');
-  }); //end of
-
-
+  });
 }); //end of describe NewContactForm
+
+describe("ContactCard", ()=>{
+  it("should display contact info when user enters it", ()=>{
+    const newContact = {
+        firstName: 'John',
+        lastName: 'Cleese',
+        companyName: 'Monty Python',
+        numbers: {
+          cell: 44,
+          work: 454,
+          home: 46
+        },
+        emails: {
+          primary: 'john@schoolofsillywalks.com',
+          secondary: 'john@spanishinquisition.org'
+        },
+        socialMedia: {
+          facebook: 'john_cleese_fb',
+          twitter: '@johncleese',
+          linkedIn: 'jcleese',
+          github: 'jcleese',
+          instagram: 'j-cleese-photos'
+        },
+        notes: 'I am the best actor from Monty Python.'
+    };
+    const wrapper = render(<ContactCard {...newContact}/>);
+    let company = wrapper.find('.companyName').text();
+    assert.strictEqual(company, 'Monty Python')
+  }); //end of display contact info when user enters it
+}); //end of describe ContactCard
