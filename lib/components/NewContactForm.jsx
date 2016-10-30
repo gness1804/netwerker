@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {InputField} from './InputField.jsx'
+import {InputField} from './InputField.jsx';
 import ContactCard from './ContactCard.jsx';
 
 export default class NewContactForm extends Component {
@@ -61,8 +61,9 @@ export default class NewContactForm extends Component {
           github: this.state.socialMedia.github,
           instagram: this.state.socialMedia.instagram
         },
-        notes: this.state.notes
-    }
+        notes: this.state.notes,
+        image: this.state.image
+    };
     this.props.handleNewContact(newContact);
   }
   render(){

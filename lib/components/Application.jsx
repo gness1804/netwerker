@@ -31,7 +31,7 @@ export default class Application extends Component {
       });
     }
   ));
-  }
+} //end of componentDidMount
 
   addNewContact(contact){
     this.state.contactDatabase.push(contact);
