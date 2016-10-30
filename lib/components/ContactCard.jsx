@@ -8,12 +8,12 @@ export default class ContactCard extends Component {
     this.state = {
       expanded: false,
       editable: false,
-      image: ''
+      imageSrc: ''
     };
   }
 
   addImage(){
-    console.log("test2");
+    this.setState({imageSrc:'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550'});
   } //end of addImage
 
   toggleExpand(){
@@ -64,7 +64,7 @@ export default class ContactCard extends Component {
         <button onClick={()=>this.toggleExpand()}>Expand Card</button>
         <button onClick={()=>this.toggleEdit()}>Edit Card</button>
         {display}
-        <div className="image">{this.state.image ? <img src='' /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
+        <div className="image">{this.state.imageSrc ? <img src={this.state.imageSrc} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
       </div>
 
     )
