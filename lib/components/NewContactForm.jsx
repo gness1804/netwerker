@@ -31,7 +31,7 @@ export default class NewContactForm extends Component {
   }
 
   updateState(e, keyName){
-    this.setState({[keyName]: e.target.value})
+    this.setState({[keyName]: e.target.value});
   }
 
   updateStateObject(e, keyName, objName){

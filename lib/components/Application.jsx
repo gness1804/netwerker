@@ -28,24 +28,24 @@ export default class Application extends Component {
       this.setState({
         contacts: map(contacts, (val, key) => extend(val, { key }))
         });
-      })
+      });
     }
   ));
   }
 
   addNewContact(contact){
-    this.state.contactDatabase.push(contact)
+    this.state.contactDatabase.push(contact);
   }
 
   editContact(contactID, newContactInfo){
       // this.state.contactDatabase.child('-KVLdb5QU1E175CvCIqj/companyName').set('test')
 
-      console.log(this.state.contacts);
+      // console.log(this.state.contacts);
   }
 
   render() {
     const { user } = this.state;
-    console.log(this.state);
+    // console.log(this.state);
     return(
       <div className = 'application'>
 

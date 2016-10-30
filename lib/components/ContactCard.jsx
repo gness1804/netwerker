@@ -61,13 +61,6 @@ export default class ContactCard extends Component {
         <div className="image">{this.props.image ? <img src={this.props.imgSrc} /> : <button>Add Image</button>}</div>
       </div>
 
-      // <div className='active-user'>{user ?
-      //   <p>Logged in as <span className="bold">{user.displayName}</span> ({user.email})  <button className='auth-button button' onClick={()=> signOut()}>Sign Out</button>
-      //   </p>
-      // : <button className='auth-button' onClick={() => signIn()}>Sign In</button> }
-      // <button onClick={()=>this.addNewContact()}>Add Contact</button>
-      // </div>
-
     )
   }
 }
