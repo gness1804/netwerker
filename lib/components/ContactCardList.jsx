@@ -8,7 +8,7 @@ export default class ContactCardList extends Component {
     super();
     this.state = {
 
-    }
+    };
   }
   render() {
 

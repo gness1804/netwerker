@@ -39,7 +39,7 @@ export default class ContactCard extends Component {
   }
 
   render() {
-    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, contactID } = this.props
+    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, contactID, image } = this.props
     let display;
     if (this.state.expanded) {
       display = (<div className="expanded">
@@ -55,7 +55,9 @@ export default class ContactCard extends Component {
       <div className = 'linkedIn'>{socialMedia.linkedIn}</div>
       <div className = 'github'>{socialMedia.github}</div>
       <div className = 'instagram'>{socialMedia.instagram}</div>
-      <div className='notes'>{notes}</div></div>)
+      <div className='notes'>{notes}</div>
+      <img className="image" src={image} />
+      </div>)
     }
     else {
       display = <div className='fullname firstName lastName'>{firstName} {lastName} {contactID}</div>

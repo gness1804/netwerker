@@ -6,8 +6,6 @@ import NewContactForm from './NewContactForm.jsx';
 import ContactCard from './ContactCard.jsx'
 import ContactCardList from './ContactCardList.jsx';
 
-
-
 // let contactsFromDatabase;
 
 export default class Application extends Component {
@@ -17,7 +15,7 @@ export default class Application extends Component {
       user: null,
       contacts: [],
       contactDatabase: null
-    }
+    };
   }
 
   componentDidMount() {

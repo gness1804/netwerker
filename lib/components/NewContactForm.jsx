@@ -74,7 +74,7 @@ export default class NewContactForm extends Component {
   render(){
     console.log('test');
     console.log(this.props.firstName)
-    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes } = this.state
+    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, image } = this.state
 
     return(
       <div className = 'input-field-container'>
