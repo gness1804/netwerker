@@ -18,6 +18,10 @@ export default class ContactCard extends Component {
     //we will need to allow user to upload a photo and save to Firebase
   } //end of addImage
 
+  deleteImage(){
+    this.setState({imageSrc:''});
+  } //end of deleteImage
+
   toggleExpand(){
     this.setState({expanded: !this.state.expanded});
   }
@@ -67,7 +71,7 @@ export default class ContactCard extends Component {
         <button onClick={()=>this.toggleEdit()}>Edit Card</button>
         {display}
         <div className="image">{this.state.imageSrc ? <img src={this.state.imageSrc} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
-        <div className="delete-image">{this.state.imageSrc ? <DeleteImageButton/> : ''}</div>
+        <div className="delete-image">{this.state.imageSrc ? <DeleteImageButton handleClick={()=>{this.deleteImage()}}/> : ''}</div>
       </div>
 
     )

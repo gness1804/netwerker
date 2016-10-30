@@ -10,7 +10,7 @@ export default class DeleteImageButton extends Component {
 
   render() {
     return(
-      <div>Hi</div>
+      <button onClick={this.props.handleClick}>Delete Image</button>
     );
   }
 
