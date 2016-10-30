@@ -5,7 +5,8 @@ import { assert,expect } from 'chai';
 import Application from '../lib/components/Application';
 
 describe("application", ()=>{
-  it("sanity check", ()=>{
-    assert(true);
-  }); //sanity check
-}); //end of desce application
+  it("should render as a div", ()=>{
+    const wrapper = shallow(<Application/>);
+    assert.strictEqual(wrapper.type(), 'div');
+  }); //end of render as div
+}); //end of describe application
