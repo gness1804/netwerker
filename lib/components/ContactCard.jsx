@@ -11,6 +11,7 @@ export default class ContactCard extends Component {
       <div className='contactCardContainer'>
         <div className='fullname firstName lastName'>{firstName} {lastName}</div>
         <div className='companyName'>{companyName}</div>
+        <div className = 'numbers'>{numbers.cell}---{numbers.home} -- {numbers.work}</div>
         <div className='notes'>{notes}</div>
       </div>
 

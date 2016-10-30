@@ -3,6 +3,7 @@ import firebase, { contactsFromDatabase, signIn, signOut } from '../firebase';
 import {split, pick, map, extend } from 'lodash';
 import moment from 'moment';
 import NewContactForm from './NewContactForm.jsx';
+import ContactCard from './ContactCard.jsx'
 
 
 // let contactsFromDatabase;
@@ -38,6 +39,8 @@ export default class Application extends Component {
         : <button className='auth-button' onClick={() => signIn()}>Sign In</button> }
         <button onClick={()=>this.addNewContact()}>Add Contact</button>
         </div>
+
+        {/* <ContactCard firstName={firstName} lastName={lastName} companyName={companyName} numbers={numbers} emails={emails} socialMedia={socialMedia} notes={notes} /> */}
 
         <NewContactForm />
       </div>

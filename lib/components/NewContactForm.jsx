@@ -34,12 +34,17 @@ export default class NewContactForm extends Component {
   }
 
   updateStateObject(e, keyName, objName){
-    let object = {[keyName] : e.target.value}
-    this.setState({[objName]: object } )// we have a problem here.
+    var objState = this.state[objName];
+    objState[keyName] = e.target.value;
+
+    this.setState([objName]: objState)
+
+    console.log(this.state)
   }
 
   render(){
     const { firstName, lastName, companyName, numbers, emails, socialMedia, notes } = this.state
+
     return(
       <div className = 'input-field-container'>
         <InputField className='firstName-Input' placeholder = 'First Name' type='text' handleChange={this.updateState.bind(this)} name = 'firstName'/>
@@ -57,7 +62,11 @@ export default class NewContactForm extends Component {
         <InputField className='instagram-Input' placeholder = 'instagram' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'instagram'/>
         <InputField className='notes-input' placeholder = 'Notes' type='text' handleChange={this.updateState.bind(this)} name = 'notes'/>
 
+
+        <button className='submit-new-contact-btn' onClick={()=>this.submitNewContact.bind()}> Submit New Contact </button>
+
         <ContactCard firstName={firstName} lastName={lastName} companyName={companyName} numbers={numbers} emails={emails} socialMedia={socialMedia} notes={notes} />
+
 
       </div>
     )
