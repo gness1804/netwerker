@@ -36,12 +36,34 @@ export default class NewContactForm extends Component {
   updateStateObject(e, keyName, objName){
     var objState = this.state[objName];
     objState[keyName] = e.target.value;
-
     this.setState([objName]: objState)
-
-    console.log(this.state)
   }
-
+  submitNewContact(){
+    console.log('test');
+    const newContact = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        companyName: this.state.companyName,
+        numbers: {
+          cell: this.state.numbers.cell,
+          work: this.state.numbers.work,
+          home: this.state.numbers.home
+        },
+        emails: {
+          primary: this.state.emails.primary,
+          secondary: this.state.emails.secondary
+        },
+        socialMedia: {
+          facebook: this.state.socialMedia.facebook,
+          twitter: this.state.socialMedia.twitter,
+          linkedIn: this.state.socialMedia.linkedIn,
+          github: this.state.socialMedia.github,
+          instagram: this.state.socialMedia.instagram
+        },
+        notes: this.state.notes
+    }
+    this.props.handleNewContact(newContact);
+  }
   render(){
     const { firstName, lastName, companyName, numbers, emails, socialMedia, notes } = this.state
 
@@ -63,7 +85,7 @@ export default class NewContactForm extends Component {
         <InputField className='notes-input' placeholder = 'Notes' type='text' handleChange={this.updateState.bind(this)} name = 'notes'/>
 
 
-        <button className='submit-new-contact-btn' onClick={()=>this.submitNewContact.bind()}> Submit New Contact </button>
+        <button className='submit-new-contact-btn' onClick={this.submitNewContact.bind(this)}> Submit New Contact </button>
 
         <ContactCard firstName={firstName} lastName={lastName} companyName={companyName} numbers={numbers} emails={emails} socialMedia={socialMedia} notes={notes} />
 

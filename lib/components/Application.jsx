@@ -22,10 +22,9 @@ export default class Application extends Component {
     firebase.auth().onAuthStateChanged(user => this.setState({ user, contactDatabase: firebase.database().ref(user.uid) }));
   }
 
-  addNewContact(){
-    this.state.contactDatabase.push('hello');
+  addNewContact(contact){
+    this.state.contactDatabase.push(contact)
   }
-
 
   render() {
     const { user } = this.state;
@@ -42,7 +41,7 @@ export default class Application extends Component {
 
         {/* <ContactCard firstName={firstName} lastName={lastName} companyName={companyName} numbers={numbers} emails={emails} socialMedia={socialMedia} notes={notes} /> */}
 
-        <NewContactForm />
+        <NewContactForm handleNewContact={this.addNewContact.bind(this)}/>
       </div>
     )
   }
