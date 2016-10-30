@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import NewContactForm from './NewContactForm.jsx'
+import React, { Component } from 'react';
+import NewContactForm from './NewContactForm.jsx';
+import AddImageButton from './AddImageButton';
 
 export default class ContactCard extends Component {
   constructor() {
@@ -58,7 +59,7 @@ export default class ContactCard extends Component {
         <button onClick={()=>this.toggleExpand()}>Expand Card</button>
         <button onClick={()=>this.toggleEdit()}>Edit Card</button>
         {display}
-        <div className="image">{this.props.image ? <img src={this.props.imgSrc} /> : <button>Add Image</button>}</div>
+        <div className="image">{this.props.image ? <img src={this.props.imgSrc} /> : <AddImageButton/>}</div>
       </div>
 
     )
