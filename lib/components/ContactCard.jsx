@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import {NewContactForm} from './NewContactForm.jsx'
+import NewContactForm from './NewContactForm.jsx'
 
 export default class ContactCard extends Component {
   constructor() {
     super();
     this.state = {
-      expanded: false
+      expanded: false,
+      editable: false
     };
   }
 
@@ -13,8 +14,20 @@ export default class ContactCard extends Component {
     this.setState({expanded: !this.state.expanded});
   }
 
+  toggleEdit(){
+    this.setState({editable: !this.state.editable})
+  }
+
+  submitEdit(){
+
+    let newContactInfo;//figure out how to assign this = Contact{}
+
+    this.props.submitEdit(this.props.contactID, newContactInfo);
+
+  }
+
   render() {
-    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes } = this.props
+    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, contactID } = this.props
     let display;
     if (this.state.expanded) {
       display = (<div className="expanded">
@@ -33,12 +46,19 @@ export default class ContactCard extends Component {
       <div className='notes'>{notes}</div></div>)
     }
     else {
-      display = <div className='fullname firstName lastName'>{firstName} {lastName}</div>
+      display = <div className='fullname firstName lastName'>{firstName} {lastName} {contactID}</div>
     }
+
+    if(this.state.editable){
+      display = <NewContactForm handleNewContact={this.submitEdit.bind(this)} {...this.props}/>
+    }
+
     return(
       <div className='contactCardContainer'>
         <button onClick={()=>this.toggleExpand()}>Expand Card</button>
+        <button onClick={()=>this.toggleEdit()}>Edit Card</button>
         {display}
+
       </div>
 
     )
