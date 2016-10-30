@@ -37,6 +37,12 @@ export default class Application extends Component {
     this.state.contactDatabase.push(contact)
   }
 
+  editContact(contactID, newContactInfo){
+      // this.state.contactDatabase.child('-KVLdb5QU1E175CvCIqj/companyName').set('test')
+
+      console.log(this.state.contacts);
+  }
+
   render() {
     const { user } = this.state;
     console.log(this.state);
@@ -50,8 +56,9 @@ export default class Application extends Component {
         <button onClick={()=>this.addNewContact()}>Add Contact</button>
         </div>
 
-        <ContactCardList contacts = {this.state.contacts}/>
-        <NewContactForm handleNewContact={this.addNewContact.bind(this)}/>
+        <ContactCardList contacts = {this.state.contacts} submitEdit={this.editContact.bind(this)}/>
+        <NewContactForm handleNewContact={this.addNewContact.bind(this)} numbers={{cell:''}} emails={{primary:'', secondary:''}} socialMedia={{facebook:''}}/>
+        <button onClick={this.editContact.bind(this)}>Test</button>
       </div>
     )
   }
