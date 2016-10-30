@@ -9,17 +9,16 @@ export default class ContactCard extends Component {
     this.state = {
       expanded: false,
       editable: false,
-      imageSrc: ''
     };
   }
 
   addImage(){
-    this.setState({imageSrc:'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550'});
+
     //we will need to allow user to upload a photo and save to Firebase
   } //end of addImage
 
   deleteImage(){
-    this.setState({imageSrc:''});
+    
   } //end of deleteImage
 
   toggleExpand(){
@@ -56,7 +55,7 @@ export default class ContactCard extends Component {
       <div className = 'github'>{socialMedia.github}</div>
       <div className = 'instagram'>{socialMedia.instagram}</div>
       <div className='notes'>{notes}</div>
-      <img className="image" src={image} />
+      <div className="image">{image ? <img src={image} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
       </div>)
     }
     else {
@@ -72,8 +71,7 @@ export default class ContactCard extends Component {
         <button onClick={()=>this.toggleExpand()}>Expand Card</button>
         <button onClick={()=>this.toggleEdit()}>Edit Card</button>
         {display}
-        <div className="image">{this.state.imageSrc ? <img src={this.state.imageSrc} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
-        <div className="delete-image">{this.state.imageSrc ? <DeleteImageButton handleClick={()=>{this.deleteImage()}}/> : ''}</div>
+        <div className="delete-image">{this.props.image ? <DeleteImageButton handleClick={()=>{this.deleteImage()}}/> : ''}</div>
       </div>
 
     )
