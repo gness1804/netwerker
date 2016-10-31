@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import NewContactForm from './NewContactForm.jsx';
 import AddImageButton from './AddImageButton';
 import DeleteImageButton from './DeleteImageButton';
+import FollowupButton from './FollowupButton';
+import RemoveFollowupButton from './RemoveFollowupButton';
 
 export default class ContactCard extends Component {
   constructor() {
@@ -67,7 +69,7 @@ export default class ContactCard extends Component {
       <div className = 'instagram'>{socialMedia.instagram}</div>
       <div className='notes'>{notes}</div>
       <div className="image-container">{this.state.contactImgURL ? <img className="image-actual" src={this.state.contactImgURL} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
-      <div className="followup-container">{followup ? <p>Followup is true</p> : ''}</div>
+      <div className="followup-container">{followup ? <div><p>Flagged for Followup!</p> <RemoveFollowupButton/></div> : <FollowupButton/>}</div>
       </div>)
     }
     else {
