@@ -27,13 +27,30 @@ export default class NewContactForm extends Component {
         instagram: this.props.socialMedia.instagram || ''
       },
       notes: this.props.notes || '',
-      image: this.props.image || ''
+      image: this.props.image || '',
+      reader: new FileReader()
     };
   }
 
-  addImage(){
-    this.setState({image: 'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550'});
-  } //end of addImage
+  // addImage(){ //need to upload image here
+  //   this.setState({image: 'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550'});
+  // } //end of addImage
+  componentDidMount(){
+    this.state.reader.addEventListener('load', function(){
+        this.setState({imgSource : this.state.reader.result});
+    }.bind(this));
+  } //end of componentDidMount
+  addImage(e){
+    // let button = document.querySelector('.add-image-button').files[0];
+    let image = e.target.files[0]
+    console.log(image);
+    this.setState({image:image},
+        this.state.reader.readAsDataURL(image)
+    );
+
+  }
+
+  // var selectedFile = document.getElementById('input').files[0];
 
   updateState(e, keyName){
     this.setState({[keyName]: e.target.value});
@@ -66,15 +83,24 @@ export default class NewContactForm extends Component {
           github: this.state.socialMedia.github,
           instagram: this.state.socialMedia.instagram
         },
-        notes: this.state.notes,
-        image: this.state.image
+        notes: this.state.notes
     };
+    const image = this.state.image;
     this.props.handleNewContact(newContact);
   }
   render(){
-    console.log('test');
-    console.log(this.props.firstName)
+
     const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, image } = this.state
+
+
+    let imgSource;
+    let imageDisplay;
+
+    if (this.state.imgSource){
+      imageDisplay = (<img src={this.state.imgSource}/>)
+    }
+
+    console.log('test')
 
     return(
       <div className = 'input-field-container'>
@@ -92,7 +118,9 @@ export default class NewContactForm extends Component {
         <InputField className='github-Input' placeholder = 'github' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'github'/>
         <InputField className='instagram-Input' placeholder = 'instagram' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'instagram'/>
         <InputField className='notes-input' placeholder = 'Notes' type='text' handleChange={this.updateState.bind(this)} name = 'notes'/>
-        <AddImageButton handleClick={()=>{this.addImage()}}/>
+        <AddImageButton handleChange={(e)=>{this.addImage(e)}}/>
+
+        {imageDisplay}
 
         <button className='submit-new-contact-btn' onClick={this.submitNewContact.bind(this)}> Submit New Contact </button>
 

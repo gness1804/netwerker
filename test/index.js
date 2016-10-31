@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import { assert,expect } from 'chai';
+require('locus');
 
 import Application from '../lib/components/Application';
 import NewContactForm from '../lib/components/NewContactForm';
@@ -53,7 +54,8 @@ describe("ContactCard", ()=>{
           github: 'jcleese',
           instagram: 'j-cleese-photos'
         },
-        notes: 'I am the best actor from Monty Python.'
+        notes: 'I am the best actor from Monty Python.',
+        image: 'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550'
     };
     const wrapper = render(<ContactCard {...newContact}/>);
     let company = wrapper.find('.companyName').text();

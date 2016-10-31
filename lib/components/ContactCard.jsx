@@ -18,7 +18,7 @@ export default class ContactCard extends Component {
   } //end of addImage
 
   deleteImage(){
-    
+
   } //end of deleteImage
 
   toggleExpand(){
@@ -55,7 +55,7 @@ export default class ContactCard extends Component {
       <div className = 'github'>{socialMedia.github}</div>
       <div className = 'instagram'>{socialMedia.instagram}</div>
       <div className='notes'>{notes}</div>
-      <div className="image">{image ? <img src={image} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
+      <div className="image-container">{image ? <img className="image-actual" src={image} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
       </div>)
     }
     else {
