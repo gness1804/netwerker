@@ -9,19 +9,29 @@ export default class ContactCard extends Component {
     this.state = {
       expanded: false,
       editable: false,
+      contactImgURL: null,
     };
   }
-
-  addImage(){
-
-    //we will need to allow user to upload a photo and save to Firebase
-  } //end of addImage
 
   deleteImage(){
 
   } //end of deleteImage
 
   toggleExpand(){
+
+    if(!this.state.expanded){
+
+      console.log(this.props.user.uid, this.props.contactID)
+      this.props.imgStorage.child(`${this.props.user.uid}/${this.props.contactID}.jpg`).getDownloadURL()
+                        .then((url)=>{
+                          console.log(url)
+                          this.setState({contactImgURL: url})
+                        })
+                        .catch(()=>{
+                          console.log('error - no image for this contact')
+                        })
+    }
+
     this.setState({expanded: !this.state.expanded});
   }
 
@@ -38,6 +48,8 @@ export default class ContactCard extends Component {
   }
 
   render() {
+
+    console.log(this.state.contactImgURL)
     const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, contactID, image } = this.props
     let display;
     if (this.state.expanded) {
@@ -55,7 +67,7 @@ export default class ContactCard extends Component {
       <div className = 'github'>{socialMedia.github}</div>
       <div className = 'instagram'>{socialMedia.instagram}</div>
       <div className='notes'>{notes}</div>
-      <div className="image-container">{image ? <img className="image-actual" src={image} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
+      <div className="image-container">{this.state.contactImgURL ? <img className="image-actual" src={this.state.contactImgURL} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
       </div>)
     }
     else {

@@ -14,12 +14,13 @@ export default class Application extends Component {
     this.state = {
       user: null,
       contacts: [],
-      contactDatabase: null
+      contactDatabase: null,
+      contactImgStorage: null
     };
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => this.setState({ user, contactDatabase: firebase.database().ref(user.uid) }, ()=>{
+    firebase.auth().onAuthStateChanged(user => this.setState({ user, contactDatabase: firebase.database().ref(user.uid), contactImgStorage: firebase.storage().ref() }, ()=>{
 
     firebase.database().ref(user.uid).on('value', (snapshot) => {
       const contacts = snapshot.val() || {};
@@ -33,8 +34,7 @@ export default class Application extends Component {
 
   addNewContact(contact, image){
     this.state.contactDatabase.push(contact);
-    
-    //put just the image in contactDatabase
+    this.state.contactImgStorage.child(`${this.state.user.uid}/${contact.contactID}.jpg`).put(image);
   }
 
   editContact(contactID, newContactInfo){
@@ -45,7 +45,9 @@ export default class Application extends Component {
 
   render() {
     const { user } = this.state;
-    // console.log(this.state);
+    if(this.state.contactImgStorage){
+     console.log(this.state.contactImgStorage.bucket);
+   }
     return(
       <div className = 'application'>
 
@@ -56,7 +58,7 @@ export default class Application extends Component {
         <button onClick={()=>this.addNewContact()}>Add Contact</button>
         </div>
 
-        <ContactCardList contacts = {this.state.contacts} submitEdit={this.editContact.bind(this)}/>
+        <ContactCardList user={this.state.user} imgStorage = {this.state.contactImgStorage} contacts = {this.state.contacts} submitEdit={this.editContact.bind(this)}/>
         <NewContactForm handleNewContact={this.addNewContact.bind(this)} numbers={{cell:''}} emails={{primary:'', secondary:''}} socialMedia={{facebook:''}}/>
         <button onClick={this.editContact.bind(this)}>Test</button>
       </div>

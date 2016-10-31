@@ -64,6 +64,7 @@ export default class NewContactForm extends Component {
 
   submitNewContact(){
     const newContact = {
+        contactID: Date.now(),
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         companyName: this.state.companyName,
@@ -86,7 +87,7 @@ export default class NewContactForm extends Component {
         notes: this.state.notes
     };
     const image = this.state.image;
-    this.props.handleNewContact(newContact);
+    this.props.handleNewContact(newContact, image);
   }
   render(){
 
