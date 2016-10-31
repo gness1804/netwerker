@@ -14,12 +14,13 @@ export default class Application extends Component {
     this.state = {
       user: null,
       contacts: [],
-      contactDatabase: null
+      contactDatabase: null,
+      contactImgStorage: null
     };
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => this.setState({ user, contactDatabase: firebase.database().ref(user.uid) }, ()=>{
+    firebase.auth().onAuthStateChanged(user => this.setState({ user, contactDatabase: firebase.database().ref(user.uid), contactImgStorage: firebase.storage().ref(user.uid) }, ()=>{
 
     firebase.database().ref(user.uid).on('value', (snapshot) => {
       const contacts = snapshot.val() || {};
@@ -33,7 +34,9 @@ export default class Application extends Component {
 
   addNewContact(contact, image){
     this.state.contactDatabase.push(contact);
-    
+    this.state.contactImgStorage.put(image);
+
+
     //put just the image in contactDatabase
   }
 

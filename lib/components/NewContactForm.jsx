@@ -86,7 +86,7 @@ export default class NewContactForm extends Component {
         notes: this.state.notes
     };
     const image = this.state.image;
-    this.props.handleNewContact(newContact);
+    this.props.handleNewContact(newContact, image);
   }
   render(){
 
