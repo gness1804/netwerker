@@ -39,7 +39,7 @@ export default class Application extends Component {
 
   editContact(contactID, newContactInfo, image){
       this.state.contactDatabase.child(`${contactID}`).set(newContactInfo)
-      this.state.contactImgStorage.child(`${this.state.user.uid}/${contact.contactID}.jpg`).put(image);
+      this.state.contactImgStorage.child(`${this.state.user.uid}/${newContactInfo.contactID}.jpg`).put(image);
       console.log(contactID)
       // console.log(this.state.contacts);
   }
