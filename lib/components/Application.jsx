@@ -31,8 +31,10 @@ export default class Application extends Component {
   ));
 } //end of componentDidMount
 
-  addNewContact(contact){
+  addNewContact(contact, image){
     this.state.contactDatabase.push(contact);
+    
+    //put just the image in contactDatabase
   }
 
   editContact(contactID, newContactInfo){
