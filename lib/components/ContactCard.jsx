@@ -21,8 +21,8 @@ export default class ContactCard extends Component {
 
     if(!this.state.expanded){
 
-      console.log(this.props.user.uid, this.props.contactID)
-      this.props.imgStorage.child(`${this.props.user.uid}/${this.props.contactID}.jpg`).getDownloadURL()
+      console.log(this.props.user.uid, this.props.contactImgID)
+      this.props.imgStorage.child(`${this.props.user.uid}/${this.props.contactImgID}.jpg`).getDownloadURL()
                         .then((url)=>{
                           console.log(url)
                           this.setState({contactImgURL: url})
@@ -39,17 +39,15 @@ export default class ContactCard extends Component {
     this.setState({editable: !this.state.editable});
   }
 
-  submitEdit(){
+  submitEdit(newContact, newImage){
 
-    let newContactInfo;//figure out how to assign this = Contact{}
+    let newContactInfo = newContact;//figure out how to assign this = Contact{}
 
-    this.props.submitEdit(this.props.contactID, newContactInfo);
-
+    this.props.submitEdit(this.props.contactTextID, newContactInfo);
+    this.toggleEdit();
   }
 
   render() {
-
-    console.log(this.state.contactImgURL)
     const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, contactID, image } = this.props
     let display;
     if (this.state.expanded) {
@@ -75,6 +73,7 @@ export default class ContactCard extends Component {
     }
 
     if(this.state.editable){
+      console.log(this.props)
       display = <NewContactForm handleNewContact={this.submitEdit.bind(this)} {...this.props}/>
     }
 

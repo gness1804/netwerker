@@ -38,8 +38,8 @@ export default class Application extends Component {
   }
 
   editContact(contactID, newContactInfo){
-      // this.state.contactDatabase.child('-KVLdb5QU1E175CvCIqj/companyName').set('test')
-
+      this.state.contactDatabase.child(`${contactID}`).set(newContactInfo)
+      console.log(contactID)
       // console.log(this.state.contacts);
   }
 
@@ -59,7 +59,7 @@ export default class Application extends Component {
         </div>
 
         <ContactCardList user={this.state.user} imgStorage = {this.state.contactImgStorage} contacts = {this.state.contacts} submitEdit={this.editContact.bind(this)}/>
-        <NewContactForm handleNewContact={this.addNewContact.bind(this)} numbers={{cell:''}} emails={{primary:'', secondary:''}} socialMedia={{facebook:''}}/>
+        <NewContactForm handleNewContact={this.addNewContact.bind(this)} numbers={{}} emails={{}} socialMedia={{}}/>
         <button onClick={this.editContact.bind(this)}>Test</button>
       </div>
     )
