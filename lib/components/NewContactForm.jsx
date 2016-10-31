@@ -31,7 +31,7 @@ export default class NewContactForm extends Component {
     };
   }
 
-  addImage(){
+  addImage(){ //need to upload image here 
     this.setState({image: 'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550'});
   } //end of addImage
 
