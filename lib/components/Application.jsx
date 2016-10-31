@@ -20,7 +20,7 @@ export default class Application extends Component {
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => this.setState({ user, contactDatabase: firebase.database().ref(user.uid), contactImgStorage: firebase.storage().ref(user.uid) }, ()=>{
+    firebase.auth().onAuthStateChanged(user => this.setState({ user, contactDatabase: firebase.database().ref(user.uid), contactImgStorage: firebase.storage().ref() }, ()=>{
 
     firebase.database().ref(user.uid).on('value', (snapshot) => {
       const contacts = snapshot.val() || {};
@@ -34,7 +34,7 @@ export default class Application extends Component {
 
   addNewContact(contact, image){
     this.state.contactDatabase.push(contact);
-    this.state.contactImgStorage.put(image);
+    this.state.contactImgStorage.child(`contactImages/${this.state.user.uid}/`).put(image);
 
 
     //put just the image in contactDatabase
@@ -48,7 +48,9 @@ export default class Application extends Component {
 
   render() {
     const { user } = this.state;
-    // console.log(this.state);
+    if(this.state.contactImgStorage){
+     console.log(this.state.contactImgStorage.bucket);
+   }
     return(
       <div className = 'application'>
 
