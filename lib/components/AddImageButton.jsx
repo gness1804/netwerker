@@ -10,7 +10,7 @@ export default class AddImageButton extends Component {
   render() {
     return(
       // <button onClick={this.props.handleClick}>Add Image</button>
-      <input className="add-image-button" type="file" onChange={this.props.handleChange}/>
+      <input className="add-image-button" type="file" onChange={this.props.handleChange} accept="image/*"/>
     );
   }
 
