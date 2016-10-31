@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {InputField} from './InputField.jsx'
+import {InputField} from './InputField.jsx';
 import ContactCard from './ContactCard.jsx';
+import AddImageButton from './AddImageButton';
 
 export default class NewContactForm extends Component {
   constructor(props) {
@@ -25,12 +26,17 @@ export default class NewContactForm extends Component {
         github: this.props.socialMedia.github || '',
         instagram: this.props.socialMedia.instagram || ''
       },
-      notes: this.props.notes || ''
-    }
+      notes: this.props.notes || '',
+      image: this.props.image || ''
+    };
   }
 
+  addImage(){
+    this.setState({image: 'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550'});
+  } //end of addImage
+
   updateState(e, keyName){
-    this.setState({[keyName]: e.target.value})
+    this.setState({[keyName]: e.target.value});
   }
 
   updateStateObject(e, keyName, objName){
@@ -60,14 +66,15 @@ export default class NewContactForm extends Component {
           github: this.state.socialMedia.github,
           instagram: this.state.socialMedia.instagram
         },
-        notes: this.state.notes
-    }
+        notes: this.state.notes,
+        image: this.state.image
+    };
     this.props.handleNewContact(newContact);
   }
   render(){
     console.log('test');
     console.log(this.props.firstName)
-    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes } = this.state
+    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, image } = this.state
 
     return(
       <div className = 'input-field-container'>
@@ -85,7 +92,7 @@ export default class NewContactForm extends Component {
         <InputField className='github-Input' placeholder = 'github' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'github'/>
         <InputField className='instagram-Input' placeholder = 'instagram' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'instagram'/>
         <InputField className='notes-input' placeholder = 'Notes' type='text' handleChange={this.updateState.bind(this)} name = 'notes'/>
-
+        <AddImageButton handleClick={()=>{this.addImage()}}/>
 
         <button className='submit-new-contact-btn' onClick={this.submitNewContact.bind(this)}> Submit New Contact </button>
 
