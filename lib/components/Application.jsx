@@ -37,8 +37,9 @@ export default class Application extends Component {
     this.state.contactImgStorage.child(`${this.state.user.uid}/${contact.contactID}.jpg`).put(image);
   }
 
-  editContact(contactID, newContactInfo){
+  editContact(contactID, newContactInfo, image){
       this.state.contactDatabase.child(`${contactID}`).set(newContactInfo)
+      this.state.contactImgStorage.child(`${this.state.user.uid}/${contact.contactID}.jpg`).put(image);
       console.log(contactID)
       // console.log(this.state.contacts);
   }
