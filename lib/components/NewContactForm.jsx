@@ -64,6 +64,7 @@ export default class NewContactForm extends Component {
 
   submitNewContact(){
     const newContact = {
+        contactID: Date.now(),
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         companyName: this.state.companyName,

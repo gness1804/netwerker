@@ -34,7 +34,7 @@ export default class Application extends Component {
 
   addNewContact(contact, image){
     this.state.contactDatabase.push(contact);
-    this.state.contactImgStorage.child(`contactImages/${this.state.user.uid}/`).put(image);
+    this.state.contactImgStorage.child(`${this.state.user.uid}/${contact.contactID}.jpg`).put(image);
 
 
     //put just the image in contactDatabase
