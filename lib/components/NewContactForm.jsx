@@ -7,6 +7,7 @@ export default class NewContactForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      contactID: this.props.contactID || Date.now(),
       firstName: this.props.firstName || '',
       lastName: this.props.lastName || '',
       companyName: this.props.companyName || '',
@@ -62,7 +63,7 @@ export default class NewContactForm extends Component {
 
   submitNewContact(){
     const newContact = {
-        contactID: Date.now(),
+        contactID: this.state.contactID,
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         companyName: this.state.companyName,

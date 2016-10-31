@@ -43,7 +43,7 @@ export default class ContactCard extends Component {
 
     let newContactInfo = newContact;//figure out how to assign this = Contact{}
 
-    this.props.submitEdit(this.props.contactTextID, newContactInfo);
+    this.props.submitEdit(this.props.contactTextID, newContactInfo, newImage);
     this.toggleEdit();
   }
 
