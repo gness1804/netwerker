@@ -36,9 +36,12 @@ export default class NewContactForm extends Component {
   // } //end of addImage
 
   addImage2(){
-    let button = document.querySelector('.add-image-button');
-    this.setState({image:button.value});
+    let button = document.querySelector('.add-image-button').files[0].name;
+    console.log(button);
+    this.setState({image:button});
   }
+
+  // var selectedFile = document.getElementById('input').files[0];
 
   updateState(e, keyName){
     this.setState({[keyName]: e.target.value});
