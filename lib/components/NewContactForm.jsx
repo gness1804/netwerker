@@ -43,16 +43,16 @@ export default class NewContactForm extends Component {
   } //end of componentDidMount
 
   addImage(e){
-    // let button = document.querySelector('.add-image-button').files[0];
     let image = e.target.files[0];
-    // console.log(image);
     this.setState({image:image},
         this.state.reader.readAsDataURL(image)
     );
 
   } //end of addImage
 
-  // var selectedFile = document.getElementById('input').files[0];
+  toggleFollowup(){
+    console.log("test");
+  } //end of toggleFollowup
 
   updateState(e, keyName){
     this.setState({[keyName]: e.target.value});
@@ -61,7 +61,7 @@ export default class NewContactForm extends Component {
   updateStateObject(e, keyName, objName){
     var objState = this.state[objName];
     objState[keyName] = e.target.value;
-    this.setState([objName]: objState)
+    this.setState({[objName]: objState});
   }
 
   submitNewContact(){
@@ -94,7 +94,7 @@ export default class NewContactForm extends Component {
   }
   render(){
 
-    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, image, followup } = this.state
+    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, image, followup } = this.state;
 
 
     let imgSource;
@@ -123,7 +123,7 @@ export default class NewContactForm extends Component {
         <InputField className='instagram-Input' value = {this.state.socialMedia.instagram} placeholder = 'instagram' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'instagram'/>
         <InputField className='notes-input' value = {this.state.notes}  placeholder = 'Notes' type='text' handleChange={this.updateState.bind(this)} name = 'notes'/>
         <AddImageButton handleChange={(e)=>{this.addImage(e)}}/>
-        <FollowupButton/>
+        <FollowupButton handleClick={()=>{this.toggleFollowup()}}/>
 
         {imageDisplay}
 
@@ -133,4 +133,4 @@ export default class NewContactForm extends Component {
     )
   }
 
-}
+} //end of NewContactForm

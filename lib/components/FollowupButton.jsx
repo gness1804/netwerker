@@ -10,7 +10,7 @@ export default class FollowupButton extends Component {
 
   render() {
     return(
-      <div>Hi</div>
+      <button className="followup-button" onClick={this.props.handleClick}>Flag for Followup</button>
     );
   }
 
