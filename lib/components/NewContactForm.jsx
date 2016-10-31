@@ -51,7 +51,7 @@ export default class NewContactForm extends Component {
   } //end of addImage
 
   toggleFollowup(){
-    console.log("test");
+    this.setState({followup:!this.state.followup});
   } //end of toggleFollowup
 
   updateState(e, keyName){
@@ -104,7 +104,7 @@ export default class NewContactForm extends Component {
       imageDisplay = (<img src={this.state.imgSource}/>)
     }
 
-    console.log(this.state)
+    // console.log(this.state)
 
     return(
       <div className = 'input-field-container'>

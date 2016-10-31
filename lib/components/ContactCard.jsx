@@ -48,7 +48,8 @@ export default class ContactCard extends Component {
   }
 
   render() {
-    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, contactID, image } = this.props
+    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, contactID, image, followup } = this.props
+    console.log(followup);
     let display;
     if (this.state.expanded) {
       display = (<div className="expanded">
@@ -66,6 +67,7 @@ export default class ContactCard extends Component {
       <div className = 'instagram'>{socialMedia.instagram}</div>
       <div className='notes'>{notes}</div>
       <div className="image-container">{this.state.contactImgURL ? <img className="image-actual" src={this.state.contactImgURL} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
+      <div>{followup}</div>
       </div>)
     }
     else {
