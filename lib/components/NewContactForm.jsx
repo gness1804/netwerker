@@ -31,9 +31,14 @@ export default class NewContactForm extends Component {
     };
   }
 
-  addImage(){ //need to upload image here 
+  addImage(){ //need to upload image here
     this.setState({image: 'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550'});
   } //end of addImage
+
+  addImage2(){
+    let button = document.querySelector('.add-image-button');
+    console.log(button);
+  }
 
   updateState(e, keyName){
     this.setState({[keyName]: e.target.value});
@@ -92,7 +97,7 @@ export default class NewContactForm extends Component {
         <InputField className='github-Input' placeholder = 'github' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'github'/>
         <InputField className='instagram-Input' placeholder = 'instagram' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'instagram'/>
         <InputField className='notes-input' placeholder = 'Notes' type='text' handleChange={this.updateState.bind(this)} name = 'notes'/>
-        <AddImageButton handleClick={()=>{this.addImage()}}/>
+        <AddImageButton handleClick={()=>{this.addImage()}} handleChange={()=>{this.addImage2()}}/>
 
         <button className='submit-new-contact-btn' onClick={this.submitNewContact.bind(this)}> Submit New Contact </button>
 
