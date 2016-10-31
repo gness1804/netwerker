@@ -35,9 +35,6 @@ export default class Application extends Component {
   addNewContact(contact, image){
     this.state.contactDatabase.push(contact);
     this.state.contactImgStorage.child(`${this.state.user.uid}/${contact.contactID}.jpg`).put(image);
-
-
-    //put just the image in contactDatabase
   }
 
   editContact(contactID, newContactInfo){
@@ -61,7 +58,7 @@ export default class Application extends Component {
         <button onClick={()=>this.addNewContact()}>Add Contact</button>
         </div>
 
-        <ContactCardList contacts = {this.state.contacts} submitEdit={this.editContact.bind(this)}/>
+        <ContactCardList user={this.state.user} imgStorage = {this.state.contactImgStorage} contacts = {this.state.contacts} submitEdit={this.editContact.bind(this)}/>
         <NewContactForm handleNewContact={this.addNewContact.bind(this)} numbers={{cell:''}} emails={{primary:'', secondary:''}} socialMedia={{facebook:''}}/>
         <button onClick={this.editContact.bind(this)}>Test</button>
       </div>
