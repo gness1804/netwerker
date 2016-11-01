@@ -4,8 +4,12 @@
 
 //global styling
 
-$main-background: #cec2c2;
 $faded-background: rgba(255,255,255,0.4);
+$main-background: linear-gradient(to right, rgb(91, 174, 214), rgb(222, 223, 187), rgb(91, 174, 214));
+
+html {
+  background: $main-background;
+}
 
 h1{
   font-size: 50px;

@@ -68,6 +68,7 @@ export default class Application extends Component {
 
     return(
       <div className = 'application'>
+        <h1>Netwerker</h1>
 
         <div className='active-user'>{user ?
           <p>Logged in as <span className="bold">{user.displayName}</span> ({user.email})  <button className='auth-button button' onClick={()=> signOut()}>Sign Out</button>
