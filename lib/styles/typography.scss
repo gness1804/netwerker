@@ -1,8 +1,11 @@
 //fonts
 $main-font: 'Merriweather', serif;
 
-@mixin light-font {
-  font-family: helvetica, sans-serif;
-  font-weight: 100;
-  letter-spacing: 2px;
+//typography formats
+@mixin h1-style-desktop {
+
+}
+
+@mixin h1-style-mobile {
+  text-align: center;
 }

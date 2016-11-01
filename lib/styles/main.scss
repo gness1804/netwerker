@@ -3,18 +3,34 @@
 @import "typography.scss";
 
 //global styling
-
-$faded-background: rgba(255,255,255,0.4);
 $main-background: linear-gradient(to right, rgb(91, 174, 214), rgb(222, 223, 187), rgb(91, 174, 214));
+$faded-background: rgba(255,255,255,0.4);
+$breakpoint: 800px;
 
 html {
   background: $main-background;
+  font-family:  $main-font;
 }
 
-h1{
+@media screen and (max-width: $breakpoint) { /* for smartphones and tablets */
+  h1 {
+    text-align: center;
+  }
+
+} //end of media query
+
+h1 {
   font-size: 50px;
   margin: 20px;
 }
+
+@media screen and (max-width: $breakpoint) { /* for smartphones and tablets */
+
+  h1 {
+
+  }
+
+} //end of media query
 
 .app-container{
   text-align: center;
@@ -45,8 +61,4 @@ button{
 
 .image-actual{
   width: 300px;
-}
-
-body {
-  @include light-font;
 }
