@@ -17,7 +17,7 @@ export default class Application extends Component {
       contacts: [],
       contactDatabase: null,
       contactImgStorage: null,
-      showFollowup: false
+      showAddForm: false
     };
   }
 
@@ -36,14 +36,15 @@ export default class Application extends Component {
 
   addNewContact(newContactInfo, image){
     this.state.contactDatabase.push(newContactInfo);
-    this.state.contactImgStorage.child(`${this.state.user.uid}/${newContactInfo.contactID}.jpg`).put(image);
+    if(image){
+        this.state.contactImgStorage.child(`${this.state.user.uid}/${newContactInfo.contactID}.jpg`).put(image)
+    }
+    this.setState({showAddForm: false})
   }
 
   editContact(contactID, newContactInfo, image){
       this.state.contactDatabase.child(`${contactID}`).set(newContactInfo)
       this.state.contactImgStorage.child(`${this.state.user.uid}/${newContactInfo.contactID}.jpg`).put(image);
-      console.log(contactID)
-      // console.log(this.state.contacts);
   }
 
   toggleFollowup(contactID, followup){
@@ -56,6 +57,15 @@ export default class Application extends Component {
     if(this.state.contactImgStorage){
      console.log(this.state.contactImgStorage.bucket);
    }
+
+    let pageDisplay;
+
+    if(this.state.showAddForm){
+      pageDisplay =  <NewContactForm handleNewContact={this.addNewContact.bind(this)} numbers={{}} emails={{}} socialMedia={{}}/>
+    } else {
+      pageDisplay = <ContactCardList user={this.state.user} imgStorage = {this.state.contactImgStorage} contacts = {this.state.contacts} submitEdit={this.editContact.bind(this)} toggleFollowup={this.toggleFollowup.bind(this)}/>
+    }
+
     return(
       <div className = 'application'>
 
@@ -63,11 +73,12 @@ export default class Application extends Component {
           <p>Logged in as <span className="bold">{user.displayName}</span> ({user.email})  <button className='auth-button button' onClick={()=> signOut()}>Sign Out</button>
           </p>
         : <button className='auth-button' onClick={() => signIn()}>Sign In</button> }
-        <button onClick={()=>this.addNewContact()}>Add Contact</button>
+
+        <button className='show-new-contact-form' onClick={()=>this.setState({showAddForm: true})}>Add Contact</button>
         </div>
 
-        <ContactCardList user={this.state.user} imgStorage = {this.state.contactImgStorage} contacts = {this.state.contacts} submitEdit={this.editContact.bind(this)} toggleFollowup={this.toggleFollowup.bind(this)}/>
-        <NewContactForm handleNewContact={this.addNewContact.bind(this)} numbers={{}} emails={{}} socialMedia={{}}/>
+        {pageDisplay}
+
         <button onClick={this.editContact.bind(this)}>Test</button>
 
       </div>
