@@ -11,6 +11,7 @@ export default class ContactCard extends Component {
       expanded: false,
       editable: false,
       contactImgURL: null
+
     };
   }
 

@@ -6,6 +6,7 @@ import NewContactForm from './NewContactForm.jsx';
 import ContactCard from './ContactCard.jsx'
 import ContactCardList from './ContactCardList.jsx';
 
+
 // let contactsFromDatabase;
 
 export default class Application extends Component {
@@ -15,7 +16,8 @@ export default class Application extends Component {
       user: null,
       contacts: [],
       contactDatabase: null,
-      contactImgStorage: null
+      contactImgStorage: null,
+      showFollowup: false
     };
   }
 
@@ -48,6 +50,7 @@ export default class Application extends Component {
     this.state.contactDatabase.child(`${contactID}`).child('followup').set(followup);
   }
 
+
   render() {
     const { user } = this.state;
     if(this.state.contactImgStorage){
@@ -66,6 +69,7 @@ export default class Application extends Component {
         <ContactCardList user={this.state.user} imgStorage = {this.state.contactImgStorage} contacts = {this.state.contacts} submitEdit={this.editContact.bind(this)} toggleFollowup={this.toggleFollowup.bind(this)}/>
         <NewContactForm handleNewContact={this.addNewContact.bind(this)} numbers={{}} emails={{}} socialMedia={{}}/>
         <button onClick={this.editContact.bind(this)}>Test</button>
+
       </div>
     )
   }
