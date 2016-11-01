@@ -12,25 +12,19 @@ html {
   font-family:  $main-font;
 }
 
-@media screen and (max-width: $breakpoint) { /* for smartphones and tablets */
+h1 {
+  @include h1-style-desktop;
+}
+
+@media screen and (max-width: $breakpoint) {
   h1 {
     text-align: center;
   }
 
 } //end of media query
 
-h1 {
-  font-size: 50px;
-  margin: 20px;
-}
 
-@media screen and (max-width: $breakpoint) { /* for smartphones and tablets */
 
-  h1 {
-
-  }
-
-} //end of media query
 
 .app-container{
   text-align: center;

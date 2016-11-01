@@ -3,9 +3,6 @@ $main-font: 'Merriweather', serif;
 
 //typography formats
 @mixin h1-style-desktop {
-
-}
-
-@mixin h1-style-mobile {
-  text-align: center;
+  font-size: 50px;
+  margin: 30px 0;
 }
