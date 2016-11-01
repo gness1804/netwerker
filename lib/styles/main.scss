@@ -1,6 +1,7 @@
 @import "buttons.scss";
 @import "forms.scss";
 @import "typography.scss";
+@import "debug.scss";
 
 //global styling
 $main-background-desktop: linear-gradient(to bottom, rgb(91, 174, 214), rgb(222, 223, 187), rgb(91, 174, 214));
@@ -25,21 +26,31 @@ h1 {
   @include h1-style-desktop;
 }
 
-@media screen and (max-width: $breakpoint) {
-
-  h1 {
-    
-  }
-
-} //end of media query
-
-
-
-
 .app-container{
   text-align: center;
   margin-top: 80px;
 }
+
+.active-user {
+  text-align: center;
+
+  button {
+
+  }
+
+} //end of active-user
+
+@media screen and (max-width: $breakpoint) {
+
+  .active-user {
+
+    button {
+      @include button-header-mobile;
+    }
+
+  } //end of active-user
+
+} //end of media query
 
 .contactCardContainer{
   border: 2px solid teal;
@@ -54,13 +65,6 @@ button{
   margin: 10px;
   height: 30px;
   width: 100px;
-}
-
-@mixin headerFonts{
-  font-size: 35px;
-  border-bottom: 1px dashed purple;
-  font-weight: bold;
-  color: teal;
 }
 
 .image-actual{
