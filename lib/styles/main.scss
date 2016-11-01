@@ -44,8 +44,18 @@ h1 {
 
   .active-user {
 
+    p {
+      font-size: 20px;
+      font-style: italic;
+    }
+
     button {
-      @include button-header-mobile;
+      display: block;
+      margin: 30px auto;
+    }
+
+    .auth-button {
+      @include button-standard-mobile;
     }
 
   } //end of active-user

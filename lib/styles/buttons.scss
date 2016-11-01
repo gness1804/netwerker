@@ -1,6 +1,6 @@
 $button-background: #019DAA;
 
-@mixin button-header-mobile {
-  display: block;
-  margin: 30px auto;
+@mixin button-standard-mobile {
+  border-radius: 5px;
+  
 }
