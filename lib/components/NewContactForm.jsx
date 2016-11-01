@@ -31,15 +31,16 @@ export default class NewContactForm extends Component {
       notes: this.props.notes || '',
       image: this.props.image || '',
       followup: this.props.followup || false,
-      reader: new FileReader()
+      reader: this.props.fileReaderTest || new FileReader()
     };
   }
 
 
   componentDidMount(){
+    if (this.state.reader !== "test") {
     this.state.reader.addEventListener('load', function(){
         this.setState({imgSource : this.state.reader.result});
-    }.bind(this));
+    }.bind(this));}
   } //end of componentDidMount
 
   addImage(e){

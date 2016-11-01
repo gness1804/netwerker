@@ -16,7 +16,7 @@ describe("application", ()=>{
 
 describe("NewContactForm", ()=>{
   it("should change state when user enters info in a field", ()=>{
-    const wrapper = mount(<NewContactForm/>);
+    const wrapper = mount(<NewContactForm numbers={{}} emails={{}} socialMedia={{}} fileReaderTest={"test"}/>);
     const firstNameInput = wrapper.find('.firstName-Input');
     assert.strictEqual(wrapper.state('firstName'), '');
     firstNameInput.simulate('change', {target: {value: 'Hello World'}});
@@ -24,8 +24,9 @@ describe("NewContactForm", ()=>{
   }); //end of change state when user enters info in a field
 
   it("should change state on entry of a more complex data item like cell phone number", ()=>{
-    const wrapper = mount(<NewContactForm/>);
+    const wrapper = mount(<NewContactForm numbers={{}} emails={{}} socialMedia={{}} fileReaderTest={"test"}/>);
     const cellNumberInput = wrapper.find('.cellNumber-Input');
+
     assert.strictEqual(wrapper.state().numbers.cell, '');
     cellNumberInput.simulate('change', {target: {value: '99999999'}});
     assert.strictEqual(wrapper.state().numbers.cell, '99999999');
@@ -33,38 +34,63 @@ describe("NewContactForm", ()=>{
 }); //end of describe NewContactForm
 
 describe("ContactCard", ()=>{
+  const newContact = {
+      firstName: 'John',
+      lastName: 'Cleese',
+      companyName: 'Monty Python',
+      numbers: {
+        cell: 44,
+        work: 454,
+        home: 46
+      },
+      emails: {
+        primary: 'john@schoolofsillywalks.com',
+        secondary: 'john@spanishinquisition.org'
+      },
+      socialMedia: {
+        facebook: 'john_cleese_fb',
+        twitter: '@johncleese',
+        linkedIn: 'jcleese',
+        github: 'jcleese',
+        instagram: 'j-cleese-photos'
+      },
+      notes: 'I am the best actor from Monty Python.',
+      image: 'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550'
+  };
   it("should display contact info when user enters it", ()=>{
-    const newContact = {
-        firstName: 'John',
-        lastName: 'Cleese',
-        companyName: 'Monty Python',
-        numbers: {
-          cell: 44,
-          work: 454,
-          home: 46
-        },
-        emails: {
-          primary: 'john@schoolofsillywalks.com',
-          secondary: 'john@spanishinquisition.org'
-        },
-        socialMedia: {
-          facebook: 'john_cleese_fb',
-          twitter: '@johncleese',
-          linkedIn: 'jcleese',
-          github: 'jcleese',
-          instagram: 'j-cleese-photos'
-        },
-        notes: 'I am the best actor from Monty Python.',
-        image: 'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550'
-    };
-    const wrapper = render(<ContactCard {...newContact}/>);
-    let company = wrapper.find('.companyName').text();
-    assert.strictEqual(company, 'Monty Python');
+
+    const wrapper = mount(<ContactCard {...newContact} test = {true}/>);
+
+    let name = wrapper.find('.fullname').text();
+    assert.strictEqual(name, 'John Cleese');
+  });
+
+  it("should display all contact info when user clicks expand", ()=> {
+    const wrapper = mount(<ContactCard {...newContact} test={true}/>);
+    wrapper.find('.expand-button').simulate('click')
+
+    let name = wrapper.find('.fullname').text();
+    assert.strictEqual(name, 'John Cleese');
     let cell = wrapper.find('.cell').text();
     assert.strictEqual(+cell, 44);
     let primEmail = wrapper.find('.primary-email').text();
     assert.strictEqual(primEmail, 'john@schoolofsillywalks.com');
     let github = wrapper.find('.github').text();
     assert.strictEqual(github, 'jcleese');
-  }); //end of display contact info when user enters it
+  });
+
+  it("should toggle off expand when user click expand button", ()=> {
+    const wrapper = mount(<ContactCard {...newContact} test={true}/>);
+    wrapper.find('.expand-button').simulate('click')
+
+    let cell = wrapper.find('.cell').text();
+    assert.strictEqual(+cell, 44);
+
+    wrapper.find('.expand-button').simulate('click')
+    cell = wrapper.find('.cell');
+    assert.strictEqual(cell.length, 0)
+  })
+
+
+   //end of display contact info when user enters it
 }); //end of describe ContactCard
