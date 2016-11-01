@@ -26,6 +26,14 @@ h1 {
   @include h1-style-desktop;
 }
 
+@media screen and (max-width: $breakpoint) {
+
+  h1 {
+    font-size: 40px;
+  }
+
+} //end of media query
+
 .app-container{
   text-align: center;
   margin-top: 80px;
@@ -57,6 +65,10 @@ h1 {
     .auth-button {
       @include button-standard-mobile;
       background-color: rgb(205, 90, 57);
+    }
+
+    .show-new-contact-form {
+      @include show-new-contact-form-button;
     }
 
   } //end of active-user
