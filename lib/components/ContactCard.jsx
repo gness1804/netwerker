@@ -25,7 +25,7 @@ export default class ContactCard extends Component {
 
     if(!this.state.expanded){
 
-      console.log(this.props.user.uid, this.props.contactImgID)
+      if (!this.props.test) {
       this.props.imgStorage.child(`${this.props.user.uid}/${this.props.contactImgID}.jpg`).getDownloadURL()
                         .then((url)=>{
                           console.log(url)
@@ -34,6 +34,7 @@ export default class ContactCard extends Component {
                         .catch(()=>{
                           console.log('error - no image for this contact')
                         })
+                      }
     }
 
     this.setState({expanded: !this.state.expanded});
@@ -80,7 +81,7 @@ export default class ContactCard extends Component {
       </div>)
     }
     else {
-      display = <div className='fullname firstName lastName'>{firstName} {lastName} {contactID}</div>
+      display = <div className='fullname firstName lastName'>{firstName} {lastName}{contactID}</div>
     }
 
     if(this.state.editable){
@@ -90,8 +91,8 @@ export default class ContactCard extends Component {
 
     return(
       <div className='contactCardContainer'>
-        <button onClick={()=>this.toggleExpand()}>Expand Card</button>
-        <button onClick={()=>this.toggleEdit()}>Edit Card</button>
+        <button className="expand-button" onClick={()=>this.toggleExpand()}>Expand Card</button>
+        <button className="edit-button" onClick={()=>this.toggleEdit()}>Edit Card</button>
         {display}
         <div className="delete-image">{this.props.image ? <DeleteImageButton handleClick={()=>{this.deleteImage()}}/> : ''}</div>
       </div>
