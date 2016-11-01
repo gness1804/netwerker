@@ -32,9 +32,9 @@ export default class Application extends Component {
   ));
 } //end of componentDidMount
 
-  addNewContact(contact, image){
-    this.state.contactDatabase.push(contact);
-    this.state.contactImgStorage.child(`${this.state.user.uid}/${contact.contactID}.jpg`).put(image);
+  addNewContact(newContactInfo, image){
+    this.state.contactDatabase.push(newContactInfo);
+    this.state.contactImgStorage.child(`${this.state.user.uid}/${newContactInfo.contactID}.jpg`).put(image);
   }
 
   editContact(contactID, newContactInfo, image){
@@ -42,6 +42,10 @@ export default class Application extends Component {
       this.state.contactImgStorage.child(`${this.state.user.uid}/${newContactInfo.contactID}.jpg`).put(image);
       console.log(contactID)
       // console.log(this.state.contacts);
+  }
+
+  toggleFollowup(contactID, followup){
+    this.state.contactDatabase.child(`${contactID}`).child('followup').set(followup);
   }
 
   render() {
@@ -59,7 +63,7 @@ export default class Application extends Component {
         <button onClick={()=>this.addNewContact()}>Add Contact</button>
         </div>
 
-        <ContactCardList user={this.state.user} imgStorage = {this.state.contactImgStorage} contacts = {this.state.contacts} submitEdit={this.editContact.bind(this)}/>
+        <ContactCardList user={this.state.user} imgStorage = {this.state.contactImgStorage} contacts = {this.state.contacts} submitEdit={this.editContact.bind(this)} toggleFollowup={this.toggleFollowup.bind(this)}/>
         <NewContactForm handleNewContact={this.addNewContact.bind(this)} numbers={{}} emails={{}} socialMedia={{}}/>
         <button onClick={this.editContact.bind(this)}>Test</button>
       </div>

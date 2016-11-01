@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NewContactForm from './NewContactForm.jsx';
 import AddImageButton from './AddImageButton';
 import DeleteImageButton from './DeleteImageButton';
+import FollowupButton from './FollowupButton';
 
 export default class ContactCard extends Component {
   constructor() {
@@ -9,9 +10,11 @@ export default class ContactCard extends Component {
     this.state = {
       expanded: false,
       editable: false,
-      contactImgURL: null,
+      contactImgURL: null
     };
   }
+
+  //do we need another addImage here?
 
   deleteImage(){
 
@@ -39,16 +42,22 @@ export default class ContactCard extends Component {
     this.setState({editable: !this.state.editable});
   }
 
+  toggleFollowup(){
+
+      this.props.toggleFollowup(this.props.contactTextID, !this.props.followup)
+  }
+
   submitEdit(newContact, newImage){
 
-    let newContactInfo = newContact;//figure out how to assign this = Contact{}
+    let newContactInfo = newContact;
 
     this.props.submitEdit(this.props.contactTextID, newContactInfo, newImage);
     this.toggleEdit();
   }
 
   render() {
-    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, contactID, image } = this.props
+    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, contactID, image, followup } = this.props
+    // console.log(followup);
     let display;
     if (this.state.expanded) {
       display = (<div className="expanded">
@@ -66,6 +75,7 @@ export default class ContactCard extends Component {
       <div className = 'instagram'>{socialMedia.instagram}</div>
       <div className='notes'>{notes}</div>
       <div className="image-container">{this.state.contactImgURL ? <img className="image-actual" src={this.state.contactImgURL} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
+      <div className="followup-container">{followup ? <div><p>Flagged for Followup!</p> <FollowupButton handleClick={()=>{this.toggleFollowup()}}/></div> : <FollowupButton handleClick={()=>{this.toggleFollowup()}}/>}</div>
       </div>)
     }
     else {
