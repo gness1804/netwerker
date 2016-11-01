@@ -10,7 +10,7 @@ export default class ContactCard extends Component {
     this.state = {
       expanded: false,
       editable: false,
-      contactImgURL: null,
+      contactImgURL: null
     };
   }
 
@@ -42,16 +42,17 @@ export default class ContactCard extends Component {
     this.setState({editable: !this.state.editable});
   }
 
+  toggleFollowup(){
+
+      this.props.toggleFollowup(this.props.contactTextID, !this.props.followup)
+  }
+
   submitEdit(newContact, newImage){
 
     let newContactInfo = newContact;
 
     this.props.submitEdit(this.props.contactTextID, newContactInfo, newImage);
     this.toggleEdit();
-  }
-
-  toogleFollowup(newContact){
-    //need to change whole contact object
   }
 
   render() {
@@ -74,7 +75,7 @@ export default class ContactCard extends Component {
       <div className = 'instagram'>{socialMedia.instagram}</div>
       <div className='notes'>{notes}</div>
       <div className="image-container">{this.state.contactImgURL ? <img className="image-actual" src={this.state.contactImgURL} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
-      <div className="followup-container">{followup ? <div><p>Flagged for Followup!</p> <FollowupButton handleClick={()=>{this.toogleFollowup()}}/></div> : <FollowupButton/>}</div>
+      <div className="followup-container">{followup ? <div><p>Flagged for Followup!</p> <FollowupButton handleClick={()=>{this.toggleFollowup()}}/></div> : <FollowupButton handleClick={()=>{this.toggleFollowup()}}/>}</div>
       </div>)
     }
     else {

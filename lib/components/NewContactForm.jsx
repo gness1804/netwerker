@@ -30,8 +30,8 @@ export default class NewContactForm extends Component {
       },
       notes: this.props.notes || '',
       image: this.props.image || '',
-      reader: new FileReader(),
-      followup: false
+      followup: this.props.followup || false,
+      reader: new FileReader()
     };
   }
 
