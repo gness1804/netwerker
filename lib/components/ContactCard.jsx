@@ -59,7 +59,6 @@ export default class ContactCard extends Component {
 
   render() {
     const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, contactID, image, followup } = this.props
-    // console.log(followup);
     let display;
     if (this.state.expanded) {
       display = (<div className="expanded">
@@ -85,7 +84,6 @@ export default class ContactCard extends Component {
     }
 
     if(this.state.editable){
-      console.log(this.props)
       display = <NewContactForm handleNewContact={this.submitEdit.bind(this)} {...this.props}/>
     }
 
