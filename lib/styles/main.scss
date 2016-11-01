@@ -1,14 +1,11 @@
+@import "buttons.scss";
+@import "forms.scss";
+@import "typography.scss";
+
+//global styling
+
 $main-background: #cec2c2;
-$button-background: #019DAA;
 $faded-background: rgba(255,255,255,0.4);
-
-@import url('https://fonts.googleapis.com/css?family=Merriweather');
-
-@mixin light-font {
-  font-family: helvetica, sans-serif;
-  font-weight: 100;
-  letter-spacing: 2px;
-}
 
 h1{
   font-size: 50px;
