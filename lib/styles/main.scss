@@ -118,8 +118,10 @@ h1 {
   }
 
   .show-followup-list-button {
-    @include button-standard-mobile;
-    width: 200px;
+    position: relative;
+
+    width: 50px;
+    margin: 30px;
   }
 
   } //end of contact-card-top-buttons-container

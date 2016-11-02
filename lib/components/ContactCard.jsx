@@ -52,6 +52,7 @@ export default class ContactCard extends Component {
     let newContactInfo = newContact;
 
     this.props.submitEdit(this.props.contactTextID, newContactInfo, newImage);
+
     this.toggleEdit();
   }
 
@@ -74,7 +75,7 @@ export default class ContactCard extends Component {
       <div className = 'instagram'>Instagram: {socialMedia.instagram}</div>
       <div className='notes'>Notes: {notes}</div>
       <div className="image-container">{this.state.contactImgURL ? <img className="image" src={this.state.contactImgURL} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
-      <div className="followup-container">{followup ? <div><p>Flagged for Followup!</p> <FollowupButton handleClick={()=>{this.toggleFollowup()}}/></div> : <FollowupButton handleClick={()=>{this.toggleFollowup()}}/>}</div>
+
       </div>)
     }
     else {
@@ -88,6 +89,7 @@ export default class ContactCard extends Component {
     return(
       <div className='contact-card-for-each-contact'>
         <div className="contact-card-top-buttons-container">
+          {followup ? <img src="../images/yellow-flag.svg" alt="" className="flagged-for-followup-button" onClick={()=>this.toggleFollowup()}/> :   <img src="../images/gray-flag.svg" alt="" className="not-flagged-for-followup-button" onClick={()=>this.toggleFollowup()}/>}
           <img src="../images/edit.png" alt="Icon to show that user can edit the contact card." className="edit-button" onClick={()=>this.toggleEdit()}/>
           <img src="../images/thin-down.svg" alt="Icon to show that user can expand the contact card." className="expand-button" onClick={()=>this.toggleExpand()}/>
         </div>

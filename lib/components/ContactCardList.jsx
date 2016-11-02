@@ -26,7 +26,7 @@ export default class ContactCardList extends Component {
 
     return(
       <div className="contact-card-container">
-        <button className="show-followup-list-button" onClick={()=> {this.setState({showFollowupList: !this.state.showFollowupList})}}>Show Follow Up List</button>
+        <img src="../images/black-flag.svg" className="show-followup-list-button" onClick={()=> {this.setState({showFollowupList: !this.state.showFollowupList})}}/>
         {contactList}
       </div>
     )

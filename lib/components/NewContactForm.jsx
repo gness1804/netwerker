@@ -56,6 +56,7 @@ export default class NewContactForm extends Component {
 
   toggleFollowup(){
     this.setState({followup:!this.state.followup});
+
   } //end of toggleFollowup
 
   updateState(e, keyName){
@@ -145,6 +146,7 @@ export default class NewContactForm extends Component {
         <InputField className='notes-input input-field' value = {this.state.notes}  placeholder = 'Notes' type='text' handleChange={this.updateState.bind(this)} name = 'notes'/>
 
         {/* <AddImageButton className = 'add-image-button' handleChange={(e)=>{this.addImage(e)}}/> */}
+        {followup ? <img src="../images/yellow-flag.svg" alt="" className="flagged-for-followup-button" onClick={()=>this.toggleFollowup()}/> :   <img src="../images/gray-flag.svg" alt="" className="not-flagged-for-followup-button" onClick={()=>this.toggleFollowup()}/>}
 
         <label className = 'add-image-wrapper'>
             <img src='../images/user-ph.jpg'/>
@@ -152,11 +154,6 @@ export default class NewContactForm extends Component {
         </label>
 
         {/* <p className = "add-image-label input-field">Upload Image</p> */}
-
-
-        <button className="followup-button" onClick={this.toggleFollowup.bind(this)}>Flag for Followup</button>
-        {/* <FollowupButton className = 'tag-for-followup-button' handleClick={()=>{this.toggleFollowup()}}/> */}
-
 
         {imageDisplay}
 
