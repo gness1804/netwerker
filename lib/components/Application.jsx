@@ -60,6 +60,10 @@ toggleShowAddForm(){
     this.state.contactDatabase.child(`${contactID}`).child('followup').set(followup);
   }
 
+  deleteContact(contactID){
+    this.state.contactDatabase.child(`${contactID}`).remove()
+  }
+
 
   render() {
     const { user } = this.state;
@@ -73,7 +77,7 @@ toggleShowAddForm(){
     if(this.state.showAddForm){
       pageDisplay =  <NewContactForm handleNewContact={this.addNewContact.bind(this)} numbers={{}} emails={{}} socialMedia={{}}/>
     } else {
-      pageDisplay = <ContactCardList user={this.state.user} imgStorage = {this.state.contactImgStorage} contacts = {this.state.contacts} submitEdit={this.editContact.bind(this)} toggleFollowup={this.toggleFollowup.bind(this)}/>
+      pageDisplay = <ContactCardList user={this.state.user} imgStorage = {this.state.contactImgStorage} contacts = {this.state.contacts} submitEdit={this.editContact.bind(this)} toggleFollowup={this.toggleFollowup.bind(this)} deleteContact={this.deleteContact.bind(this)}/>
     }
 
     return(

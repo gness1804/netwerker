@@ -20,7 +20,7 @@ export default class ContactCardList extends Component {
     let contactList;
 
     if(contactArray) {
-      contactList =  contactArray.map(c => <ContactCard {...c} user={this.props.user} imgStorage={this.props.imgStorage} contactImgID={c.contactID} contactTextID={c.key} key={c.key} submitEdit = {this.props.submitEdit} toggleFollowup={this.props.toggleFollowup}/>)
+      contactList =  contactArray.map(c => <ContactCard {...c} user={this.props.user} imgStorage={this.props.imgStorage} contactImgID={c.contactID} contactTextID={c.key} key={c.key} submitEdit = {this.props.submitEdit} toggleFollowup={this.props.toggleFollowup} deleteContact = {this.props.deleteContact}/>)
     }
     let sortedList = contactList.sort((a, b) => a.props.lastName > b.props.lastName)
 

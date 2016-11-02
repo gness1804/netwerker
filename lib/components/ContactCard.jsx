@@ -15,9 +15,7 @@ export default class ContactCard extends Component {
     };
   }
 
-  deleteContact(){
-    // TODO: add function
-  }
+
 
   toggleExpand(){
 
@@ -51,6 +49,11 @@ export default class ContactCard extends Component {
     this.props.submitEdit(this.props.contactTextID, newContactInfo, newImage);
     this.toggleEdit();
   }
+
+  deleteContact(contactTextId) {
+    this.props.deleteContact(this.props.contactTextID)
+  }
+
 
   render() {
     const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, contactID, image, followup } = this.props
