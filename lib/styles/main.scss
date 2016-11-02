@@ -46,7 +46,7 @@ h1 {
 
 }
 
-.show-new-contact-form {
+.add-contact-button {
 
 }
 
@@ -71,15 +71,13 @@ h1 {
       background-color: rgb(205, 90, 57);
     }
 
-    .show-new-contact-form {
-      @include show-new-contact-form-button-mobile;
+    .add-contact-button {
+      @include add-contact-button-mobile;
     }
 
   } //end of active-user
 
 } //end of media query
-
-
 
 .contactCardContainer{
   border: 2px solid teal;

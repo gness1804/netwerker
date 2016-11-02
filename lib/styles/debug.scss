@@ -5,8 +5,6 @@ $debug-background-color: magenta;
 
 @if ($debug) {
 
-  .active-user{
-    background-color: $debug-background-color;
-  }
+  
 
 } //end of debug statement
