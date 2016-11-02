@@ -22,11 +22,11 @@ export default class ContactCardList extends Component {
     if(contactArray) {
       contactList =  contactArray.map(c => <ContactCard {...c} user={this.props.user} imgStorage={this.props.imgStorage} contactImgID={c.contactID} contactTextID={c.key} key={c.key} submitEdit = {this.props.submitEdit} toggleFollowup={this.props.toggleFollowup}/>)
     }
-    
+
 
     return(
-      <div>
-        <button onClick={()=> {this.setState({showFollowupList: !this.state.showFollowupList})}}>Show Follow Up List</button>
+      <div className="contact-card-container">
+        <button className="show-followup-list-button" onClick={()=> {this.setState({showFollowupList: !this.state.showFollowupList})}}>Show Follow Up List</button>
         {contactList}
       </div>
     )

@@ -1,0 +1,130 @@
+@import "buttons.scss";
+@import "forms.scss";
+@import "typography.scss";
+@import "debug.scss";
+
+//global styling
+$main-background-desktop: linear-gradient(to bottom, rgb(91, 174, 214), rgb(222, 223, 187), rgb(91, 174, 214));
+$main-background-mobile: linear-gradient(to right, rgb(91, 174, 214), rgb(222, 223, 187), rgb(91, 174, 214));
+$faded-background: rgba(255,255,255,0.4);
+$breakpoint: 800px;
+
+html {
+  background: $main-background-desktop;
+  font-family:  $main-font;
+}
+
+@media screen and (max-width: $breakpoint) {
+
+  html {
+    background: $main-background-mobile;
+  }
+
+} //end of media query
+
+h1 {
+  @include h1-style-desktop;
+}
+
+@media screen and (max-width: $breakpoint) {
+
+  h1 {
+    font-size: 40px;
+  }
+
+} //end of media query
+
+.app-container{
+  text-align: center;
+  margin-top: 80px;
+}
+
+.active-user {
+  text-align: center;
+
+.auth-button {
+
+}
+
+.add-contact-button {
+
+}
+
+} //end of active-user
+
+@media screen and (max-width: $breakpoint) {
+
+  .active-user {
+
+    p {
+      font-size: 16px;
+      font-style: italic;
+    }
+
+    button {
+      display: block;
+      margin: 30px auto;
+    }
+
+    .auth-button {
+      @include button-standard-mobile;
+      background-color: rgb(205, 90, 57);
+    }
+
+    .add-contact-button {
+      @include add-contact-button-mobile;
+    }
+
+  } //end of active-user
+
+} //end of media query
+
+.contact-card-container {
+
+}
+
+.show-followup-list-button {
+
+}
+
+.contact-card-for-each-contact {
+  border: 2px solid teal;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 15px;
+}
+
+@media screen and (max-width: $breakpoint) {
+
+  .contact-card-container {
+    text-align: center;
+  }
+
+  .show-followup-list-button {
+    @include button-standard-mobile;
+  }
+
+  .contact-card-top-buttons-container {
+    float: right;
+
+    img {
+      height: 30px;
+      margin: 0 4px;
+      width: 30px;
+    }
+
+  } //end of contact-card-top-buttons-container
+
+  .contact-card-for-each-contact {
+
+    .fullname {
+      font-size: 28px;
+    }
+
+  } //end of contact-card-for-each-contact
+
+} //end of media query
+
+.image {
+  width: 300px;
+}

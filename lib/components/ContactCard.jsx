@@ -15,8 +15,6 @@ export default class ContactCard extends Component {
     };
   }
 
-  //do we need another addImage here?
-
   deleteImage(){
 
   } //end of deleteImage
@@ -59,7 +57,6 @@ export default class ContactCard extends Component {
 
   render() {
     const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, contactID, image, followup } = this.props
-    // console.log(followup);
     let display;
     if (this.state.expanded) {
       display = (<div className="expanded">
@@ -76,23 +73,24 @@ export default class ContactCard extends Component {
       <div className = 'github'>{socialMedia.github}</div>
       <div className = 'instagram'>{socialMedia.instagram}</div>
       <div className='notes'>{notes}</div>
-      <div className="image-container">{this.state.contactImgURL ? <img className="image-actual" src={this.state.contactImgURL} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
+      <div className="image-container">{this.state.contactImgURL ? <img className="image" src={this.state.contactImgURL} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
       <div className="followup-container">{followup ? <div><p>Flagged for Followup!</p> <FollowupButton handleClick={()=>{this.toggleFollowup()}}/></div> : <FollowupButton handleClick={()=>{this.toggleFollowup()}}/>}</div>
       </div>)
     }
     else {
-      display = <div className='fullname firstName lastName'>{firstName} {lastName}{contactID}</div>
+      display = <div className='fullname firstName lastName'>{firstName} {lastName}</div>
     }
 
     if(this.state.editable){
-      console.log(this.props)
       display = <NewContactForm handleNewContact={this.submitEdit.bind(this)} {...this.props}/>
     }
 
     return(
-      <div className='contactCardContainer'>
-        <button className="expand-button" onClick={()=>this.toggleExpand()}>Expand Card</button>
-        <button className="edit-button" onClick={()=>this.toggleEdit()}>Edit Card</button>
+      <div className='contact-card-for-each-contact'>
+        <div className="contact-card-top-buttons-container">
+          <img src="../images/edit.png" alt="Icon to show that user can edit the contact card." className="edit-button" onClick={()=>this.toggleEdit()}/>
+          <img src="../images/plus.png" alt="Icon to show that user can expand the contact card." className="expand-button" onClick={()=>this.toggleExpand()}/>
+        </div>
         {display}
         <div className="delete-image">{this.props.image ? <DeleteImageButton handleClick={()=>{this.deleteImage()}}/> : ''}</div>
       </div>

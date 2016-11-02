@@ -68,13 +68,14 @@ export default class Application extends Component {
 
     return(
       <div className = 'application'>
+        <h1>Netwerker</h1>
 
         <div className='active-user'>{user ?
           <p>Logged in as <span className="bold">{user.displayName}</span> ({user.email})  <button className='auth-button button' onClick={()=> signOut()}>Sign Out</button>
           </p>
         : <button className='auth-button' onClick={() => signIn()}>Sign In</button> }
 
-        <button className='show-new-contact-form' onClick={()=>this.setState({showAddForm: true})}>Add Contact</button>
+        <button className='add-contact-button' onClick={()=>this.setState({showAddForm: true})}>Add Contact</button>
         </div>
 
         {pageDisplay}
