@@ -36,6 +36,10 @@ export default class Application extends Component {
   ));
 } //end of componentDidMount
 
+toggleShowAddForm(){
+  this.setState({showAddForm:!this.state.showAddForm});
+}
+
   addNewContact(newContactInfo, image){
     this.state.contactDatabase.push(newContactInfo);
     if(image){
@@ -81,7 +85,7 @@ export default class Application extends Component {
             </span>
             : <button className='auth-button' onClick={() => signIn()}>Sign In</button> }
             </div>
-            <button className='add-contact-button' onClick={()=>this.setState({showAddForm: true})}><img src="../images/plus.png" alt="Icon to show that user can add contact." className="add-contact-img"/></button>
+            <button className='add-contact-button' onClick={()=>this.toggleShowAddForm()}><img src="../images/plus.png" alt="Icon to show that user can add contact." className="add-contact-img"/></button>
         </header>
 
         <main className = 'contact-Container'>
