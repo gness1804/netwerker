@@ -4,20 +4,23 @@
 @import "debug.scss";
 
 //global styling
-$main-background-desktop: linear-gradient(to bottom, rgb(91, 174, 214), rgb(222, 223, 187), rgb(91, 174, 214));
-$main-background-mobile: linear-gradient(to right, rgb(91, 174, 214), rgb(222, 223, 187), rgb(91, 174, 214));
+// $main-background-desktop: linear-gradient(to bottom, rgb(91, 174, 214), rgb(222, 223, 187), rgb(91, 174, 214));
+// $main-background-mobile: linear-gradient(to right, rgb(91, 174, 214), rgb(222, 223, 187), rgb(91, 174, 214));
 $faded-background: rgba(255,255,255,0.4);
 $breakpoint: 800px;
 
 html {
-  background: $main-background-desktop;
+  // background: $main-background-desktop;
   font-family:  $main-font;
 }
 
+header{
+  background: teal;
+}
 @media screen and (max-width: $breakpoint) {
 
   html {
-    background: $main-background-mobile;
+    // background: $main-background-mobile;
   }
 
 } //end of media query
@@ -29,7 +32,7 @@ h1 {
 @media screen and (max-width: $breakpoint) {
 
   h1 {
-    font-size: 40px;
+    font-size: 25px;
   }
 
 } //end of media query
@@ -71,11 +74,11 @@ h1 {
       background-color: rgb(205, 90, 57);
     }
 
-    .add-contact-button {
-      @include add-contact-button-mobile;
-    }
-
   } //end of active-user
+
+  .add-contact-button {
+    @include add-contact-button-mobile;
+  }
 
 } //end of media query
 
