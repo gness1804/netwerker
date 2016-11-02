@@ -12,11 +12,11 @@ export default class NewContactForm extends Component {
       firstName: this.props.firstName || '',
       lastName: this.props.lastName || '',
       companyName: this.props.companyName || '',
-      numbers: 'cell',
+      numbers: {
         cell: this.props.numbers.cell || '',
         work: this.props.numbers.work || '',
-        home: this.props.numbers.home || ''
-
+        home: this.props.numbers.home || '',
+      },
       emails: {
         primary: this.props.emails.primary || '',
         secondary: this.props.emails.secondary || ''

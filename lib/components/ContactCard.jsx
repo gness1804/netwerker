@@ -60,19 +60,19 @@ export default class ContactCard extends Component {
     let display;
     if (this.state.expanded) {
       display = (<div className="expanded">
-      <div className='fullname firstName lastName'>{firstName} {lastName}</div>
-      <div className='companyName'>{companyName}</div>
-      <div className = 'cell'>{numbers.cell}</div>
-      <div className = 'home'>{numbers.home}</div>
-      <div className = 'work'>{numbers.work}</div>
-      <div className = 'primary-email'>{emails.primary}</div>
-      <div className = 'secondary-email'>{emails.secondary}</div>
-      <div className = 'facebook'>{socialMedia.facebook}</div>
-      <div className = 'twitter'>{socialMedia.twitter}</div>
-      <div className = 'linkedIn'>{socialMedia.linkedIn}</div>
-      <div className = 'github'>{socialMedia.github}</div>
-      <div className = 'instagram'>{socialMedia.instagram}</div>
-      <div className='notes'>{notes}</div>
+      <div className='fullname firstName lastName'>Name: {firstName} {lastName}</div>
+      <div className='companyName'>Company: {companyName}</div>
+      <div className = 'cell'>Cell Number: {numbers.cell}</div>
+      <div className = 'home'>Home Number: {numbers.home}</div>
+      <div className = 'work'>Work Number: {numbers.work}</div>
+      <div className = 'primary-email'>Email: {emails.primary}</div>
+      <div className = 'secondary-email'>Email: {emails.secondary}</div>
+      <div className = 'facebook'>Facebook: {socialMedia.facebook}</div>
+      <div className = 'twitter'>Twitter: {socialMedia.twitter}</div>
+      <div className = 'linkedIn'>LinkedIn:{socialMedia.linkedIn}</div>
+      <div className = 'github'>Github: {socialMedia.github}</div>
+      <div className = 'instagram'>Instagram: {socialMedia.instagram}</div>
+      <div className='notes'>Notes: {notes}</div>
       <div className="image-container">{this.state.contactImgURL ? <img className="image" src={this.state.contactImgURL} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
       <div className="followup-container">{followup ? <div><p>Flagged for Followup!</p> <FollowupButton handleClick={()=>{this.toggleFollowup()}}/></div> : <FollowupButton handleClick={()=>{this.toggleFollowup()}}/>}</div>
       </div>)

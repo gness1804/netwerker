@@ -46,7 +46,9 @@ export default class Application extends Component {
 
   editContact(contactID, newContactInfo, image){
       this.state.contactDatabase.child(`${contactID}`).set(newContactInfo)
+    if (image) {
       this.state.contactImgStorage.child(`${this.state.user.uid}/${newContactInfo.contactID}.jpg`).put(image);
+    }
   }
 
   toggleFollowup(contactID, followup){
