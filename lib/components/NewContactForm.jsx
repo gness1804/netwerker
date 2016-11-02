@@ -105,8 +105,6 @@ export default class NewContactForm extends Component {
       imageDisplay = (<img src={this.state.imgSource}/>)
     }
 
-    // console.log(this.state)
-
     return(
       <div className = 'input-field-container'>
         <InputField className='firstName-Input input-field' value = {this.state.firstName} placeholder = 'First Name' type='text' handleChange={this.updateState.bind(this)} name = 'firstName'/>
