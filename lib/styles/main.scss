@@ -57,7 +57,7 @@ h1 {
   .active-user {
 
     p {
-      font-size: 20px;
+      font-size: 16px;
       font-style: italic;
     }
 
@@ -79,8 +79,12 @@ h1 {
 
 } //end of media query
 
+.show-followup-list-button-container {
+
+}
+
 .show-followup-list-button {
-  @include button-standard-mobile;
+
 }
 
 .contactCardContainer{
@@ -88,6 +92,18 @@ h1 {
   padding: 10px;
   margin: 15px;
 }
+
+@media screen and (max-width: $breakpoint) {
+
+  .show-followup-list-button-container {
+    text-align: center;
+  }
+
+  .show-followup-list-button {
+    @include button-standard-mobile;
+  }
+
+} //end of media query
 
 .image {
   width: 300px;
