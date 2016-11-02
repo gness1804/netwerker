@@ -15,7 +15,7 @@ export default class NewContactForm extends Component {
       numbers: {
         cell: this.props.numbers.cell || '',
         work: this.props.numbers.work || '',
-        home: this.props.numbers.home || ''
+        home: this.props.numbers.home || '',
       },
       emails: {
         primary: this.props.emails.primary || '',
@@ -31,8 +31,11 @@ export default class NewContactForm extends Component {
       notes: this.props.notes || '',
       image: this.props.image || '',
       followup: this.props.followup || false,
-      reader: this.props.fileReaderTest || new FileReader()
+      reader: this.props.fileReaderTest || new FileReader(),
+
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 
@@ -53,6 +56,7 @@ export default class NewContactForm extends Component {
 
   toggleFollowup(){
     this.setState({followup:!this.state.followup});
+
   } //end of toggleFollowup
 
   updateState(e, keyName){
@@ -64,6 +68,15 @@ export default class NewContactForm extends Component {
     objState[keyName] = e.target.value;
     this.setState({[objName]: objState});
   }
+
+  handleChange(event) {
+    this.setState({numbers: event.target.value});
+  }
+
+  handleSubmit(event) {
+     alert('Select value is: ' + this.state.numbers);
+   }
+
 
   submitNewContact(){
     const newContact = {
@@ -110,6 +123,14 @@ export default class NewContactForm extends Component {
         <InputField className='firstName-Input input-field' value = {this.state.firstName} placeholder = 'First Name' type='text' handleChange={this.updateState.bind(this)} name = 'firstName'/>
         <InputField className='lastName-Input input-field' value = {this.state.lastName} placeholder = 'Last Name' type='text' handleChange={this.updateState.bind(this)} name = 'lastName'/>
         <InputField className='companyName-Input input-field' value = {this.state.companyName} placeholder = 'Company Name' type='text' handleChange={this.updateState.bind(this)} name = 'companyName'/>
+        {/* <div>
+        <select value={this.state.numbers} onChange={this.handleChange}>
+          <option value="cell">Cell</option>
+          <option value="work">Work</option>
+          <option value="home">Home</option>
+        </select>
+        <InputField className='phoneNumber-Input' value = {this.state.numbers} placeholder = 'Phone Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers'/>
+      </div> */}
         <InputField className='cellNumber-Input input-field' value = {this.state.numbers.cell} placeholder = 'cell Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'cell'/>
         <InputField className='workNumber-Input input-field' value = {this.state.numbers.work} placeholder = 'work Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'work'/>
         <InputField className='homeNumber-Input input-field' value = {this.state.numbers.home} placeholder = 'home Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'home'/>
@@ -123,6 +144,7 @@ export default class NewContactForm extends Component {
         <InputField className='notes-input input-field' value = {this.state.notes}  placeholder = 'Notes' type='text' handleChange={this.updateState.bind(this)} name = 'notes'/>
 
         {/* <AddImageButton className = 'add-image-button' handleChange={(e)=>{this.addImage(e)}}/> */}
+        {followup ? <img src="../images/yellow-flag-2.svg" alt="" className="flagged-for-followup-button" onClick={()=>this.toggleFollowup()}/> :   <img src="../images/gray-flag.svg" alt="" className="not-flagged-for-followup-button" onClick={()=>this.toggleFollowup()}/>}
 
         <label className = 'add-image-wrapper'>
             <img src='../images/user-ph.jpg'/>
@@ -131,13 +153,10 @@ export default class NewContactForm extends Component {
 
         {/* <p className = "add-image-label input-field">Upload Image</p> */}
 
-
-        <button className="followup-button" onClick={this.toggleFollowup.bind(this)}>Flag for Followup</button>
-        {/* <FollowupButton className = 'tag-for-followup-button' handleClick={()=>{this.toggleFollowup()}}/> */}
-
         {imageDisplay}
 
         <button className='submit-new-contact-btn' onClick={this.submitNewContact.bind(this)}> Submit New Contact </button>
+
 
       </div>
     )
