@@ -82,10 +82,8 @@ export default class Application extends Component {
         </header>
 
         <main className = 'contact-Container'>
-        
-        {pageDisplay}
 
-        <button onClick={this.editContact.bind(this)}>Test</button>
+        {pageDisplay}
 
         </main>
       </div>
