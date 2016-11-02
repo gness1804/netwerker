@@ -124,19 +124,14 @@ export default class NewContactForm extends Component {
         <InputField className='instagram-Input input-field' value = {this.state.socialMedia.instagram} placeholder = 'instagram' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'instagram'/>
         <InputField className='notes-input input-field' value = {this.state.notes}  placeholder = 'Notes' type='text' handleChange={this.updateState.bind(this)} name = 'notes'/>
 
-        {/* <AddImageButton className = 'add-image-button' handleChange={(e)=>{this.addImage(e)}}/> */}
-
         <label className = 'add-image-wrapper'>
             <img src='../images/user-ph.jpg'/>
             <input className="add-image-button" type="file" onChange={(e)=>{this.addImage(e)}} accept="image/*" />
         </label>
 
-        {/* <p className = "add-image-label input-field">Upload Image</p> */}
-
 
         <button className="followup-button" onClick={this.toggleFollowup.bind(this)}>Flag for Followup</button>
-        {/* <FollowupButton className = 'tag-for-followup-button' handleClick={()=>{this.toggleFollowup()}}/> */}
-
+        
         {imageDisplay}
 
         <button className='submit-new-contact-btn' onClick={this.submitNewContact.bind(this)}> Submit New Contact </button>
