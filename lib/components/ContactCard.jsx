@@ -15,8 +15,6 @@ export default class ContactCard extends Component {
     };
   }
 
-  //do we need another addImage here?
-
   deleteImage(){
 
   } //end of deleteImage
