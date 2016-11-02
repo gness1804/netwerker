@@ -15,9 +15,9 @@ export default class ContactCard extends Component {
     };
   }
 
-  deleteImage(){
-
-  } //end of deleteImage
+  deleteContact(){
+    // TODO: add function
+  }
 
   toggleExpand(){
 
@@ -43,16 +43,12 @@ export default class ContactCard extends Component {
   }
 
   toggleFollowup(){
-
       this.props.toggleFollowup(this.props.contactTextID, !this.props.followup)
   }
 
   submitEdit(newContact, newImage){
-
     let newContactInfo = newContact;
-
     this.props.submitEdit(this.props.contactTextID, newContactInfo, newImage);
-
     this.toggleEdit();
   }
 
@@ -83,7 +79,10 @@ export default class ContactCard extends Component {
     }
 
     if(this.state.editable){
-      display = <NewContactForm handleNewContact={this.submitEdit.bind(this)} {...this.props}/>
+      display = <div>
+        <NewContactForm handleNewContact={this.submitEdit.bind(this)} {...this.props}/>
+        <button className="delete-contact" onClick={this.deleteContact.bind(this)}>Delete Contact</button>
+        </div>
     }
 
     return(

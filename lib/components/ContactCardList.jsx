@@ -22,14 +22,14 @@ export default class ContactCardList extends Component {
     if(contactArray) {
       contactList =  contactArray.map(c => <ContactCard {...c} user={this.props.user} imgStorage={this.props.imgStorage} contactImgID={c.contactID} contactTextID={c.key} key={c.key} submitEdit = {this.props.submitEdit} toggleFollowup={this.props.toggleFollowup}/>)
     }
-    let sort = contactList.sort((a, b) => a.props.lastName > b.props.lastName)
+    let sortedList = contactList.sort((a, b) => a.props.lastName > b.props.lastName)
 
 
 
     return(
       <div className="contact-card-container">
         <img src="../images/black-flag.svg" className="show-followup-list-button" onClick={()=> {this.setState({showFollowupList: !this.state.showFollowupList})}}/>
-        {sort}
+        {sortedList}
       </div>
     )
   }
