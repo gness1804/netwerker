@@ -79,7 +79,7 @@ h1 {
 
 } //end of media query
 
-.show-followup-list-button-container {
+.contact-card-container {
 
 }
 
@@ -87,7 +87,7 @@ h1 {
 
 }
 
-.contactCardContainer{
+.contact-card-each {
   border: 2px solid teal;
   padding: 10px;
   margin: 15px;
@@ -95,7 +95,7 @@ h1 {
 
 @media screen and (max-width: $breakpoint) {
 
-  .show-followup-list-button-container {
+  .contact-card-container {
     text-align: center;
   }
 

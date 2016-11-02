@@ -88,7 +88,7 @@ export default class ContactCard extends Component {
     }
 
     return(
-      <div className='contactCardContainer'>
+      <div className='contact-card-each'>
         <button className="expand-button" onClick={()=>this.toggleExpand()}>Expand Card</button>
         <button className="edit-button" onClick={()=>this.toggleEdit()}>Edit Card</button>
         {display}
