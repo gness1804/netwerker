@@ -89,6 +89,7 @@ h1 {
 
 .contact-card-for-each-contact {
   border: 2px solid teal;
+  border-radius: 5px;
   padding: 10px;
   margin: 15px;
 }
@@ -112,6 +113,14 @@ h1 {
     }
 
   } //end of contact-card-top-buttons-container
+
+  .contact-card-for-each-contact {
+
+    .fullname {
+      font-size: 28px;
+    }
+
+  } //end of contact-card-for-each-contact
 
 } //end of media query
 

@@ -80,7 +80,7 @@ export default class ContactCard extends Component {
       </div>)
     }
     else {
-      display = <div className='fullname firstName lastName'>{firstName} {lastName}{contactID}</div>
+      display = <div className='fullname firstName lastName'>{firstName} {lastName}</div>
     }
 
     if(this.state.editable){
