@@ -12,11 +12,11 @@ export default class NewContactForm extends Component {
       firstName: this.props.firstName || '',
       lastName: this.props.lastName || '',
       companyName: this.props.companyName || '',
-      numbers: {
-        cell: this.props.numbers.cell || '',
-        work: this.props.numbers.work || '',
-        home: this.props.numbers.home || ''
-      },
+      numbers: 'cell',
+        // cell: this.props.numbers.cell || '',
+        // work: this.props.numbers.work || '',
+        // home: this.props.numbers.home || ''
+
       emails: {
         primary: this.props.emails.primary || '',
         secondary: this.props.emails.secondary || ''
@@ -31,8 +31,11 @@ export default class NewContactForm extends Component {
       notes: this.props.notes || '',
       image: this.props.image || '',
       followup: this.props.followup || false,
-      reader: this.props.fileReaderTest || new FileReader()
+      reader: this.props.fileReaderTest || new FileReader(),
+
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 
@@ -64,6 +67,15 @@ export default class NewContactForm extends Component {
     objState[keyName] = e.target.value;
     this.setState({[objName]: objState});
   }
+
+  handleChange(event) {
+    this.setState({numbers: event.target.value});
+  }
+
+  handleSubmit(event) {
+     alert('Select value is: ' + this.state.numbers);
+   }
+
 
   submitNewContact(){
     const newContact = {
@@ -110,13 +122,25 @@ export default class NewContactForm extends Component {
     return(
       <div className = 'input-field-container'>
         <InputField className='firstName-Input' value = {this.state.firstName} placeholder = 'First Name' type='text' handleChange={this.updateState.bind(this)} name = 'firstName'/>
-        <InputField className='lastName-Input' value = {this.state.lastName} placeholder = 'Last Name' type='text' handleChange={this.updateState.bind(this)} name = 'lastName'/>
+        <InputField className='lastName-Input' value = {this.state.lastName} placeholder = 'Last Name' type='text' handleChange={this.updateState.bind(this)} name = 'lastName'/><br/>
         <InputField className='companyName-Input' value = {this.state.companyName} placeholder = 'Company Name' type='text' handleChange={this.updateState.bind(this)} name = 'companyName'/>
-        <InputField className='cellNumber-Input' value = {this.state.numbers.cell} placeholder = 'cell Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'cell'/>
+
+        <div>
+        <select value={this.state.numbers} onChange={this.handleChange}>
+          <option value="cell">Cell</option>
+          <option value="work">Work</option>
+          <option value="home">Home</option>
+        </select>
+        <InputField className='phoneNumber-Input' value = {this.state.numbers} placeholder = 'Phone Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers'/>
+      </div>
+        {/* <InputField className='cellNumber-Input' value = {this.state.numbers.cell} placeholder = 'cell Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'cell'/>
         <InputField className='workNumber-Input' value = {this.state.numbers.work} placeholder = 'work Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'work'/>
-        <InputField className='homeNumber-Input' value = {this.state.numbers.home} placeholder = 'home Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'home'/>
+        <InputField className='homeNumber-Input' value = {this.state.numbers.home} placeholder = 'home Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'home'/> */}
+
         <InputField className='primaryEmail-Input' value = {this.state.emails.primary} placeholder = 'Primary Email' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'emails' name = 'primary'/>
         <InputField className='secondaryEmail-Input' value = {this.state.emails.secondary} placeholder = 'Secondary Email' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'emails' name = 'secondary'/>
+
+
         <InputField className='facebook-Input' value = {this.state.socialMedia.facebook} placeholder = 'facebook' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'facebook'/>
         <InputField className='twitter-Input' value = {this.state.socialMedia.twitter} placeholder = 'twitter' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'twitter'/>
         <InputField className='linkedIn-Input' value = {this.state.socialMedia.linkedIn} placeholder = 'linkedIn' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'linkedIn'/>
@@ -129,6 +153,7 @@ export default class NewContactForm extends Component {
         {imageDisplay}
 
         <button className='submit-new-contact-btn' onClick={this.submitNewContact.bind(this)}> Submit New Contact </button>
+
 
       </div>
     )
