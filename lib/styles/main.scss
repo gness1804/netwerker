@@ -87,7 +87,7 @@ h1 {
 
 }
 
-.contact-card-each {
+.contact-card-for-each-contact {
   border: 2px solid teal;
   padding: 10px;
   margin: 15px;
@@ -102,6 +102,16 @@ h1 {
   .show-followup-list-button {
     @include button-standard-mobile;
   }
+
+  .contact-card-top-buttons-container {
+    float: right;
+
+    img {
+      height: 30px;
+      width: 30px;
+    }
+
+  } //end of contact-card-top-buttons-container
 
 } //end of media query
 
