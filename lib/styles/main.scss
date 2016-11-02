@@ -37,9 +37,8 @@ h1 {
 
 } //end of media query
 
-.app-container{
+.contact-Container{
   text-align: center;
-  margin-top: 80px;
 }
 
 .active-user {
@@ -57,20 +56,20 @@ h1 {
 
 @media screen and (max-width: $breakpoint) {
 
+  header{
+    height: 80px;
+  }
   .active-user {
-
-    p {
+    span {
       font-size: 16px;
       font-style: italic;
     }
-
-    button {
-      display: block;
-      margin: 30px auto;
-    }
-
     .auth-button {
       @include button-standard-mobile;
+      float: left;
+      position: absolute;
+      top: 5px;
+      left: 5px;
       background-color: rgb(205, 90, 57);
     }
 
@@ -94,7 +93,7 @@ h1 {
   border: 2px solid teal;
   border-radius: 5px;
   padding: 10px;
-  margin: 15px;
+  margin: 5px;
 }
 
 @media screen and (max-width: $breakpoint) {
@@ -105,6 +104,7 @@ h1 {
 
   .show-followup-list-button {
     @include button-standard-mobile;
+    width: 200px;
   }
 
   .contact-card-top-buttons-container {

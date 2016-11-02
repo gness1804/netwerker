@@ -74,20 +74,20 @@ export default class Application extends Component {
         <header>
           <h1>Netwerker</h1>
           <div className='active-user'>{user ?
-            <p>Logged in as <span className="bold">{user.displayName}</span> ({user.email})  <button className='auth-button button' onClick={()=> signOut()}>Sign Out</button>
-            </p>
+            <span className='greeting'>Hi, <span className="bold">{user.displayName}</span><button className='auth-button button' onClick={()=> signOut()}>Sign Out</button>
+            </span>
             : <button className='auth-button' onClick={() => signIn()}>Sign In</button> }
             </div>
+            <button className='add-contact-button' onClick={()=>this.setState({showAddForm: true})}><img src="../images/plus.png" alt="Icon to show that user can add contact." className="add-contact-img"/></button>
         </header>
 
-
-        <button className='add-contact-button' onClick={()=>this.setState({showAddForm: true})}>Add Contact</button>
-
-
+        <main className = 'contact-Container'>
+        
         {pageDisplay}
 
         <button onClick={this.editContact.bind(this)}>Test</button>
 
+        </main>
       </div>
     )
   }
