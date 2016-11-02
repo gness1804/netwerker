@@ -91,7 +91,7 @@ export default class ContactCard extends Component {
       <div className='contact-card-for-each-contact'>
         <div className="contact-card-top-buttons-container">
           <img src="../images/edit.png" alt="Icon to show that user can edit the contact card." className="edit-button" onClick={()=>this.toggleEdit()}/>
-          <img src="" alt="Icon to show that user can expand the contact card." className="expand-button" onClick={()=>this.toggleExpand()}/>
+          <img src="../images/plus.png" alt="Icon to show that user can expand the contact card." className="expand-button" onClick={()=>this.toggleExpand()}/>
         </div>
         {display}
         <div className="delete-image">{this.props.image ? <DeleteImageButton handleClick={()=>{this.deleteImage()}}/> : ''}</div>
