@@ -75,7 +75,7 @@ export default class Application extends Component {
           </p>
         : <button className='auth-button' onClick={() => signIn()}>Sign In</button> }
 
-        <button className='show-new-contact-form' onClick={()=>this.setState({showAddForm: true})}>Add Contact</button>
+        <button className='add-contact-button' onClick={()=>this.setState({showAddForm: true})}>Add Contact</button>
         </div>
 
         {pageDisplay}

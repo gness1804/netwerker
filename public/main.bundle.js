@@ -61909,7 +61909,7 @@
 	
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'contactCardContainer' },
+	        { className: 'contact-card-for-each-contact' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'fullname firstName lastName' },
@@ -62090,7 +62090,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Merriweather);", ""]);
 	
 	// module
-	exports.push([module.id, "h1 {\n  font-size: 50px;\n  margin: 20px; }\n\n.app-container {\n  text-align: center;\n  margin-top: 80px; }\n\n.contactCardContainer {\n  border: 2px solid teal;\n  padding: 10px;\n  margin: 15px; }\n\nbutton {\n  border: none;\n  background-color: teal;\n  color: white;\n  margin: 10px;\n  height: 30px;\n  width: 100px; }\n\nbody {\n  font-family: helvetica, sans-serif;\n  font-weight: 100;\n  letter-spacing: 2px; }\n", ""]);
+	exports.push([module.id, "h1 {\n  font-size: 50px;\n  margin: 20px; }\n\n.app-container {\n  text-align: center;\n  margin-top: 80px; }\n\n.contact-card-for-each-contact {\n  border: 2px solid teal;\n  padding: 10px;\n  margin: 15px; }\n\nbutton {\n  border: none;\n  background-color: teal;\n  color: white;\n  margin: 10px;\n  height: 30px;\n  width: 100px; }\n\nbody {\n  font-family: helvetica, sans-serif;\n  font-weight: 100;\n  letter-spacing: 2px; }\n", ""]);
 	
 	// exports
 

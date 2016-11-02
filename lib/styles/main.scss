@@ -46,7 +46,7 @@ h1 {
 
 }
 
-.show-new-contact-form {
+.add-contact-button {
 
 }
 
@@ -57,7 +57,7 @@ h1 {
   .active-user {
 
     p {
-      font-size: 20px;
+      font-size: 16px;
       font-style: italic;
     }
 
@@ -71,21 +71,59 @@ h1 {
       background-color: rgb(205, 90, 57);
     }
 
-    .show-new-contact-form {
-      @include show-new-contact-form-button-mobile;
+    .add-contact-button {
+      @include add-contact-button-mobile;
     }
 
   } //end of active-user
 
 } //end of media query
 
+.contact-card-container {
 
+}
 
-.contactCardContainer{
+.show-followup-list-button {
+
+}
+
+.contact-card-for-each-contact {
   border: 2px solid teal;
+  border-radius: 5px;
   padding: 10px;
   margin: 15px;
 }
+
+@media screen and (max-width: $breakpoint) {
+
+  .contact-card-container {
+    text-align: center;
+  }
+
+  .show-followup-list-button {
+    @include button-standard-mobile;
+  }
+
+  .contact-card-top-buttons-container {
+    float: right;
+
+    img {
+      height: 30px;
+      margin: 0 4px;
+      width: 30px;
+    }
+
+  } //end of contact-card-top-buttons-container
+
+  .contact-card-for-each-contact {
+
+    .fullname {
+      font-size: 28px;
+    }
+
+  } //end of contact-card-for-each-contact
+
+} //end of media query
 
 .image {
   width: 300px;

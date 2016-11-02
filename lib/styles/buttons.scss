@@ -1,26 +1,20 @@
 $button-background: rgb(67, 137, 187);
 
-button {
-  border: none;
-  background-color: teal;
-  color: white;
-  margin: 10px;
-  height: 30px;
-  width: 100px;
-}
-
 @mixin button-standard-mobile {
-  border-radius: 5px;
   background-color: $button-background;
-  font-size: 20px;
-  height: 35px;
-  width: 150px;
+  border-radius: 5px;
+  border: none;
+  font-size: 18px;
+  padding: 10px;
+  width: 120px;
 }
 
-@mixin show-new-contact-form-button-mobile {
+@mixin add-contact-button-mobile {
+  background-color: teal;
   border-radius: 15px;
-  margin: 60px auto;
-  font-size: 30px;
+  border: none;
+  font-size: 34px;
   height: 80px;
-  width: 60vw;
+  margin: 40px auto;
+  width: 80vw;
 }
