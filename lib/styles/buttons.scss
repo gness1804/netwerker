@@ -1,5 +1,14 @@
 $button-background: rgb(67, 137, 187);
 
+button {
+  border: none;
+  background-color: teal;
+  color: white;
+  margin: 10px;
+  height: 30px;
+  width: 100px;
+}
+
 @mixin button-standard-mobile {
   border-radius: 5px;
   background-color: $button-background;
@@ -8,10 +17,10 @@ $button-background: rgb(67, 137, 187);
   width: 150px;
 }
 
-@mixin show-new-contact-form-button {
+@mixin show-new-contact-form-button-mobile {
   border-radius: 15px;
   margin: 60px auto;
-  font-size: 40px;
+  font-size: 30px;
   height: 80px;
   width: 60vw;
 }

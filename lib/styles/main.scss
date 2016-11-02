@@ -42,9 +42,13 @@ h1 {
 .active-user {
   text-align: center;
 
-  button {
+.auth-button {
 
-  }
+}
+
+.show-new-contact-form {
+
+}
 
 } //end of active-user
 
@@ -68,12 +72,14 @@ h1 {
     }
 
     .show-new-contact-form {
-      @include show-new-contact-form-button;
+      @include show-new-contact-form-button-mobile;
     }
 
   } //end of active-user
 
 } //end of media query
+
+
 
 .contactCardContainer{
   border: 2px solid teal;
@@ -81,15 +87,6 @@ h1 {
   margin: 15px;
 }
 
-button{
-  border: none;
-  background-color: teal;
-  color: white;
-  margin: 10px;
-  height: 30px;
-  width: 100px;
-}
-
-.image-actual{
+.image {
   width: 300px;
 }
