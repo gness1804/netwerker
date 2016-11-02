@@ -13,9 +13,9 @@ export default class NewContactForm extends Component {
       lastName: this.props.lastName || '',
       companyName: this.props.companyName || '',
       numbers: 'cell',
-        // cell: this.props.numbers.cell || '',
-        // work: this.props.numbers.work || '',
-        // home: this.props.numbers.home || ''
+        cell: this.props.numbers.cell || '',
+        work: this.props.numbers.work || '',
+        home: this.props.numbers.home || ''
 
       emails: {
         primary: this.props.emails.primary || '',
@@ -121,34 +121,42 @@ export default class NewContactForm extends Component {
 
     return(
       <div className = 'input-field-container'>
-        <InputField className='firstName-Input' value = {this.state.firstName} placeholder = 'First Name' type='text' handleChange={this.updateState.bind(this)} name = 'firstName'/>
-        <InputField className='lastName-Input' value = {this.state.lastName} placeholder = 'Last Name' type='text' handleChange={this.updateState.bind(this)} name = 'lastName'/><br/>
-        <InputField className='companyName-Input' value = {this.state.companyName} placeholder = 'Company Name' type='text' handleChange={this.updateState.bind(this)} name = 'companyName'/>
-
-        <div>
+        <InputField className='firstName-Input input-field' value = {this.state.firstName} placeholder = 'First Name' type='text' handleChange={this.updateState.bind(this)} name = 'firstName'/>
+        <InputField className='lastName-Input input-field' value = {this.state.lastName} placeholder = 'Last Name' type='text' handleChange={this.updateState.bind(this)} name = 'lastName'/>
+        <InputField className='companyName-Input input-field' value = {this.state.companyName} placeholder = 'Company Name' type='text' handleChange={this.updateState.bind(this)} name = 'companyName'/>
+        {/* <div>
         <select value={this.state.numbers} onChange={this.handleChange}>
           <option value="cell">Cell</option>
           <option value="work">Work</option>
           <option value="home">Home</option>
         </select>
         <InputField className='phoneNumber-Input' value = {this.state.numbers} placeholder = 'Phone Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers'/>
-      </div>
-        {/* <InputField className='cellNumber-Input' value = {this.state.numbers.cell} placeholder = 'cell Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'cell'/>
-        <InputField className='workNumber-Input' value = {this.state.numbers.work} placeholder = 'work Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'work'/>
-        <InputField className='homeNumber-Input' value = {this.state.numbers.home} placeholder = 'home Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'home'/> */}
+      </div> */}
+        <InputField className='cellNumber-Input input-field' value = {this.state.numbers.cell} placeholder = 'cell Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'cell'/>
+        <InputField className='workNumber-Input input-field' value = {this.state.numbers.work} placeholder = 'work Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'work'/>
+        <InputField className='homeNumber-Input input-field' value = {this.state.numbers.home} placeholder = 'home Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'home'/>
+        <InputField className='primaryEmail-Input input-field' value = {this.state.emails.primary} placeholder = 'Primary Email' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'emails' name = 'primary'/>
+        <InputField className='secondaryEmail-Input input-field' value = {this.state.emails.secondary} placeholder = 'Secondary Email' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'emails' name = 'secondary'/>
+        <InputField className='facebook-Input input-field' value = {this.state.socialMedia.facebook} placeholder = 'facebook' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'facebook'/>
+        <InputField className='twitter-Input input-field' value = {this.state.socialMedia.twitter} placeholder = 'twitter' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'twitter'/>
+        <InputField className='linkedIn-Input input-field' value = {this.state.socialMedia.linkedIn} placeholder = 'linkedIn' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'linkedIn'/>
+        <InputField className='github-Input input-field' value = {this.state.socialMedia.github} placeholder = 'github' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'github'/>
+        <InputField className='instagram-Input input-field' value = {this.state.socialMedia.instagram} placeholder = 'instagram' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'instagram'/>
+        <InputField className='notes-input input-field' value = {this.state.notes}  placeholder = 'Notes' type='text' handleChange={this.updateState.bind(this)} name = 'notes'/>
 
-        <InputField className='primaryEmail-Input' value = {this.state.emails.primary} placeholder = 'Primary Email' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'emails' name = 'primary'/>
-        <InputField className='secondaryEmail-Input' value = {this.state.emails.secondary} placeholder = 'Secondary Email' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'emails' name = 'secondary'/>
+        {/* <AddImageButton className = 'add-image-button' handleChange={(e)=>{this.addImage(e)}}/> */}
+
+        <label className = 'add-image-wrapper'>
+            <img src='../images/user-ph.jpg'/>
+            <input className="add-image-button" type="file" onChange={(e)=>{this.addImage(e)}} accept="image/*" />
+        </label>
+
+        {/* <p className = "add-image-label input-field">Upload Image</p> */}
 
 
-        <InputField className='facebook-Input' value = {this.state.socialMedia.facebook} placeholder = 'facebook' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'facebook'/>
-        <InputField className='twitter-Input' value = {this.state.socialMedia.twitter} placeholder = 'twitter' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'twitter'/>
-        <InputField className='linkedIn-Input' value = {this.state.socialMedia.linkedIn} placeholder = 'linkedIn' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'linkedIn'/>
-        <InputField className='github-Input' value = {this.state.socialMedia.github} placeholder = 'github' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'github'/>
-        <InputField className='instagram-Input' value = {this.state.socialMedia.instagram} placeholder = 'instagram' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'socialMedia' name = 'instagram'/>
-        <InputField className='notes-input' value = {this.state.notes}  placeholder = 'Notes' type='text' handleChange={this.updateState.bind(this)} name = 'notes'/>
-        <AddImageButton handleChange={(e)=>{this.addImage(e)}}/>
-        <FollowupButton handleClick={()=>{this.toggleFollowup()}}/>
+        <button className="followup-button" onClick={this.toggleFollowup.bind(this)}>Flag for Followup</button>
+        {/* <FollowupButton className = 'tag-for-followup-button' handleClick={()=>{this.toggleFollowup()}}/> */}
+
 
         {imageDisplay}
 

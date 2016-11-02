@@ -22,13 +22,15 @@ export default class Application extends Component {
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => this.setState({ user, contactDatabase: firebase.database().ref(user.uid), contactImgStorage: firebase.storage().ref() }, ()=>{
-
+    firebase.auth().onAuthStateChanged(user => this.setState({ user, contactDatabase: user ?  firebase.database().ref(user.uid) : null , contactImgStorage: user ? firebase.storage().ref() : null }, ()=>{
+    user ?
     firebase.database().ref(user.uid).on('value', (snapshot) => {
       const contacts = snapshot.val() || {};
       this.setState({
         contacts: map(contacts, (val, key) => extend(val, { key }))
         });
+      }): this.setState({
+        contacts: []
       });
     }
   ));
@@ -54,6 +56,7 @@ export default class Application extends Component {
 
   render() {
     const { user } = this.state;
+    console.log(this.state.contacts)
     if(this.state.contactImgStorage){
      console.log(this.state.contactImgStorage.bucket);
    }
@@ -68,20 +71,21 @@ export default class Application extends Component {
 
     return(
       <div className = 'application'>
-        <h1>Netwerker</h1>
+        <header>
+          <h1>Netwerker</h1>
+          <div className='active-user'>{user ?
+            <span className='greeting'>Hi, <span className="bold">{user.displayName}</span><button className='auth-button button' onClick={()=> signOut()}>Sign Out</button>
+            </span>
+            : <button className='auth-button' onClick={() => signIn()}>Sign In</button> }
+            </div>
+            <button className='add-contact-button' onClick={()=>this.setState({showAddForm: true})}><img src="../images/plus.png" alt="Icon to show that user can add contact." className="add-contact-img"/></button>
+        </header>
 
-        <div className='active-user'>{user ?
-          <p>Logged in as <span className="bold">{user.displayName}</span> ({user.email})  <button className='auth-button button' onClick={()=> signOut()}>Sign Out</button>
-          </p>
-        : <button className='auth-button' onClick={() => signIn()}>Sign In</button> }
-
-        <button className='add-contact-button' onClick={()=>this.setState({showAddForm: true})}>Add Contact</button>
-        </div>
+        <main className = 'contact-Container'>
 
         {pageDisplay}
 
-        <button onClick={this.editContact.bind(this)}>Test</button>
-
+        </main>
       </div>
     )
   }
