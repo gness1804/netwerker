@@ -4,20 +4,23 @@
 @import "debug.scss";
 
 //global styling
-$main-background-desktop: linear-gradient(to bottom, rgb(91, 174, 214), rgb(222, 223, 187), rgb(91, 174, 214));
-$main-background-mobile: linear-gradient(to right, rgb(91, 174, 214), rgb(222, 223, 187), rgb(91, 174, 214));
+// $main-background-desktop: linear-gradient(to bottom, rgb(91, 174, 214), rgb(222, 223, 187), rgb(91, 174, 214));
+// $main-background-mobile: linear-gradient(to right, rgb(91, 174, 214), rgb(222, 223, 187), rgb(91, 174, 214));
 $faded-background: rgba(255,255,255,0.4);
 $breakpoint: 800px;
 
 html {
-  background: $main-background-desktop;
+  // background: $main-background-desktop;
   font-family:  $main-font;
 }
 
+header{
+  background: teal;
+}
 @media screen and (max-width: $breakpoint) {
 
   html {
-    background: $main-background-mobile;
+    // background: $main-background-mobile;
   }
 
 } //end of media query
@@ -29,14 +32,13 @@ h1 {
 @media screen and (max-width: $breakpoint) {
 
   h1 {
-    font-size: 40px;
+    font-size: 25px;
   }
 
 } //end of media query
 
-.app-container{
+.contact-Container{
   text-align: center;
-  margin-top: 80px;
 }
 
 .active-user {
@@ -54,28 +56,28 @@ h1 {
 
 @media screen and (max-width: $breakpoint) {
 
+  header{
+    height: 80px;
+  }
   .active-user {
-
-    p {
+    span {
       font-size: 16px;
       font-style: italic;
     }
-
-    button {
-      display: block;
-      margin: 30px auto;
-    }
-
     .auth-button {
       @include button-standard-mobile;
+      float: left;
+      position: absolute;
+      top: 5px;
+      left: 5px;
       background-color: rgb(205, 90, 57);
     }
 
-    .add-contact-button {
-      @include add-contact-button-mobile;
-    }
-
   } //end of active-user
+
+  .add-contact-button {
+    @include add-contact-button-mobile;
+  }
 
 } //end of media query
 
@@ -91,8 +93,23 @@ h1 {
   border: 2px solid teal;
   border-radius: 5px;
   padding: 10px;
-  margin: 15px;
+  margin: 5px;
 }
+
+.contact-card-container {
+  text-align: center;
+}
+
+.contact-card-top-buttons-container {
+  float: right;
+
+  img {
+    height: 30px;
+    margin: 0 4px;
+    width: 30px;
+  }
+
+} //end of contact-card-top-buttons-container
 
 @media screen and (max-width: $breakpoint) {
 
@@ -102,16 +119,8 @@ h1 {
 
   .show-followup-list-button {
     @include button-standard-mobile;
+    width: 200px;
   }
-
-  .contact-card-top-buttons-container {
-    float: right;
-
-    img {
-      height: 30px;
-      margin: 0 4px;
-      width: 30px;
-    }
 
   } //end of contact-card-top-buttons-container
 
@@ -123,8 +132,44 @@ h1 {
 
   } //end of contact-card-for-each-contact
 
-} //end of media query
+ //end of media query
 
-.image {
+
+.input-field-container{
+  margin-left: 40px;
+  margin-top: 30px;
+
+}
+.input-field{
+  font-size: 18px;
+  display: block;
+  margin: 5px;
+  border: none;
+  border-bottom: 1px dotted black ;
+}
+
+.submit-new-contact-btn{
+  @include button-standard-mobile
   width: 300px;
+}
+
+.followup-button{
+  @include button-standard-mobile;
+  width: 200px;
+}
+
+.add-image-wrapper{
+  float: right;
+  position: absolute;
+  right: 160px;
+  top: 175px;
+  width: 150px;
+  img{
+    border-radius: 150px;
+    width: 200px;
+  }
+}
+
+.add-image-button{
+  display: none;
 }
