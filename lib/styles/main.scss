@@ -79,6 +79,10 @@ h1 {
 
 } //end of media query
 
+.show-followup-list-button {
+  @include button-standard-mobile;
+}
+
 .contactCardContainer{
   border: 2px solid teal;
   padding: 10px;
