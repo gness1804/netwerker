@@ -52,6 +52,7 @@ export default class ContactCard extends Component {
     let newContactInfo = newContact;
 
     this.props.submitEdit(this.props.contactTextID, newContactInfo, newImage);
+
     this.toggleEdit();
   }
 
@@ -60,6 +61,7 @@ export default class ContactCard extends Component {
     let display;
     if (this.state.expanded) {
       display = (<div className="expanded">
+      <FollowupButton handleClick={()=>{this.toggleFollowup()}}/>
       <div className='fullname firstName lastName'>{firstName} {lastName}</div>
       <div className='companyName'>{companyName}</div>
       <div className = 'cell'>{numbers.cell}</div>
@@ -88,6 +90,7 @@ export default class ContactCard extends Component {
     return(
       <div className='contact-card-for-each-contact'>
         <div className="contact-card-top-buttons-container">
+          {followup ? <img src="../images/yellow-flag.svg" alt="" className="flagged-for-followup-button" onClick={()=>this.toggleFollowup()}/> :   <img src="../images/gray-flag.svg" alt="" className="not-flagged-for-followup-button" onClick={()=>this.toggleFollowup()}/>} 
           <img src="../images/edit.png" alt="Icon to show that user can edit the contact card." className="edit-button" onClick={()=>this.toggleEdit()}/>
           <img src="../images/thin-down.svg" alt="Icon to show that user can expand the contact card." className="expand-button" onClick={()=>this.toggleExpand()}/>
         </div>
