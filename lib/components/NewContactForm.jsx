@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import InputField from './InputField.jsx';
-import ContactCard from './ContactCard.jsx';
-import AddImageButton from './AddImageButton';
-import FollowupButton from './FollowupButton';
 
 export default class NewContactForm extends Component {
   constructor(props) {
@@ -19,27 +16,27 @@ export default class NewContactForm extends Component {
       },
       emails: {
         primary: this.props.emails.primary || '',
-        secondary: this.props.emails.secondary || ''
+        secondary: this.props.emails.secondary || '',
       },
       socialMedia: {
         facebook: this.props.socialMedia.facebook || '',
         twitter: this.props.socialMedia.twitter || '',
         linkedIn: this.props.socialMedia.linkedIn || '',
         github: this.props.socialMedia.github || '',
-        instagram: this.props.socialMedia.instagram || ''
+        instagram: this.props.socialMedia.instagram || '',
       },
       notes: this.props.notes || '',
       image: this.props.image || '',
       followup: this.props.followup || false,
       reader: this.props.fileReaderTest || new FileReader(),
-      groups: this.props.groups || []
+      groups: this.props.groups || [],
 
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     if (this.state.reader !== "test") {
     this.state.reader.addEventListener('load', function(){
         this.setState({imgSource : this.state.reader.result});
