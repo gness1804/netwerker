@@ -48,9 +48,10 @@ export default class NewContactForm extends Component {
   } //end of componentDidMount
 
   addContactToGroup(){
-
-
-  } //end of createGroup
+    let existingGroupMemberships = this.state.groups;
+    existingGroupMemberships.push('Test Group');
+    console.log(this.state.groups);
+  }
 
   addImage(e){
     let image = e.target.files[0];
