@@ -26,13 +26,8 @@ export default class ContactCardList extends Component {
     let contactArray = this.props.contacts;
 
     let searchStringArray = this.state.searchString.split('');
+
     if (this.state.searchString) {
-      // contactArray = filter(contactArray, (contact) => {
-      //
-      //   return filter(contact, (contactKey)=>{
-      //       console.log(contactKey)
-      //       return (includes(contactKey, searchStringArray))
-      //     }).length > 0
 
       contactArray = filter(contactArray, (contact)=>{
           let fullName = '';
