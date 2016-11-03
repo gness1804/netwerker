@@ -15,9 +15,7 @@ export default class ContactCard extends Component {
     };
   }
 
-  deleteImage(){
 
-  } //end of deleteImage
 
   toggleExpand(){
 
@@ -43,53 +41,59 @@ export default class ContactCard extends Component {
   }
 
   toggleFollowup(){
-
       this.props.toggleFollowup(this.props.contactTextID, !this.props.followup)
   }
 
   submitEdit(newContact, newImage){
-
     let newContactInfo = newContact;
-
     this.props.submitEdit(this.props.contactTextID, newContactInfo, newImage);
     this.toggleEdit();
   }
+
+  deleteContact(contactTextId) {
+    this.props.deleteContact(this.props.contactTextID)
+  }
+
 
   render() {
     const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, contactID, image, followup } = this.props
     let display;
     if (this.state.expanded) {
       display = (<div className="expanded">
-      <div className='fullname firstName lastName'>{firstName} {lastName}</div>
-      <div className='companyName'>{companyName}</div>
-      <div className = 'cell'>{numbers.cell}</div>
-      <div className = 'home'>{numbers.home}</div>
-      <div className = 'work'>{numbers.work}</div>
-      <div className = 'primary-email'>{emails.primary}</div>
-      <div className = 'secondary-email'>{emails.secondary}</div>
-      <div className = 'facebook'>{socialMedia.facebook}</div>
-      <div className = 'twitter'>{socialMedia.twitter}</div>
-      <div className = 'linkedIn'>{socialMedia.linkedIn}</div>
-      <div className = 'github'>{socialMedia.github}</div>
-      <div className = 'instagram'>{socialMedia.instagram}</div>
-      <div className='notes'>{notes}</div>
+      <div className='fullname firstName lastName'><span className="label">Name</span> {firstName} {lastName}</div>
+      <div className='companyName'><span className="label">Company</span> {companyName}</div>
+      <div className = 'cell'><span className="label">Cell Number</span> {numbers.cell}</div>
+      <div className = 'home'><span className="label">Home Number</span> {numbers.home}</div>
+      <div className = 'work'><span className="label">Work Number</span> {numbers.work}</div>
+      <div className = 'primary-email'><span className="label">Email</span> {emails.primary}</div>
+      <div className = 'secondary-email'><span className="label">Email</span> {emails.secondary}</div>
+      <div className = 'facebook'><span className="label">Facebook</span> {socialMedia.facebook}</div>
+      <div className = 'twitter'><span className="label">Twitter</span> {socialMedia.twitter}</div>
+      <div className = 'linkedIn'><span className="label">LinkedIn</span>{socialMedia.linkedIn}</div>
+      <div className = 'github'><span className="label">Github</span> {socialMedia.github}</div>
+      <div className = 'instagram'><span className="label">Instagram</span> {socialMedia.instagram}</div>
+      <div className='notes'><span className="label">Notes</span> {notes}</div>
       <div className="image-container">{this.state.contactImgURL ? <img className="image" src={this.state.contactImgURL} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
-      <div className="followup-container">{followup ? <div><p>Flagged for Followup!</p> <FollowupButton handleClick={()=>{this.toggleFollowup()}}/></div> : <FollowupButton handleClick={()=>{this.toggleFollowup()}}/>}</div>
+
       </div>)
     }
     else {
-      display = <div className='fullname firstName lastName contracted'>{firstName} {lastName}</div>
+      display = <div className='fullname firstName lastName'>{firstName} {lastName}</div>
     }
 
     if(this.state.editable){
-      display = <NewContactForm handleNewContact={this.submitEdit.bind(this)} {...this.props}/>
+      display = <div>
+        <NewContactForm handleNewContact={this.submitEdit.bind(this)} {...this.props}/>
+        <button className="delete-contact" onClick={this.deleteContact.bind(this)}>Delete Contact</button>
+        </div>
     }
 
     return(
       <div className='contact-card-for-each-contact'>
         <div className="contact-card-top-buttons-container">
+          {followup ? <img src="../images/yellow-flag-2.svg" alt="" className="flagged-for-followup-button" onClick={()=>this.toggleFollowup()}/> :   <img src="../images/gray-flag.svg" alt="" className="not-flagged-for-followup-button" onClick={()=>this.toggleFollowup()}/>}
           <img src="../images/edit.png" alt="Icon to show that user can edit the contact card." className="edit-button" onClick={()=>this.toggleEdit()}/>
-          <img src="../images/plus.png" alt="Icon to show that user can expand the contact card." className="expand-button" onClick={()=>this.toggleExpand()}/>
+          <img src="../images/thin-down.svg" alt="Icon to show that user can expand the contact card." className="expand-button" onClick={()=>this.toggleExpand()}/>
         </div>
         {display}
         <div className="delete-image">{this.props.image ? <DeleteImageButton handleClick={()=>{this.deleteImage()}}/> : ''}</div>
