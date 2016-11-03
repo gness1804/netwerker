@@ -56,61 +56,59 @@ export default class NewContactForm extends Component {
     );
   }
 
-  toggleFollowup(){
-    this.setState({followup:!this.state.followup});
+  toggleFollowup() {
+    this.setState({ followup: !this.state.followup });
+  }// end of toggleFollowup
 
-  } //end of toggleFollowup
-
-  updateState(e, keyName){
-    this.setState({[keyName]: e.target.value});
+  updateState(e, keyName) {
+    this.setState({ [keyName]: e.target.value });
   }
 
-  updateStateObject(e, keyName, objName){
-    var objState = this.state[objName];
+  updateStateObject(e, keyName, objName) {
+    const objState = this.state[objName];
     objState[keyName] = e.target.value;
-    this.setState({[objName]: objState});
+    this.setState({ [objName]: objState });
   }
 
   handleChange(event) {
-    this.setState({numbers: event.target.value});
+    this.setState({ numbers: event.target.value });
   }
 
-  handleSubmit(event) {
-     alert('Select value is: ' + this.state.numbers);
-   }
+  handleSubmit() {
+    alert(`Select value is: ${this.state.numbers}`);
+  }
 
-
-  submitNewContact(){
+  submitNewContact() {
     const newContact = {
-        contactID: this.state.contactID,
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        companyName: this.state.companyName,
-        numbers: {
-          cell: this.state.numbers.cell,
-          work: this.state.numbers.work,
-          home: this.state.numbers.home
-        },
-        emails: {
-          primary: this.state.emails.primary,
-          secondary: this.state.emails.secondary
-        },
-        socialMedia: {
-          facebook: this.state.socialMedia.facebook,
-          twitter: this.state.socialMedia.twitter,
-          linkedIn: this.state.socialMedia.linkedIn,
-          github: this.state.socialMedia.github,
-          instagram: this.state.socialMedia.instagram
-        },
-        notes: this.state.notes,
-        followup: this.state.followup,
-        groups: this.state.groups
+      contactID: this.state.contactID,
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      companyName: this.state.companyName,
+      numbers: {
+        cell: this.state.numbers.cell,
+        work: this.state.numbers.work,
+        home: this.state.numbers.home,
+      },
+      emails: {
+        primary: this.state.emails.primary,
+        secondary: this.state.emails.secondary,
+      },
+      socialMedia: {
+        facebook: this.state.socialMedia.facebook,
+        twitter: this.state.socialMedia.twitter,
+        linkedIn: this.state.socialMedia.linkedIn,
+        github: this.state.socialMedia.github,
+        instagram: this.state.socialMedia.instagram,
+      },
+      notes: this.state.notes,
+      followup: this.state.followup,
+      groups: this.state.groups,
     };
     const image = this.state.image;
     this.props.handleNewContact(newContact, image);
   }
-  render(){
 
+  render() {
     const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, image, followup, groups } = this.state;
 
 
