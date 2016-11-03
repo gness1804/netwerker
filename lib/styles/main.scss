@@ -1,6 +1,8 @@
 @import "buttons.scss";
 @import "forms.scss";
 @import "typography.scss";
+@import "contactCard.scss";
+@import "mobile.scss";
 @import "debug.scss";
 
 //global styling
@@ -17,171 +19,18 @@ html {
 header{
   background: teal;
 }
-@media screen and (max-width: $breakpoint) {
-
-  html {
-    // background: $main-background-mobile;
-  }
-
-} //end of media query
 
 h1 {
   @include h1-style-desktop;
 }
 
-@media screen and (max-width: $breakpoint) {
-
-  h1 {
-    font-size: 25px;
-  }
-
-} //end of media query
-
-.contact-Container{
-  text-align: center;
-}
-
 .active-user {
   text-align: center;
 
-.auth-button {
+  .auth-button {
 
-}
-
-.add-contact-button {
-
-}
-
-} //end of active-user
-
-@media screen and (max-width: $breakpoint) {
-
-  header{
-    height: 80px;
   }
-  .active-user {
-    span {
-      font-size: 16px;
-      font-style: italic;
-    }
-    .auth-button {
-      @include button-standard-mobile;
-      float: left;
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      background-color: rgb(205, 90, 57);
-    }
-
-  } //end of active-user
-
   .add-contact-button {
-    @include add-contact-button-mobile;
+
   }
-
-} //end of media query
-
-.contact-card-container {
-
-}
-
-.show-followup-list-button {
-
-}
-
-.contact-card-for-each-contact {
-  border: 2px solid teal;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 5px;
-}
-
-.contact-card-container {
-  text-align: center;
-}
-
-.contact-card-top-buttons-container {
-  float: right;
-
-  img {
-    height: 30px;
-    margin: 0 4px;
-    width: 30px;
-  }
-
-} //end of contact-card-top-buttons-container
-
-@media screen and (max-width: $breakpoint) {
-
-  .contact-card-container {
-    text-align: center;
-  }
-
-  .show-followup-list-button {
-    position: relative;
-
-    width: 50px;
-    margin: 30px;
-  }
-
-  } //end of contact-card-top-buttons-container
-
-  .contact-card-for-each-contact {
-
-    .fullname {
-      font-size: 28px;
-    }
-
-  } //end of contact-card-for-each-contact
-
- //end of media query
-
-
-.input-field-container{
-  margin-left: 40px;
-  margin-top: 30px;
-
-}
-.input-field{
-  font-size: 18px;
-  display: block;
-  margin: 5px;
-  border: none;
-  border-bottom: 1px dotted black ;
-}
-
-.submit-new-contact-btn{
-  @include button-standard-mobile
-  width: 300px;
-}
-
-.followup-button{
-  @include button-standard-mobile;
-  width: 200px;
-}
-
-.add-image-wrapper{
-  float: right;
-  position: absolute;
-  right: 160px;
-  top: 175px;
-  width: 150px;
-  img{
-    border-radius: 150px;
-    width: 200px;
-  }
-}
-
-.add-image-button{
-  display: none;
-}
-
-.expanded {
-  text-align: left;
-  color: teal;
-}
-
-.label {
-  color: black;
-  font-weight: 300;
-}
+} //end of active-user
