@@ -37,11 +37,11 @@ export default class NewContactForm extends Component {
   }
 
   componentDidMount() {
-    if (this.state.reader !== "test") {
-    this.state.reader.addEventListener('load', function(){
-        this.setState({imgSource : this.state.reader.result});
-    }.bind(this));}
-  } //end of componentDidMount
+    if (this.state.reader !== 'test') {
+      this.state.reader.addEventListener('load', () => {
+        this.setState({ imgSource: this.state.reader.result });
+      }); }
+  }
 
   addContactToGroup(){
     let existingGroupMemberships = this.state.groups;
