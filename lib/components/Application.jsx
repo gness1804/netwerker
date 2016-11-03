@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
-import firebase, { contactsFromDatabase, signIn, signOut } from '../firebase';
-import {split, pick, map, extend } from 'lodash';
-import moment from 'moment';
+import React, { Component } from 'react';
+import { map, extend } from 'lodash';
+import firebase, { signIn, signOut } from '../firebase';
 import NewContactForm from './NewContactForm.jsx';
-import ContactCard from './ContactCard.jsx'
 import ContactCardList from './ContactCardList.jsx';
 
 
@@ -17,28 +15,63 @@ export default class Application extends Component {
       contacts: [],
       contactDatabase: null,
       contactImgStorage: null,
-      showAddForm: false
+      showAddForm: false,
     };
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => this.setState({ user, contactDatabase: user ?  firebase.database().ref(user.uid) : null , contactImgStorage: user ? firebase.storage().ref() : null }, ()=>{
-    user ?
-    firebase.database().ref(user.uid).on('value', (snapshot) => {
-      const contacts = snapshot.val() || {};
-      this.setState({
-        contacts: map(contacts, (val, key) => extend(val, { key }))
+    firebase.auth().onAuthStateChanged(user =>
+    //   this.setState({ user,
+    //     contactDatabase: user ? firebase.database().ref(user.uid)
+    //     : null,
+    //     contactImgStorage: user ? firebase.storage().ref() : null },
+    //     () => { user ?
+    //       firebase.database().ref(user.uid).on('value', (snapshot) => {
+    //       const contacts = snapshot.val() || {};
+    //       this.setState({
+    //     contacts: map(contacts, (val, key) => extend(val, { key }))
+    //     });
+    //       }): this.setState({
+    //     contacts: []
+    //     });
+    //   }
+    //
+      this.assignDatabaseReferences(user)
+    );
+  }
+
+  assignDatabaseReferences(user) {
+    this.setState({
+      user: user,
+      contactDatabase: user ? firebase.database().ref(user.uid) : null,
+      contactImgStorage: user ? firebase.storage().ref() : null,
+      },
+      () => {
+        this.createDatabaseEventListener(user)
+      }
+    )
+  }
+
+  createDatabaseEventListener(user) {
+    if (user) {
+      firebase.database().ref(user.uid).on('value', (snapshot) => {
+        const contacts = snapshot.val() || {};
+        this.setState({
+          contacts: map(contacts, (val, key) => extend(val, { key }))
         });
-      }): this.setState({
+      })
+    }
+    else {
+      this.setState({
         contacts: []
       });
     }
-  ));
-} //end of componentDidMount
+  }
 
-toggleShowAddForm(){
-  this.setState({showAddForm:!this.state.showAddForm});
-}
+
+  toggleShowAddForm(){
+    this.setState({showAddForm:!this.state.showAddForm});
+  }
 
   addNewContact(newContactInfo, image){
     this.state.contactDatabase.push(newContactInfo);
