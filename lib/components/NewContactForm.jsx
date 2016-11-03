@@ -48,6 +48,7 @@ export default class NewContactForm extends Component {
 
   addContactToGroup(){
     let existingGroupMemberships = this.state.groups;
+    //get access to array of all groups 
     existingGroupMemberships.push('Test Group');
   }
 
