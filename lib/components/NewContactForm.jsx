@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {InputField} from './InputField.jsx';
+import InputField from './InputField.jsx';
 import ContactCard from './ContactCard.jsx';
 import AddImageButton from './AddImageButton';
 import FollowupButton from './FollowupButton';
@@ -48,7 +48,7 @@ export default class NewContactForm extends Component {
 
   addContactToGroup(){
     let existingGroupMemberships = this.state.groups;
-    //get access to array of all groups 
+    //get access to array of all groups
     existingGroupMemberships.push('Test Group');
   }
 

@@ -3,6 +3,9 @@
   "plugins": [
     "react"
   ],
+  "ecmafeatures":{
+    "arrowFunctions": true
+  },
   "env": {
     "browser": true,
     "es6": true
@@ -11,6 +14,8 @@
     "react/prefer-stateless-function": "off",
     "react/jsx-filename-extension": "off",
     "arrow-body-style": "off",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "react/jsx-no-bind": "off",
+    "react/jsx-equals-spacing": "off"
   }
 }
