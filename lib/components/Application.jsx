@@ -4,10 +4,7 @@ import firebase, { signIn, signOut } from '../firebase';
 import NewContactForm from './NewContactForm.jsx';
 import ContactCardList from './ContactCardList.jsx';
 
-
-// let contactsFromDatabase;
-
-export default class Application extends Component {
+class Application extends Component {
   constructor() {
     super();
     this.state = {
@@ -21,35 +18,20 @@ export default class Application extends Component {
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user =>
-    //   this.setState({ user,
-    //     contactDatabase: user ? firebase.database().ref(user.uid)
-    //     : null,
-    //     contactImgStorage: user ? firebase.storage().ref() : null },
-    //     () => { user ?
-    //       firebase.database().ref(user.uid).on('value', (snapshot) => {
-    //       const contacts = snapshot.val() || {};
-    //       this.setState({
-    //     contacts: map(contacts, (val, key) => extend(val, { key }))
-    //     });
-    //       }): this.setState({
-    //     contacts: []
-    //     });
-    //   }
-    //
       this.assignDatabaseReferences(user)
     );
   }
 
   assignDatabaseReferences(user) {
     this.setState({
-      user: user,
+      user,
       contactDatabase: user ? firebase.database().ref(user.uid) : null,
       contactImgStorage: user ? firebase.storage().ref() : null,
-      },
+    },
       () => {
-        this.createDatabaseEventListener(user)
+        this.createDatabaseEventListener(user);
       }
-    )
+    );
   }
 
   createDatabaseEventListener(user) {
@@ -57,80 +39,115 @@ export default class Application extends Component {
       firebase.database().ref(user.uid).on('value', (snapshot) => {
         const contacts = snapshot.val() || {};
         this.setState({
-          contacts: map(contacts, (val, key) => extend(val, { key }))
+          contacts: map(contacts, (val, key) => extend(val, { key })),
         });
-      })
-    }
-    else {
+      });
+    } else {
       this.setState({
-        contacts: []
+        contacts: [],
       });
     }
   }
 
-
-  toggleShowAddForm(){
-    this.setState({showAddForm:!this.state.showAddForm});
+  toggleShowAddForm() {
+    this.setState({ showAddForm: !this.state.showAddForm });
   }
 
-  addNewContact(newContactInfo, image){
+  addNewContact(newContactInfo, image) {
     this.state.contactDatabase.push(newContactInfo);
-    if(image){
-        this.state.contactImgStorage.child(`${this.state.user.uid}/${newContactInfo.contactID}.jpg`).put(image)
+    if (image) {
+      this.state.contactImgStorage.child(`${this.state.user.uid}/${newContactInfo.contactID}.jpg`).put(image);
     }
-    this.setState({showAddForm: false})
+    this.setState({ showAddForm: false });
   }
 
-  editContact(contactID, newContactInfo, image){
-      this.state.contactDatabase.child(`${contactID}`).set(newContactInfo)
-      if (image) {
-        this.state.contactImgStorage.child(`${this.state.user.uid}/${newContactInfo.contactID}.jpg`).put(image);
-
-      }
+  editContact(contactID, newContactInfo, image) {
+    this.state.contactDatabase.child(`${contactID}`).set(newContactInfo);
+    if (image) {
+      this.state.contactImgStorage.child(`${this.state.user.uid}/${newContactInfo.contactID}.jpg`).put(image);
+    }
   }
 
-  toggleFollowup(contactID, followup){
+  toggleFollowup(contactID, followup) {
     this.state.contactDatabase.child(`${contactID}`).child('followup').set(followup);
   }
 
-  deleteContact(contactID){
-    this.state.contactDatabase.child(`${contactID}`).remove()
+  deleteContact(contactID) {
+    this.state.contactDatabase.child(`${contactID}`).remove();
   }
-
 
   render() {
     const { user } = this.state;
-    console.log(this.state.contacts)
-    if(this.state.contactImgStorage){
-     console.log(this.state.contactImgStorage.bucket);
-   }
-
     let pageDisplay;
 
-    if(this.state.showAddForm){
-      pageDisplay =  <NewContactForm handleNewContact={this.addNewContact.bind(this)} numbers={{}} emails={{}} socialMedia={{}}/>
+    if (this.state.showAddForm) {
+      pageDisplay = (
+        <NewContactForm
+          handleNewContact = {this.addNewContact.bind(this)}
+          numbers = {{}}
+          emails = {{}}
+          socialMedia = {{}}
+        />
+      );
     } else {
-      pageDisplay = <ContactCardList user={this.state.user} imgStorage = {this.state.contactImgStorage} contacts = {this.state.contacts} submitEdit={this.editContact.bind(this)} toggleFollowup={this.toggleFollowup.bind(this)} deleteContact={this.deleteContact.bind(this)}/>
+      pageDisplay = (
+        <ContactCardList
+          user = {this.state.user}
+          imgStorage = {this.state.contactImgStorage}
+          contacts = {this.state.contacts}
+          submitEdit = {this.editContact.bind(this)}
+          toggleFollowup = {this.toggleFollowup.bind(this)}
+          deleteContact = {this.deleteContact.bind(this)}
+        />
+      );
     }
-
-    return(
-      <div className = 'application'>
+    return (
+      <div className = "application">
         <header>
-          <h1>Netwerker</h1>
-          <div className='active-user'>{user ?
-            <span className='greeting'>Hi, <span className="bold">{user.displayName}</span><button className='auth-button button' onClick={()=> signOut()}>Sign Out</button>
-            </span>
-            : <button className='auth-button' onClick={() => signIn()}>Sign In</button> }
-            </div>
-            <button className='add-contact-button' onClick={()=>this.toggleShowAddForm()}><img src="../images/plus.png" alt="Icon to show that user can add contact." className="add-contact-img"/></button>
+          <h1>
+            Netwerker
+          </h1>
+          <div className="active-user">
+            {user ?
+              <span className="greeting">
+                Hi,
+                <span className="bold">
+                  {user.displayName}
+                </span>
+                <button
+                  className="auth-button button"
+                  onClick={() => signOut()}
+                >Sign Out
+                </button>
+              </span>
+            :
+              <button
+                className="auth-button"
+                onClick={() => signIn()}
+              >
+              Sign In
+              </button>
+            }
+          </div>
+          <button
+            className="add-contact-button"
+            onClick={() => this.toggleShowAddForm()}
+          >
+            <img
+              src="../images/plus.png"
+              alt="Icon to show that user can add contact."
+              className="add-contact-img"
+            />
+          </button>
         </header>
 
-        <main className = 'contact-Container'>
-
-        {pageDisplay}
-
+        <main className = "contact-Container">
+          {pageDisplay}
         </main>
       </div>
-    )
+    );
   }
 }
+
+
+export default Application;
