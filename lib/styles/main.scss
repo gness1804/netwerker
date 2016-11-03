@@ -4,19 +4,24 @@
 @import "contactCard.scss";
 @import "mobile.scss";
 @import "debug.scss";
+@import "variables.scss";
+
 
 $faded-background: rgba(255,255,255,0.4);
 $breakpoint: 800px;
 
 html {
   // background: $main-background-desktop;
-  font-family:  $main-font;
+  font-family:  $second-font;
+  color: $gray;
+
 }
 
 header{
-  background: teal;
-  height: 130px;
-  margin-bottom: 10px;
+  background: $header-background;
+  border-bottom: 3px solid $tan;
+  height: 115px;
+  margin-bottom: 15px;
 }
 
 h1 {
@@ -35,7 +40,7 @@ h1 {
       position: absolute;
       top: 5px;
       left: 5px;
-      background-color: rgb(205, 90, 57);
+      background-color: $darkerblue
     }
 } //end of active-user
 

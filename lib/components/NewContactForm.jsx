@@ -32,12 +32,12 @@ export default class NewContactForm extends Component {
       image: this.props.image || '',
       followup: this.props.followup || false,
       reader: this.props.fileReaderTest || new FileReader(),
+      groups: this.props.groups || []
 
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
 
   componentDidMount(){
     if (this.state.reader !== "test") {
@@ -45,6 +45,12 @@ export default class NewContactForm extends Component {
         this.setState({imgSource : this.state.reader.result});
     }.bind(this));}
   } //end of componentDidMount
+
+  addContactToGroup(){
+    let existingGroupMemberships = this.state.groups;
+    //get access to array of all groups 
+    existingGroupMemberships.push('Test Group');
+  }
 
   addImage(e){
     let image = e.target.files[0];
@@ -101,14 +107,15 @@ export default class NewContactForm extends Component {
           instagram: this.state.socialMedia.instagram
         },
         notes: this.state.notes,
-        followup: this.state.followup
+        followup: this.state.followup,
+        groups: this.state.groups
     };
     const image = this.state.image;
     this.props.handleNewContact(newContact, image);
   }
   render(){
 
-    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, image, followup } = this.state;
+    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, image, followup, groups } = this.state;
 
 
     let imgSource;
@@ -154,6 +161,8 @@ export default class NewContactForm extends Component {
         {/* <p className = "add-image-label input-field">Upload Image</p> */}
 
         {imageDisplay}
+        {groups.length > 0 ? groups : <p>No groups listed for this contact.</p>}
+        <button onClick={()=>{this.addContactToGroup()}}>Add to Group</button>
 
         <button className='submit-new-contact-btn' onClick={this.submitNewContact.bind(this)}> Submit New Contact </button>
 
