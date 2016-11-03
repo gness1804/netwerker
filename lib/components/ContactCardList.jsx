@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import NewContactForm from './NewContactForm.jsx'
 import ContactCard from './ContactCard.jsx';
-import { filter, includes } from 'lodash';
+import { filter, includes , values} from 'lodash';
 import {contains} from 'underscore';
 
 
@@ -26,6 +26,40 @@ export default class ContactCardList extends Component {
 
     let contactArray = this.props.contacts;
 
+    let searchStringArray = this.state.searchString.split('');
+
+    if (this.state.searchString) {
+
+      contactArray = filter(contactArray, (contact)=>{
+          let fullName = '';
+          fullName = fullName.concat(contact.firstName+' '+contact.lastName)
+          console.log(fullName);
+          let testArray = values(contact);
+
+          var testResult;
+          testArray.forEach((key)=>{
+            if(typeof(key) === 'object') {
+              let keyArray = values(key)
+              keyArray.forEach((keyString)=>{
+                  let result = includes(keyString.toLowerCase(), this.state.searchString.toLowerCase())
+                  if(result) testResult = true;
+              })
+            } else {
+                if(typeof(key)==='string'){
+                  key = key.toLowerCase()
+                }
+                let result = includes(key, this.state.searchString.toLowerCase())
+                if(result) testResult = true;
+              }
+            }
+          )
+
+          testResult = includes(fullName.toLowerCase(), this.state.searchString.toLowerCase())
+
+          return testResult;
+      })
+    }
+
     if (this.state.showFollowupList) {
       contactArray = contactArray.filter((contact)=>{return contact.followup})
     }
@@ -39,10 +73,7 @@ export default class ContactCardList extends Component {
 
   let sortedList = contactList.sort((a, b) => a.props.lastName > b.props.lastName)
 
-  if (this.state.searchString) {
-      sortedList = filter(sortedList, (contact) => {
-      return includes(contact.props, this.state.searchString)
-   })}
+
 
     return(
       <div className="contact-card-container">
