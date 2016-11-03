@@ -39,7 +39,6 @@ export default class NewContactForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
   componentDidMount(){
     if (this.state.reader !== "test") {
     this.state.reader.addEventListener('load', function(){
@@ -50,7 +49,6 @@ export default class NewContactForm extends Component {
   addContactToGroup(){
     let existingGroupMemberships = this.state.groups;
     existingGroupMemberships.push('Test Group');
-    console.log(this.state.groups);
   }
 
   addImage(e){
