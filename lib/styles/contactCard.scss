@@ -1,5 +1,7 @@
 .contact-Container{
   text-align: center;
+  margin-left: 20%;
+  margin-right: 20%;
 
   .contact-card-for-each-contact {
     border: 2px solid teal;
@@ -24,8 +26,12 @@
   .contracted{
     height: 40px;
   }
-  
+
   .expanded {
+    div{
+      margin: 5px;
+    }
+    margin-left: 20px;
     height: auto;
     text-align: left;
     color: teal;

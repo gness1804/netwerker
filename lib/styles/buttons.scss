@@ -1,6 +1,6 @@
 $button-background: rgb(67, 137, 187);
 
-@mixin button-standard-mobile {
+@mixin button-standard {
   background-color: $button-background;
   display: inline-block;
   color: white;
@@ -12,7 +12,7 @@ $button-background: rgb(67, 137, 187);
   margin: 10px;
 }
 
-@mixin add-contact-button-mobile {
+@mixin add-contact-button {
   position: absolute;
   right: 40px;
   top: 20px;

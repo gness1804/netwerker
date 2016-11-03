@@ -43,16 +43,12 @@ export default class ContactCardList extends Component {
       return includes(contact.props, this.state.searchString)
    })}
 
-
-
-
     return(
       <div className="contact-card-container">
-        <img src="../images/black-flag.svg" className="show-followup-list-button" onClick={()=> {this.setState({showFollowupList: !this.state.showFollowupList})}}/>
+        <span className='follow-up-label'> Show: 
+        <img src="../images/black-flag.svg" className="show-followup-list-button" onClick={()=> {this.setState({showFollowupList: !this.state.showFollowupList})}}/></span>
         <input className="search" placeholder="search" onChange={(e)=> {this.searchContacts(e)}}/>
         {sortedList}
-
-
       </div>
     )
   }
