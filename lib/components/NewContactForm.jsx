@@ -43,19 +43,18 @@ export default class NewContactForm extends Component {
       }); }
   }
 
-  addContactToGroup(){
-    let existingGroupMemberships = this.state.groups;
-    //get access to array of all groups
+  addContactToGroup() {
+    const existingGroupMemberships = this.state.groups;
+    // get access to array of all groups
     existingGroupMemberships.push('Test Group');
   }
 
-  addImage(e){
-    let image = e.target.files[0];
-    this.setState({image:image},
+  addImage(e) {
+    const image = e.target.files[0];
+    this.setState({ image },
         this.state.reader.readAsDataURL(image)
     );
-
-  } //end of addImage
+  }
 
   toggleFollowup(){
     this.setState({followup:!this.state.followup});
