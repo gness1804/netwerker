@@ -160,7 +160,7 @@ export default class NewContactForm extends Component {
         {/* <p className = "add-image-label input-field">Upload Image</p> */}
 
         {imageDisplay}
-
+        {groups.length > 0 ? groups : <p>No groups listed for this contact.</p>}
         <button onClick={()=>{this.addContactToGroup()}}>Add to Group</button>
 
         <button className='submit-new-contact-btn' onClick={this.submitNewContact.bind(this)}> Submit New Contact </button>
