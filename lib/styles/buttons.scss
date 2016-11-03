@@ -1,4 +1,6 @@
-$button-background: rgb(67, 137, 187);
+@import "variables.scss";
+
+$button-background: $darkerblue;
 
 @mixin button-standard {
   background-color: $button-background;
@@ -17,7 +19,7 @@ $button-background: rgb(67, 137, 187);
   right: 40px;
   top: 20px;
   float: right;
-  background-color: teal;
+  background-color: $darkerblue;
   color: white;
   border-radius: 15px;
   border: none;
