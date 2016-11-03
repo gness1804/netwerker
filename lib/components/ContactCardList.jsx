@@ -11,7 +11,8 @@ export default class ContactCardList extends Component {
     this.state = {
       showFollowupList: false,
       filteredContacts: [],
-      searchString : ""
+      searchString : "",
+      allGroups: []
     };
   }
 
@@ -31,7 +32,7 @@ export default class ContactCardList extends Component {
     let contactList;
 
     if(contactArray) {
-      contactList =  contactArray.map(c => <ContactCard {...c} user={this.props.user} imgStorage={this.props.imgStorage} contactImgID={c.contactID} contactTextID={c.key} key={c.key} submitEdit = {this.props.submitEdit} toggleFollowup={this.props.toggleFollowup} deleteContact = {this.props.deleteContact}/>)
+      contactList =  contactArray.map(c => <ContactCard {...c} user={this.props.user} imgStorage={this.props.imgStorage} contactImgID={c.contactID} contactTextID={c.key} key={c.key} submitEdit = {this.props.submitEdit} toggleFollowup={this.props.toggleFollowup} deleteContact = {this.props.deleteContact} />)
     }
 
 
@@ -45,7 +46,7 @@ export default class ContactCardList extends Component {
 
     return(
       <div className="contact-card-container">
-        <span className='follow-up-label'> Show: 
+        <span className='follow-up-label'> Show:
         <img src="../images/black-flag.svg" className="show-followup-list-button" onClick={()=> {this.setState({showFollowupList: !this.state.showFollowupList})}}/></span>
         <input className="search" placeholder="search" onChange={(e)=> {this.searchContacts(e)}}/>
         {sortedList}
