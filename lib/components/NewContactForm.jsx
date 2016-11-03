@@ -109,28 +109,61 @@ export default class NewContactForm extends Component {
   }
 
   render() {
-    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, image, followup, groups } = this.state;
+    const {
+      // firstName,
+      // lastName,
+      // companyName,
+      // numbers,
+      // emails,
+      // socialMedia,
+      // notes,
+      // image,
+      followup,
+      groups } = this.state;
 
-
-    let imgSource;
+    // let imgSource;
     let imageDisplay;
 
-    if (this.state.imgSource){
-      imageDisplay = (<img src={this.state.imgSource}/>)
+    if (this.state.imgSource) {
+      imageDisplay = (<img src = {this.state.imgSource} alt = "The pic assigned to the contact." />);
     }
 
-    return(
-      <div className = 'input-field-container'>
-        <InputField className='firstName-Input input-field' value = {this.state.firstName} placeholder = 'First Name' type='text' handleChange={this.updateState.bind(this)} name = 'firstName'/>
-        <InputField className='lastName-Input input-field' value = {this.state.lastName} placeholder = 'Last Name' type='text' handleChange={this.updateState.bind(this)} name = 'lastName'/>
-        <InputField className='companyName-Input input-field' value = {this.state.companyName} placeholder = 'Company Name' type='text' handleChange={this.updateState.bind(this)} name = 'companyName'/>
+    return (
+      <div className = "input-field-container">
+        <InputField
+          className = "firstName-Input input-field"
+          value = {this.state.firstName}
+          placeholder = "First Name"
+          type = "text"
+          handleChange = {this.updateState.bind(this)}
+          name = "firstName"
+        />
+        <InputField
+          className = "lastName-Input input-field"
+          value = {this.state.lastName}
+          placeholder = "Last Name"
+          type = "text"
+          handleChange = {this.updateState.bind(this)}
+          name = "lastName"
+        />
+        <InputField
+          className = "companyName-Input input-field"
+          value = {this.state.companyName}
+          placeholder = "Company Name"
+          type = "text"
+          handleChange = {this.updateState.bind(this)}
+          name = "companyName"
+        />
         {/* <div>
         <select value={this.state.numbers} onChange={this.handleChange}>
           <option value="cell">Cell</option>
           <option value="work">Work</option>
           <option value="home">Home</option>
         </select>
-        <InputField className='phoneNumber-Input' value = {this.state.numbers} placeholder = 'Phone Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers'/>
+        <InputField className='phoneNumber-Input'
+        value = {this.state.numbers} placeholder = 'Phone Number'
+        type='text' handleChange={this.updateStateObject.bind(this)}
+        objName = 'numbers'/>
       </div> */}
         <InputField className='cellNumber-Input input-field' value = {this.state.numbers.cell} placeholder = 'cell Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'cell'/>
         <InputField className='workNumber-Input input-field' value = {this.state.numbers.work} placeholder = 'work Number' type='text' handleChange={this.updateStateObject.bind(this)} objName = 'numbers' name = 'work'/>
