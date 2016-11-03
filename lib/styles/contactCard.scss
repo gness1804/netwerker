@@ -1,0 +1,39 @@
+.contact-Container{
+  text-align: center;
+
+  .contact-card-for-each-contact {
+    border: 2px solid teal;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+  }
+
+  .contact-card-top-buttons-container {
+    float: right;
+    img {
+      height: 30px;
+      margin: 0 4px;
+      width: 30px;
+    }
+  }
+
+  .add-image-button{
+    display: none;
+  }
+
+  .contracted{
+    height: 40px;
+  }
+  
+  .expanded {
+    height: auto;
+    text-align: left;
+    color: teal;
+  }
+
+  .label {
+    color: black;
+    font-weight: 300;
+  }
+
+}

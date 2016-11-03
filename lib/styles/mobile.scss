@@ -1,0 +1,91 @@
+$breakpoint: 800px;
+
+@media screen and (max-width: $breakpoint) {
+
+
+
+    h1 {
+      font-size: 25px;
+    }
+
+    header{
+      height: 80px;
+    }
+
+    .active-user {
+      span {
+        font-size: 16px;
+        font-style: italic;
+      }
+      .auth-button {
+        @include button-standard-mobile;
+        float: left;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        background-color: rgb(205, 90, 57);
+      }
+    }
+
+    .add-contact-button {
+      @include add-contact-button-mobile;
+    }
+
+    .contact-card-container {
+      text-align: center;
+    }
+
+    .show-followup-list-button {
+      position: relative;
+
+      width: 50px;
+      margin: 30px;
+    }
+
+    } //end of contact-card-top-buttons-container
+
+    .contact-card-for-each-contact {
+
+      .fullname {
+        font-size: 28px;
+      }
+
+    } //end of contact-card-for-each-contact
+
+   //end of media query
+
+
+  .input-field-container{
+    margin-left: 40px;
+    margin-top: 30px;
+
+  }
+  .input-field{
+    font-size: 18px;
+    display: block;
+    margin: 5px;
+    border: none;
+    border-bottom: 1px dotted black ;
+  }
+
+  .submit-new-contact-btn{
+    @include button-standard-mobile
+    width: 300px;
+  }
+
+  .followup-button{
+    @include button-standard-mobile;
+    width: 200px;
+  }
+
+  .add-image-wrapper{
+    float: right;
+    position: absolute;
+    right: 160px;
+    top: 175px;
+    width: 150px;
+    img{
+      border-radius: 150px;
+      width: 200px;
+    }
+}
