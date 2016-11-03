@@ -35,6 +35,9 @@ export default class ContactCardList extends Component {
       //     }).length > 0
 
       contactArray = filter(contactArray, (contact)=>{
+          let fullName = '';
+          fullName = fullName.concat(contact.firstName+' '+contact.lastName)
+          console.log(fullName);
           let testArray = values(contact);
 
           var testResult;
@@ -54,6 +57,9 @@ export default class ContactCardList extends Component {
               }
             }
           )
+
+          testResult = includes(fullName.toLowerCase(), this.state.searchString.toLowerCase())
+
           return testResult;
       })
     }
