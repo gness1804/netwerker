@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import NewContactForm from './NewContactForm.jsx'
 import ContactCard from './ContactCard.jsx';
-import { filter, includes } from 'lodash';
+import { filter, includes , values} from 'lodash';
 import {contains} from 'underscore';
 
 
@@ -25,6 +25,39 @@ export default class ContactCardList extends Component {
 
     let contactArray = this.props.contacts;
 
+    let searchStringArray = this.state.searchString.split('');
+    if (this.state.searchString) {
+      // contactArray = filter(contactArray, (contact) => {
+      //
+      //   return filter(contact, (contactKey)=>{
+      //       console.log(contactKey)
+      //       return (includes(contactKey, searchStringArray))
+      //     }).length > 0
+
+      contactArray = filter(contactArray, (contact)=>{
+          let testArray = values(contact);
+
+          var testResult;
+          testArray.forEach((key)=>{
+            if(typeof(key) === 'object') {
+              let keyArray = values(key)
+              keyArray.forEach((keyString)=>{
+                  let result = includes(keyString.toLowerCase(), this.state.searchString.toLowerCase())
+                  if(result) testResult = true;
+              })
+            } else {
+                if(typeof(key)==='string'){
+                  key = key.toLowerCase()
+                }
+                let result = includes(key, this.state.searchString.toLowerCase())
+                if(result) testResult = true;
+              }
+            }
+          )
+          return testResult;
+      })
+    }
+
     if (this.state.showFollowupList) {
       contactArray = contactArray.filter((contact)=>{return contact.followup})
     }
@@ -38,14 +71,11 @@ export default class ContactCardList extends Component {
 
   let sortedList = contactList.sort((a, b) => a.props.lastName > b.props.lastName)
 
-  if (this.state.searchString) {
-      sortedList = filter(sortedList, (contact) => {
-      return includes(contact.props, this.state.searchString)
-   })}
+
 
     return(
       <div className="contact-card-container">
-        <span className='follow-up-label'> Show: 
+        <span className='follow-up-label'> Show:
         <img src="../images/black-flag.svg" className="show-followup-list-button" onClick={()=> {this.setState({showFollowupList: !this.state.showFollowupList})}}/></span>
         <input className="search" placeholder="search" onChange={(e)=> {this.searchContacts(e)}}/>
         {sortedList}
