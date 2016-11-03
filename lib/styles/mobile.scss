@@ -18,7 +18,7 @@ $breakpoint: 800px;
         font-style: italic;
       }
       .auth-button {
-        @include button-standard-mobile;
+        @include button-standard;
         float: left;
         position: absolute;
         top: 5px;
@@ -28,18 +28,13 @@ $breakpoint: 800px;
     }
 
     .add-contact-button {
-      @include add-contact-button-mobile;
+      @include add-contact-button;
     }
 
-    .contact-card-container {
+    .contact-Container {
       text-align: center;
-    }
-
-    .show-followup-list-button {
-      position: relative;
-
-      width: 50px;
-      margin: 30px;
+      margin-left: 5%;
+      margin-right: 5%;
     }
 
     } //end of contact-card-top-buttons-container
@@ -47,19 +42,15 @@ $breakpoint: 800px;
     .contact-card-for-each-contact {
 
       .fullname {
-        font-size: 28px;
+        font-size: 32px;
       }
-
-    } //end of contact-card-for-each-contact
-
-   //end of media query
-
+    }
 
   .input-field-container{
     margin-left: 40px;
     margin-top: 30px;
-
   }
+
   .input-field{
     font-size: 18px;
     display: block;
@@ -69,12 +60,12 @@ $breakpoint: 800px;
   }
 
   .submit-new-contact-btn{
-    @include button-standard-mobile
+    @include button-standard
     width: 300px;
   }
 
   .followup-button{
-    @include button-standard-mobile;
+    @include button-standard;
     width: 200px;
   }
 

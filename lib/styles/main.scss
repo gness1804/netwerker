@@ -5,9 +5,6 @@
 @import "mobile.scss";
 @import "debug.scss";
 
-//global styling
-// $main-background-desktop: linear-gradient(to bottom, rgb(91, 174, 214), rgb(222, 223, 187), rgb(91, 174, 214));
-// $main-background-mobile: linear-gradient(to right, rgb(91, 174, 214), rgb(222, 223, 187), rgb(91, 174, 214));
 $faded-background: rgba(255,255,255,0.4);
 $breakpoint: 800px;
 
@@ -18,6 +15,8 @@ html {
 
 header{
   background: teal;
+  height: 130px;
+  margin-bottom: 10px;
 }
 
 h1 {
@@ -26,11 +25,41 @@ h1 {
 
 .active-user {
   text-align: center;
-
-  .auth-button {
-
-  }
-  .add-contact-button {
-
-  }
+    span {
+      font-size: 16px;
+      font-style: italic;
+    }
+    .auth-button {
+      @include button-standard;
+      float: left;
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      background-color: rgb(205, 90, 57);
+    }
 } //end of active-user
+
+.add-contact-button {
+  @include add-contact-button;
+}
+
+.follow-up-label{
+  display: flex;
+  align-items: center;
+  position: relative;
+  bottom: 5px;
+  right: 20px;
+  float: right;
+}
+.show-followup-list-button {
+  margin-left: 10px;
+      right: 30px;
+      width: 40px;
+}
+.search {
+  display: block;
+  width: 300px;
+  text-align: center;
+  font-size: 25px;
+  margin: auto;
+}
