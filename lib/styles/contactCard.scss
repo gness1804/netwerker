@@ -3,8 +3,9 @@
   margin-left: 20%;
   margin-right: 20%;
 
+
   .contact-card-for-each-contact {
-    border: 2px solid teal;
+    border: 2px solid $contact-card-border;
     border-radius: 5px;
     padding: 10px;
     margin: 5px;
@@ -34,11 +35,11 @@
     margin-left: 20px;
     height: auto;
     text-align: left;
-    color: teal;
+
   }
 
   .label {
-    color: black;
+    color: $text-label;
     font-weight: 300;
   }
 
