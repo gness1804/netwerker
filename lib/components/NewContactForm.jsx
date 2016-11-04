@@ -9,6 +9,7 @@ export default class NewContactForm extends Component {
       firstName: this.props.firstName || '',
       lastName: this.props.lastName || '',
       companyName: this.props.companyName || '',
+      title: this.props.title,
       numbers: {
         cell: this.props.numbers.cell || '',
         work: this.props.numbers.work || '',
@@ -84,6 +85,7 @@ export default class NewContactForm extends Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       companyName: this.state.companyName,
+      title: this.state.title,
       numbers: {
         cell: this.state.numbers.cell,
         work: this.state.numbers.work,
@@ -119,6 +121,7 @@ export default class NewContactForm extends Component {
       // notes,
       // image,
       followup,
+      title,
       groups } = this.state;
 
     // let imgSource;
@@ -156,6 +159,14 @@ export default class NewContactForm extends Component {
           type = "text"
           handleChange = {this.updateState.bind(this)}
           name = "companyName"
+        />
+        <InputField
+          className = "title-Input input-field"
+          value = {this.state.title}
+          placeholder = "Title"
+          type = "text"
+          handleChange = {this.updateState.bind(this)}
+          name = "title"
         />
         {/* <div>
         <select value={this.state.numbers} onChange={this.handleChange}>

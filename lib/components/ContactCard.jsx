@@ -56,12 +56,13 @@ export default class ContactCard extends Component {
 
 
   render() {
-    const { firstName, lastName, companyName, numbers, emails, socialMedia, notes, contactID, image, followup, groups } = this.props
+    const { firstName, lastName, companyName, title, numbers, emails, socialMedia, notes, contactID, image, followup, groups } = this.props
     let display;
     if (this.state.expanded) {
       display = (<div className="expanded">
       <div className='fullname firstName lastName'><span className="label">Name: </span> {firstName} {lastName}</div>
       <div className='companyName'><span className="label">Company: </span> {companyName}</div>
+      <div className='title'><span className="label">Title: </span> {title}</div>
       <div className = 'cell'><span className="label">Cell Number: </span> {numbers.cell}</div>
       <div className = 'home'><span className="label">Home Number: </span> {numbers.home}</div>
       <div className = 'work'><span className="label">Work Number: </span> {numbers.work}</div>
