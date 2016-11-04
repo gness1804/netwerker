@@ -43,33 +43,6 @@ export default class ContactCard extends Component {
     this.props.deleteContact(this.props.contactTextID);
   }
   render() {
-// <<<<<<< HEAD
-//     const { firstName, lastName, companyName, title, numbers, emails, socialMedia, notes, contactID, image, followup, groups, website } = this.props
-//     let display;
-//     if (this.state.expanded) {
-//       display = (<div className="expanded">
-//       <div className='fullname firstName lastName'><span className="label">Name: </span> {firstName} {lastName}</div>
-//       <div>{website ? <div className='companyName'><span className="label">Company: </span> <a href={website} target="_blank">{companyName}</a> </div> : <div className='companyName'><span className="label">Company: </span> {companyName}</div>}</div>
-//       <div className='title'><span className="label">Title: </span> {title}</div>
-//       <div className = 'cell'><span className="label">Cell Number: </span> {numbers.cell}</div>
-//       <div className = 'home'><span className="label">Home Number: </span> {numbers.home}</div>
-//       <div className = 'work'><span className="label">Work Number: </span> {numbers.work}</div>
-//       <div className = 'primary-email'><span className="label">Email 1: </span> {emails.primary}</div>
-//       <div className = 'secondary-email'><span className="label">Email 2: </span> {emails.secondary}</div>
-//       <div className = 'facebook'><span className="label">Facebook: </span> {socialMedia.facebook}</div>
-//       <div className = 'twitter'><span className="label">Twitter: </span> {socialMedia.twitter}</div>
-//       <div className = 'linkedIn'><span className="label">LinkedIn: </span>{socialMedia.linkedIn}</div>
-//       <div className = 'github'><span className="label">Github: </span> {socialMedia.github}</div>
-//       <div className = 'instagram'><span className="label">Instagram: </span> {socialMedia.instagram}</div>
-//       <div className='notes'><span className="label">Notes:  </span> {notes}</div>
-//       <div className="groups">{groups}</div>
-//       <div className="image-container">{this.state.contactImgURL ? <img className="image" src={this.state.contactImgURL} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
-//
-//       </div>)
-//     }
-//     else {
-//       display = <div className='fullname firstName lastName'>{firstName} {lastName}</div>
-// =======
     const { firstName, lastName, companyName, title, website, numbers, emails,
           socialMedia, notes, followup, groups,
         } = this.props;
@@ -159,7 +132,6 @@ export default class ContactCard extends Component {
           {firstName} {lastName}
         </div>
       );
-// >>>>>>> 9e9ae444aa10448c69ab23b79d518b152646b14a
     }
 
     if (this.state.editable) {
