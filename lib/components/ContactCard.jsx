@@ -56,7 +56,7 @@ export default class ContactCard extends Component {
 
 
   render() {
-    const { firstName, lastName, companyName, title, numbers, emails, socialMedia, notes, contactID, image, followup, groups } = this.props
+    const { firstName, lastName, companyName, title, numbers, emails, socialMedia, notes, contactID, image, followup, groups, website } = this.props
     let display;
     if (this.state.expanded) {
       display = (<div className="expanded">
