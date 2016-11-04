@@ -23,7 +23,7 @@ export default class ContactCard extends Component {
                           this.setState({ contactImgURL: url });
                         })
                         .catch(() => {
-                          console.log('error - no image for this contact')
+                          console.log('error - no image for this contact');
                         });
       }
     }
@@ -91,7 +91,7 @@ export default class ContactCard extends Component {
         </div>
         <div className="title">
           <span className="label">Title: </span>
-            {title}
+          {title}
         </div>
         <div className = "cell">
           <span className="label">Cell Number: </span>
@@ -134,7 +134,7 @@ export default class ContactCard extends Component {
           {socialMedia.instagram}
         </div>
         <div className="notes">
-          <span className="label">Notes:  </span>
+          <span className="label">Notes: </span>
           {notes}
         </div>
         <div className="groups">
@@ -179,17 +179,17 @@ export default class ContactCard extends Component {
       );
     }
 
-    return(
-      <div className='contact-card-for-each-contact'>
+    return (
+      <div className = "contact-card-for-each-contact">
         <div className="contact-card-top-buttons-container">
-          {followup ? <img src="../images/yellow-flag-2.svg" alt="" className="flagged-for-followup-button" onClick={()=>this.toggleFollowup()}/> :   <img src="../images/gray-flag.svg" alt="" className="not-flagged-for-followup-button" onClick={()=>this.toggleFollowup()}/>}
-          <img src="../images/edit.png" alt="Icon to show that user can edit the contact card." className="edit-button" onClick={()=>this.toggleEdit()}/>
-          <img src="../images/thin-down.svg" alt="Icon to show that user can expand the contact card." className="expand-button" onClick={()=>this.toggleExpand()}/>
+          {followup ? <img src="../images/yellow-flag-2.svg" alt="" className="flagged-for-followup-button" onClick={() => this.toggleFollowup()} /> : <img src="../images/gray-flag.svg" alt="" className="not-flagged-for-followup-button" onClick={() => this.toggleFollowup()} />}
+          <img src="../images/edit.png" alt="Icon to show that user can edit the contact card." className="edit-button" onClick={() => this.toggleEdit()} />
+          <img src="../images/thin-down.svg" alt="Icon to show that user can expand the contact card." className="expand-button" onClick={() => this.toggleExpand()} />
         </div>
         {display}
-        <div className="delete-image">{this.props.image ? <DeleteImageButton handleClick={()=>{this.deleteImage()}}/> : ''}</div>
+        <div className="delete-image">{this.props.image ? <DeleteImageButton handleClick={() => { this.deleteImage(); }} /> : '' }</div>
       </div>
 
-    )
+    );
   }
 }
