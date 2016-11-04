@@ -9,7 +9,7 @@ export default class NewContactForm extends Component {
       firstName: this.props.firstName || '',
       lastName: this.props.lastName || '',
       companyName: this.props.companyName || '',
-      title: this.props.title,
+      title: this.props.title || '',
       numbers: {
         cell: this.props.numbers.cell || '',
         work: this.props.numbers.work || '',
