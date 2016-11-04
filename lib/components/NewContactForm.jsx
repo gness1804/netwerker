@@ -72,8 +72,8 @@ export default class NewContactForm extends Component {
     this.setState({ [objName]: objState });
   }
 
-  handleChange = (event) => {
-    this.setState({ numbers: event.target.value });
+  handleChange = (e) => {
+    this.setState({ numbers: e.target.value });
   }
 
   handleSubmit = () => {
