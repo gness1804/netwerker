@@ -61,7 +61,7 @@ export default class ContactCard extends Component {
     if (this.state.expanded) {
       display = (<div className="expanded">
       <div className='fullname firstName lastName'><span className="label">Name: </span> {firstName} {lastName}</div>
-      <div>{website ? <div className='companyName'><span className="label">Company: </span> <a href={website} target="_blank">{companyName}</a> </div>: <div className='companyName'><span className="label">Company: </span> {companyName}</div>}</div>
+      <div>{website ? <div className='companyName'><span className="label">Company: </span> <a href={website} target="_blank">{companyName}</a> </div> : <div className='companyName'><span className="label">Company: </span> {companyName}</div>}</div>
       <div className='title'><span className="label">Title: </span> {title}</div>
       <div className = 'cell'><span className="label">Cell Number: </span> {numbers.cell}</div>
       <div className = 'home'><span className="label">Home Number: </span> {numbers.home}</div>
