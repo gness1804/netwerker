@@ -22,7 +22,7 @@ class Application extends Component {
     );
   }
 
-  assignDatabaseReferences(user) {
+  assignDatabaseReferences = (user) => {
     this.setState({
       user,
       contactDatabase: user ? firebase.database().ref(user.uid) : null,
@@ -34,7 +34,7 @@ class Application extends Component {
     );
   }
 
-  createDatabaseEventListener(user) {
+  createDatabaseEventListener = (user) => {
     if (user) {
       firebase.database().ref(user.uid).on('value', (snapshot) => {
         const contacts = snapshot.val() || {};
@@ -49,11 +49,11 @@ class Application extends Component {
     }
   }
 
-  toggleShowAddForm() {
+  toggleShowAddForm = () => {
     this.setState({ showAddForm: !this.state.showAddForm });
   }
 
-  addNewContact(newContactInfo, image) {
+  addNewContact = (newContactInfo, image) => {
     this.state.contactDatabase.push(newContactInfo);
     if (image) {
       this.state.contactImgStorage.child(`${this.state.user.uid}/${newContactInfo.contactID}.jpg`).put(image);
@@ -61,18 +61,18 @@ class Application extends Component {
     this.setState({ showAddForm: false });
   }
 
-  editContact(contactID, newContactInfo, image) {
+  editContact = (contactID, newContactInfo, image) => {
     this.state.contactDatabase.child(`${contactID}`).set(newContactInfo);
     if (image) {
       this.state.contactImgStorage.child(`${this.state.user.uid}/${newContactInfo.contactID}.jpg`).put(image);
     }
   }
 
-  toggleFollowup(contactID, followup) {
+  toggleFollowup = (contactID, followup) => {
     this.state.contactDatabase.child(`${contactID}`).child('followup').set(followup);
   }
 
-  deleteContact(contactID) {
+  deleteContact = (contactID) => {
     this.state.contactDatabase.child(`${contactID}`).remove();
   }
 
@@ -83,7 +83,7 @@ class Application extends Component {
     if (this.state.showAddForm) {
       pageDisplay = (
         <NewContactForm
-          handleNewContact = {this.addNewContact.bind(this)}
+          handleNewContact = {this.addNewContact}
           numbers = {{}}
           emails = {{}}
           socialMedia = {{}}
@@ -95,9 +95,9 @@ class Application extends Component {
           user = {this.state.user}
           imgStorage = {this.state.contactImgStorage}
           contacts = {this.state.contacts}
-          submitEdit = {this.editContact.bind(this)}
-          toggleFollowup = {this.toggleFollowup.bind(this)}
-          deleteContact = {this.deleteContact.bind(this)}
+          submitEdit = {this.editContact}
+          toggleFollowup = {this.toggleFollowup}
+          deleteContact = {this.deleteContact}
         />
       );
     }
