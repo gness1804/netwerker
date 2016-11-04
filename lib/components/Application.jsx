@@ -22,7 +22,7 @@ class Application extends Component {
     );
   }
 
-  assignDatabaseReferences = (user) => {
+assignDatabaseReferences = (user) => {
     this.setState({
       user,
       contactDatabase: user ? firebase.database().ref(user.uid) : null,
