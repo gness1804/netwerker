@@ -34,53 +34,53 @@ export default class NewContactForm extends Component {
       groups: this.props.groups || [],
 
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange();
+    this.handleSubmit = this.handleSubmit();
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     if (this.state.reader !== 'test') {
       this.state.reader.addEventListener('load', () => {
         this.setState({ imgSource: this.state.reader.result });
       }); }
   }
 
-  addContactToGroup() {
+  addContactToGroup = () => {
     const existingGroupMemberships = this.state.groups;
     // get access to array of all groups
     existingGroupMemberships.push('Test Group');
   }
 
-  addImage(e) {
+  addImage = (e) => {
     const image = e.target.files[0];
     this.setState({ image },
         this.state.reader.readAsDataURL(image)
     );
   }
 
-  toggleFollowup() {
+  toggleFollowup = () => {
     this.setState({ followup: !this.state.followup });
   }// end of toggleFollowup
 
-  updateState(e, keyName) {
+  updateState = (e, keyName) => {
     this.setState({ [keyName]: e.target.value });
   }
 
-  updateStateObject(e, keyName, objName) {
+  updateStateObject = (e, keyName, objName) => {
     const objState = this.state[objName];
     objState[keyName] = e.target.value;
     this.setState({ [objName]: objState });
   }
 
-  handleChange(event) {
-    this.setState({ numbers: event.target.value });
+  handleChange = (e) => {
+    this.setState({ numbers: e.target.value });
   }
 
-  handleSubmit() {
+  handleSubmit = () => {
     alert(`Select value is: ${this.state.numbers}`);
   }
 
-  submitNewContact() {
+  submitNewContact = () => {
     const newContact = {
       contactID: this.state.contactID,
       firstName: this.state.firstName,
@@ -112,7 +112,7 @@ export default class NewContactForm extends Component {
     this.props.handleNewContact(newContact, image);
   }
 
-  render() {
+  render = () => {
     const {
       // firstName,
       // lastName,
@@ -144,7 +144,7 @@ export default class NewContactForm extends Component {
           value = {this.state.firstName}
           placeholder = "First Name"
           type = "text"
-          handleChange = {this.updateState.bind(this)}
+          handleChange = {this.updateState()}
           name = "firstName"
         />
         <InputField
@@ -152,7 +152,7 @@ export default class NewContactForm extends Component {
           value = {this.state.lastName}
           placeholder = "Last Name"
           type = "text"
-          handleChange = {this.updateState.bind(this)}
+          handleChange = {this.updateState()}
           name = "lastName"
         />
         <InputField
@@ -160,7 +160,7 @@ export default class NewContactForm extends Component {
           value = {this.state.companyName}
           placeholder = "Company Name"
           type = "text"
-          handleChange = {this.updateState.bind(this)}
+          handleChange = {this.updateState()}
           name = "companyName"
         />
         <InputField
@@ -168,7 +168,7 @@ export default class NewContactForm extends Component {
           value = {this.state.title}
           placeholder = "Title"
           type = "text"
-          handleChange = {this.updateState.bind(this)}
+          handleChange = {this.updateState()}
           name = "title"
         />
         <InputField
@@ -176,7 +176,7 @@ export default class NewContactForm extends Component {
           value = {this.state.website}
           placeholder = "Company Website"
           type = "text"
-          handleChange = {this.updateState.bind(this)}
+          handleChange = {this.updateState()}
           name = "website"
         />
         {/* <div>
@@ -187,7 +187,7 @@ export default class NewContactForm extends Component {
         </select>
         <InputField className='phoneNumber-Input'
         value = {this.state.numbers} placeholder = 'Phone Number'
-        type = "text" handleChange={this.updateStateObject.bind(this)}
+        type = "text" handleChange={this.updateStateObject()}
         objName = 'numbers'/>
       </div> */}
         <InputField
@@ -195,7 +195,7 @@ export default class NewContactForm extends Component {
           value = {this.state.numbers.cell}
           placeholder = "cell Number"
           type = "text"
-          handleChange = {this.updateStateObject.bind(this)}
+          handleChange = {this.updateStateObject()}
           objName = "numbers"
           name = "cell"
         />
@@ -204,7 +204,7 @@ export default class NewContactForm extends Component {
           value = {this.state.numbers.work}
           placeholder = "work Number"
           type = "text"
-          handleChange = {this.updateStateObject.bind(this)}
+          handleChange = {this.updateStateObject()}
           objName = "numbers"
           name = "work"
         />
@@ -213,7 +213,7 @@ export default class NewContactForm extends Component {
           value = {this.state.numbers.home}
           placeholder = "home Number"
           type = "text"
-          handleChange = {this.updateStateObject.bind(this)}
+          handleChange = {this.updateStateObject()}
           objName = "numbers"
           name = "home"
         />
@@ -222,7 +222,7 @@ export default class NewContactForm extends Component {
           value = {this.state.emails.primary}
           placeholder = "Primary Email"
           type = "text"
-          handleChange = {this.updateStateObject.bind(this)}
+          handleChange = {this.updateStateObject()}
           objName = "emails"
           name = "primary"
         />
@@ -231,7 +231,7 @@ export default class NewContactForm extends Component {
           value = {this.state.emails.secondary}
           placeholder = "Secondary Email"
           type = "text"
-          handleChange = {this.updateStateObject.bind(this)}
+          handleChange = {this.updateStateObject()}
           objName = "emails"
           name = "secondary"
         />
@@ -240,7 +240,7 @@ export default class NewContactForm extends Component {
           value = {this.state.socialMedia.facebook}
           placeholder = "facebook"
           type = "text"
-          handleChange={this.updateStateObject.bind(this)}
+          handleChange={this.updateStateObject()}
           objName = "socialMedia"
           name = "facebook"
         />
@@ -249,7 +249,7 @@ export default class NewContactForm extends Component {
           value = {this.state.socialMedia.twitter}
           placeholder = "twitter"
           type = "text"
-          handleChange={this.updateStateObject.bind(this)}
+          handleChange={this.updateStateObject()}
           objName = "socialMedia"
           name = "twitter"
         />
@@ -258,7 +258,7 @@ export default class NewContactForm extends Component {
           value = {this.state.socialMedia.linkedIn}
           placeholder = "linkedIn"
           type = "text"
-          handleChange={this.updateStateObject.bind(this)}
+          handleChange={this.updateStateObject()}
           objName = "socialMedia"
           name = "linkedIn"
         />
@@ -267,7 +267,7 @@ export default class NewContactForm extends Component {
           value = {this.state.socialMedia.github}
           placeholder = "github"
           type = "text"
-          handleChange={this.updateStateObject.bind(this)}
+          handleChange={this.updateStateObject()}
           objName = "socialMedia"
           name = "github"
         />
@@ -276,7 +276,7 @@ export default class NewContactForm extends Component {
           value = {this.state.socialMedia.instagram}
           placeholder = "instagram"
           type = "text"
-          handleChange={this.updateStateObject.bind(this)}
+          handleChange={this.updateStateObject()}
           objName = "socialMedia"
           name = "instagram"
         />
@@ -285,7 +285,7 @@ export default class NewContactForm extends Component {
           value = {this.state.notes}
           placeholder = "Notes"
           type = "text"
-          handleChange={this.updateState.bind(this)}
+          handleChange={this.updateState()}
           name = "notes"
         />
 
@@ -322,7 +322,7 @@ export default class NewContactForm extends Component {
 
         <button
           className = "submit-new-contact-btn"
-          onClick={this.submitNewContact.bind(this)}
+          onClick={this.submitNewContact()}
         > Submit New Contact
         </button>
 
