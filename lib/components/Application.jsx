@@ -110,7 +110,7 @@ class Application extends Component {
           <div className="active-user">
             {user ?
               <span className="greeting">
-                Hi,
+                Hi,&nbsp;
                 <span className="bold">
                   {user.displayName}
                 </span>
