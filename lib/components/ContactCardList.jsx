@@ -1,9 +1,6 @@
-import React, { Component } from 'react'
-import NewContactForm from './NewContactForm.jsx'
+import React, { Component } from 'react';
+import { filter, includes, values } from 'lodash';
 import ContactCard from './ContactCard.jsx';
-import { filter, includes , values} from 'lodash';
-import {contains} from 'underscore';
-
 
 export default class ContactCardList extends Component {
   constructor() {
@@ -11,77 +8,90 @@ export default class ContactCardList extends Component {
     this.state = {
       showFollowupList: false,
       filteredContacts: [],
-      searchString : "",
-      allGroups: []
+      searchString: '',
+      allGroups: [],
     };
   }
-
-  searchContacts(e) {
+  searchContacts = (e) => {
     this.setState(
-      {searchString: e.target.value});
-    }
-
-
+      { searchString: e.target.value });
+  }
   render() {
-
     let contactArray = this.props.contacts;
-
-    let searchStringArray = this.state.searchString.split('');
-
     if (this.state.searchString) {
-
-      contactArray = filter(contactArray, (contact)=>{
-          let fullName = '';
-          fullName = fullName.concat(contact.firstName+' '+contact.lastName)
-          console.log(fullName);
-          let testArray = values(contact);
-
-          var testResult;
-          testArray.forEach((key)=>{
-            if(typeof(key) === 'object') {
-              let keyArray = values(key)
-              keyArray.forEach((keyString)=>{
-                  let result = includes(keyString.toLowerCase(), this.state.searchString.toLowerCase())
-                  if(result) testResult = true;
-              })
-            } else {
-                if(typeof(key)==='string'){
-                  key = key.toLowerCase()
-                }
-                let result = includes(key, this.state.searchString.toLowerCase())
-                if(result) testResult = true;
-              }
+      contactArray = filter(contactArray, (contact) => {
+        const fullName = `${contact.firstName} ${contact.lastName}`;
+        const testArray = values(contact);
+        let testResult;
+        testArray.forEach((key) => {
+          if (typeof (key) === 'object') {
+            const keyArray = values(key);
+            keyArray.forEach((keyString) => {
+              const result = includes(keyString.toLowerCase(),
+              this.state.searchString.toLowerCase());
+              if (result) testResult = true;
+            });
+          } else {
+            let keyString = key;
+            if (typeof (key) === 'string') {
+              keyString = key.toLowerCase();
             }
-          )
+            const result = includes(keyString, this.state.searchString.toLowerCase());
+            if (result) testResult = true;
+          }
+        }
+      );
 
-          testResult = includes(fullName.toLowerCase(), this.state.searchString.toLowerCase())
+        testResult = includes(fullName.toLowerCase(), this.state.searchString.toLowerCase());
 
-          return testResult;
-      })
+        return testResult;
+      });
     }
 
     if (this.state.showFollowupList) {
-      contactArray = contactArray.filter((contact)=>{return contact.followup})
+      contactArray = contactArray.filter((contact) => { return contact.followup; });
     }
     let contactList;
 
-    if(contactArray) {
-      contactList =  contactArray.map(c => <ContactCard {...c} user={this.props.user} imgStorage={this.props.imgStorage} contactImgID={c.contactID} contactTextID={c.key} key={c.key} submitEdit = {this.props.submitEdit} toggleFollowup={this.props.toggleFollowup} deleteContact = {this.props.deleteContact} />)
+    if (contactArray) {
+      contactList = contactArray.map(c =>
+        <ContactCard
+          {...c}
+          user={this.props.user}
+          imgStorage={this.props.imgStorage}
+          contactImgID={c.contactID}
+          contactTextID={c.key}
+          key={c.key}
+          submitEdit = {this.props.submitEdit}
+          toggleFollowup={this.props.toggleFollowup}
+          deleteContact = {this.props.deleteContact}
+        />
+      );
     }
-
-
-
-  let sortedList = contactList.sort((a, b) => a.props.lastName > b.props.lastName)
-
-
-
-    return(
+    const sortedList = contactList.sort((a, b) => a.props.lastName > b.props.lastName);
+    return (
       <div className="contact-card-container">
-        <span className='follow-up-label'> Show:
-        <img src="../images/black-flag.svg" className="show-followup-list-button" onClick={()=> {this.setState({showFollowupList: !this.state.showFollowupList})}}/></span>
-        <input className="search" placeholder="search" onChange={(e)=> {this.searchContacts(e)}}/>
+        <span className="follow-up-label"> Show:
+        <img
+          alt="mark as follow up"
+          src="../images/black-flag.svg"
+          className="show-followup-list-button"
+          onClick={() => {
+            this.setState({
+              showFollowupList: !this.state.showFollowupList,
+            });
+          }}
+        />
+        </span>
+        <input
+          className="search"
+          placeholder="search"
+          onChange={(e) => {
+            this.searchContacts(e);
+          }}
+        />
         {sortedList}
       </div>
-    )
+    );
   }
 }
