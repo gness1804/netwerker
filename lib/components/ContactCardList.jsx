@@ -1,9 +1,6 @@
-import React, { Component } from 'react'
-import NewContactForm from './NewContactForm.jsx'
+import React, { Component } from 'react';
+import { filter, includes, values } from 'lodash';
 import ContactCard from './ContactCard.jsx';
-import { filter, includes , values} from 'lodash';
-import {contains} from 'underscore';
-
 
 export default class ContactCardList extends Component {
   constructor() {
@@ -11,38 +8,29 @@ export default class ContactCardList extends Component {
     this.state = {
       showFollowupList: false,
       filteredContacts: [],
-      searchString : "",
-      allGroups: []
+      searchString: '',
+      allGroups: [],
     };
   }
-
-  searchContacts(e) {
+  searchContacts = (e) => {
     this.setState(
-      {searchString: e.target.value});
-    }
-
-
+      { searchString: e.target.value });
+  }
   render() {
-
     let contactArray = this.props.contacts;
-
-    let searchStringArray = this.state.searchString.split('');
-
     if (this.state.searchString) {
-
-      contactArray = filter(contactArray, (contact)=>{
-          let fullName = '';
-          fullName = fullName.concat(contact.firstName+' '+contact.lastName)
-          console.log(fullName);
-          let testArray = values(contact);
-
-          var testResult;
-          testArray.forEach((key)=>{
-            if(typeof(key) === 'object') {
-              let keyArray = values(key)
-              keyArray.forEach((keyString)=>{
-                  let result = includes(keyString.toLowerCase(), this.state.searchString.toLowerCase())
-                  if(result) testResult = true;
+      contactArray = filter(contactArray, (contact) => {
+        let fullName = '';
+        fullName = fullName.concat(contact.firstName+' '+contact.lastName)
+        const testArray = values(contact);
+        let testResult;
+        testArray.forEach((key) => {
+          if (typeof (key) === 'object') {
+            const keyArray = values(key);
+            keyArray.forEach((keyString) => {
+              const result = includes(keyString.toLowerCase(),
+              this.state.searchString.toLowerCase());
+                if(result) testResult = true;
               })
             } else {
                 if(typeof(key)==='string'){
@@ -68,7 +56,6 @@ export default class ContactCardList extends Component {
     if(contactArray) {
       contactList =  contactArray.map(c => <ContactCard {...c} user={this.props.user} imgStorage={this.props.imgStorage} contactImgID={c.contactID} contactTextID={c.key} key={c.key} submitEdit = {this.props.submitEdit} toggleFollowup={this.props.toggleFollowup} deleteContact = {this.props.deleteContact} />)
     }
-
 
 
   let sortedList = contactList.sort((a, b) => a.props.lastName > b.props.lastName)
