@@ -40,12 +40,18 @@ h1 {
       position: absolute;
       top: 20px;
       left: 20px;
-      background-color: $darkerblue
+      background-color: $darkerblue;
+
+      &:hover {
+        @include button-standard-hover;
+      }
+
     }
 } //end of active-user
 
 .add-contact-button {
   @include add-contact-button;
+
 }
 
 .follow-up-label{

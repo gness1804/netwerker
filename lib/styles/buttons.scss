@@ -14,6 +14,11 @@ $button-background: $darkerblue;
   margin: 10px;
 }
 
+@mixin button-standard-hover {
+  background-color: $button-hover;
+  cursor: pointer;
+}
+
 @mixin add-contact-button {
   position: absolute;
   right: 50px;
@@ -27,4 +32,10 @@ $button-background: $darkerblue;
 
 .add-contact-img{
   width: 50px;
+
+  &:hover {
+    cursor: pointer;
+    // background-color: $button-hover;
+  }
+
 }
