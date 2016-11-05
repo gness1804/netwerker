@@ -100,4 +100,10 @@ describe('ContactCardList', () => {
     search.simulate('change', { target: { value: 'hello' } });
     assert.strictEqual(wrapper.state('searchString'), 'hello');
   });
+  it('should allow user search to filter items on the page', () => {
+    const wrapper = mount(<ContactCardList contacts={['Hello', 'world']} />);
+    const search = wrapper.find('.search');
+    search.simulate('change', { target: { value: 'z' } });
+    assert.strictEqual(wrapper.find('.contact-card-for-each-contact').length, 0);
+  });
 });
