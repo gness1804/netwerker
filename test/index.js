@@ -6,6 +6,7 @@ require('locus');
 import Application from '../lib/components/Application';
 import NewContactForm from '../lib/components/NewContactForm';
 import ContactCard from '../lib/components/ContactCard';
+import ContactCardList from '../lib/components/ContactCardList';
 
 describe("application", ()=>{
   it("should render as a div", ()=>{
@@ -89,8 +90,11 @@ describe("ContactCard", ()=>{
     wrapper.find('.expand-button').simulate('click')
     cell = wrapper.find('.cell');
     assert.strictEqual(cell.length, 0)
-  })
+  });
+}); // end of describe ContactCard
 
-
-   //end of display contact info when user enters it
-}); //end of describe ContactCard
+describe('ContactCardList',() => {
+  it('should change the state when user enters input into the search field', () => {
+    const wrapper = mount(<ContactCardList />);
+  });
+});
