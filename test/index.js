@@ -73,7 +73,7 @@ describe("ContactCard", ()=>{
     let name = wrapper.find('.fullname').text();
     assert.strictEqual(name, 'Name: John Cleese');
     let cell = wrapper.find('.cell').text();
-    assert.strictEqual(+cell, 44);
+    assert.strictEqual(cell, 'Cell Number: 44');
     let primEmail = wrapper.find('.primary-email').text();
     assert.strictEqual(primEmail, 'john@schoolofsillywalks.com');
     let github = wrapper.find('.github').text();
