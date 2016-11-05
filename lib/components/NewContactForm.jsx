@@ -120,14 +120,12 @@ export default class NewContactForm extends Component {
       followup,
       groups } = this.state;
 
-    // let imgSource;
-    let imageDisplay;
+    let imageSrc;
 
     if (this.state.imgSource) {
-      imageDisplay = (<img
-        src = {this.state.imgSource}
-        alt = "The pic assigned to the contact."
-      />);
+      imageSrc = this.state.imgSource;
+    } else {
+      imageSrc = '../images/user-ph.jpg';
     }
 
     return (
@@ -298,19 +296,17 @@ export default class NewContactForm extends Component {
             onClick={() => this.toggleFollowup()}
           />}
 
-        <label htmlFor="add-image-button" className = "add-image-wrapper">
-          <img src="../images/user-ph.jpg" alt="The user." />
+        <label className = "add-image-wrapper">
+          <img src={imageSrc} alt="The user." />
           <input
             className="add-image-button"
             type="file"
             onChange={(e) => { this.addImage(e); }}
             accept="image/*"
           />
+          <p className = "add-image-label">Click To Upload Image</p>
         </label>
 
-        <p className = "add-image-label input-field">Upload Image</p>
-
-        {imageDisplay}
         {groups.length > 0 ? groups : <p>No groups listed for this contact.</p>}
         <button onClick={() => { this.addContactToGroup(); }}>Add to Group</button>
 
