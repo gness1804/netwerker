@@ -55,7 +55,6 @@ class Application extends Component {
   addNewContact = (newContactInfo, image) => {
     this.state.contactDatabase.push(newContactInfo);
     if (image) {
-      console.log(image, newContactInfo)
       this.state.contactImgStorage.child(`${this.state.user.uid}/${newContactInfo.contactID}.jpg`).put(image);
     }
     this.setState({ showAddForm: false });
@@ -134,7 +133,7 @@ class Application extends Component {
             onClick={() => this.toggleShowAddForm()}
           >
             <img
-              src="../images/plus.png"
+              src="../images/plus.svg"
               alt="Icon to show that user can add contact."
               className="add-contact-img"
             />
