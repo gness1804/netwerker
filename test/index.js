@@ -80,14 +80,14 @@ describe("ContactCard", ()=>{
     assert.strictEqual(github, 'jcleese');
   });
 
-  it("should toggle off expand when user click expand button", ()=> {
+  it("should toggle off expand when user clicks expand button", ()=> {
     const wrapper = mount(<ContactCard {...newContact} test={true}/>);
     wrapper.find('.expand-button').simulate('click')
 
     let cell = wrapper.find('.cell').text();
     assert.strictEqual(+cell, 44);
 
-    wrapper.find('.expand-button').simulate('click')
+    wrapper.find('.expand-button').simulate('click');
     cell = wrapper.find('.cell');
     assert.strictEqual(cell.length, 0)
   });
@@ -95,6 +95,9 @@ describe("ContactCard", ()=>{
 
 describe('ContactCardList',() => {
   it('should change the state when user enters input into the search field', () => {
-    const wrapper = mount(<ContactCardList />);
+    const wrapper = mount(<ContactCardList contacts={['Hello', 'world']} />);
+    let search = wrapper.find('.search');
+    search.simulate('change', {target: {value: 'hello'}});
+    assert.strictEqual(wrapper.state('searchString'), 'hello');
   });
 });
