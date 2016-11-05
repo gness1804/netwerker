@@ -68,16 +68,16 @@ describe("ContactCard", ()=>{
 
   it("should display all contact info when user clicks expand", ()=> {
     const wrapper = mount(<ContactCard {...newContact} test={true}/>);
-    wrapper.find('.expand-button').simulate('click')
+    wrapper.find('.expand-button').simulate('click');
 
     let name = wrapper.find('.fullname').text();
     assert.strictEqual(name, 'Name: John Cleese');
     let cell = wrapper.find('.cell').text();
     assert.strictEqual(cell, 'Cell Number: 44');
     let primEmail = wrapper.find('.primary-email').text();
-    assert.strictEqual(primEmail, 'john@schoolofsillywalks.com');
+    assert.strictEqual(primEmail, 'Email 1: john@schoolofsillywalks.com');
     let github = wrapper.find('.github').text();
-    assert.strictEqual(github, 'jcleese');
+    assert.strictEqual(github, 'Github: jcleese');
   });
 
   it("should toggle off expand when user clicks expand button", ()=> {
