@@ -12,22 +12,28 @@ export default class ContactCard extends Component {
       contactImgURL: null,
     };
   }
+  getContactImageURL = () => {
+    this.props.imgStorage.child(
+                    `${this.props.user.uid}/${this.props.contactImgID}.jpg`)
+                    .getDownloadURL()
+                    .then((url) => {
+                      this.setState({ contactImgURL: url });
+                    })
+                    .catch(() => {
+                    });
+  }
   toggleExpand = () => {
     if (!this.state.expanded) {
       if (!this.props.test) {
-        this.props.imgStorage.child(
-                        `${this.props.user.uid}/${this.props.contactImgID}.jpg`)
-                        .getDownloadURL()
-                        .then((url) => {
-                          this.setState({ contactImgURL: url });
-                        })
-                        .catch(() => {
-                        });
+        this.getContactImageURL();
       }
     }
     this.setState({ expanded: !this.state.expanded });
   }
   toggleEdit = () => {
+    if (!this.props.test) {
+      this.getContactImageURL();
+    }
     this.setState({ editable: !this.state.editable });
   }
   toggleFollowup = () => {
@@ -138,6 +144,7 @@ export default class ContactCard extends Component {
           <NewContactForm
             handleNewContact={this.submitEdit}
             {...this.props}
+            image={this.state.contactImgURL}
           />
           <button
             className="delete-contact"
@@ -168,7 +175,7 @@ export default class ContactCard extends Component {
               />
             }
           <img
-            src="../images/edit.png"
+            src="../images/pencil.svg"
             alt="Icon to show that user can edit the contact card."
             className="edit-button"
             onClick={() => this.toggleEdit()}

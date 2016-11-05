@@ -33,10 +33,8 @@ export default class NewContactForm extends Component {
       followup: this.props.followup || false,
       reader: this.props.fileReaderTest || new FileReader(),
       groups: this.props.groups || [],
-
+      imgSource: this.props.image || '',
     };
-    // this.handleChange = this.handleChange();
-    // this.handleSubmit = this.handleSubmit();
   }
 
   componentDidMount = () => {
@@ -48,7 +46,6 @@ export default class NewContactForm extends Component {
 
   addContactToGroup = () => {
     const existingGroupMemberships = this.state.groups;
-    // get access to array of all groups
     existingGroupMemberships.push('Test Group');
   }
 
@@ -107,16 +104,6 @@ export default class NewContactForm extends Component {
 
   render = () => {
     const {
-      // firstName,
-      // lastName,
-      // companyName,
-      // numbers,
-      // emails,
-      // socialMedia,
-      // notes,
-      // image,
-      // title,
-      // website,
       followup,
       groups } = this.state;
 

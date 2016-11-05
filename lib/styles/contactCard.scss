@@ -3,8 +3,8 @@
   margin-left: 20%;
   margin-right: 20%;
 
-
   .contact-card-for-each-contact {
+    position: relative;
     border: 2px solid $contact-card-border;
     border-radius: 5px;
     padding: 10px;
@@ -25,7 +25,7 @@
   }
 
   .add-image-label{
-    
+
   }
 
   .contracted{
@@ -48,6 +48,9 @@
   }
 
   .image{
-    width: 300px;
+    top: 100px;
+    right: 60px;
+    position: absolute;
+    width: 220px;
   }
 }
