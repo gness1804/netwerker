@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import InputField from './InputField.jsx';
+import AddImageButton from './AddImageButton.jsx';
 
 export default class NewContactForm extends Component {
   constructor(props) {
@@ -34,8 +35,8 @@ export default class NewContactForm extends Component {
       groups: this.props.groups || [],
 
     };
-    this.handleChange = this.handleChange();
-    this.handleSubmit = this.handleSubmit();
+    // this.handleChange = this.handleChange();
+    // this.handleSubmit = this.handleSubmit();
   }
 
   componentDidMount = () => {
@@ -70,14 +71,6 @@ export default class NewContactForm extends Component {
     const objState = this.state[objName];
     objState[keyName] = e.target.value;
     this.setState({ [objName]: objState });
-  }
-
-  handleChange = (e) => {
-    this.setState({ numbers: e.target.value });
-  }
-
-  handleSubmit = () => {
-    alert(`Select value is: ${this.state.numbers}`);
   }
 
   submitNewContact = () => {
@@ -144,7 +137,7 @@ export default class NewContactForm extends Component {
           value = {this.state.firstName}
           placeholder = "First Name"
           type = "text"
-          handleChange = {this.updateState()}
+          handleChange = {this.updateState}
           name = "firstName"
         />
         <InputField
@@ -152,7 +145,7 @@ export default class NewContactForm extends Component {
           value = {this.state.lastName}
           placeholder = "Last Name"
           type = "text"
-          handleChange = {this.updateState()}
+          handleChange = {this.updateState}
           name = "lastName"
         />
         <InputField
@@ -160,7 +153,7 @@ export default class NewContactForm extends Component {
           value = {this.state.companyName}
           placeholder = "Company Name"
           type = "text"
-          handleChange = {this.updateState()}
+          handleChange = {this.updateState}
           name = "companyName"
         />
         <InputField
@@ -168,7 +161,7 @@ export default class NewContactForm extends Component {
           value = {this.state.title}
           placeholder = "Title"
           type = "text"
-          handleChange = {this.updateState()}
+          handleChange = {this.updateState}
           name = "title"
         />
         <InputField
@@ -176,7 +169,7 @@ export default class NewContactForm extends Component {
           value = {this.state.website}
           placeholder = "Company Website"
           type = "text"
-          handleChange = {this.updateState()}
+          handleChange = {this.updateState}
           name = "website"
         />
         {/* <div>
@@ -195,7 +188,7 @@ export default class NewContactForm extends Component {
           value = {this.state.numbers.cell}
           placeholder = "cell Number"
           type = "text"
-          handleChange = {this.updateStateObject()}
+          handleChange = {this.updateStateObject}
           objName = "numbers"
           name = "cell"
         />
@@ -204,7 +197,7 @@ export default class NewContactForm extends Component {
           value = {this.state.numbers.work}
           placeholder = "work Number"
           type = "text"
-          handleChange = {this.updateStateObject()}
+          handleChange = {this.updateStateObject}
           objName = "numbers"
           name = "work"
         />
@@ -213,7 +206,7 @@ export default class NewContactForm extends Component {
           value = {this.state.numbers.home}
           placeholder = "home Number"
           type = "text"
-          handleChange = {this.updateStateObject()}
+          handleChange = {this.updateStateObject}
           objName = "numbers"
           name = "home"
         />
@@ -222,7 +215,7 @@ export default class NewContactForm extends Component {
           value = {this.state.emails.primary}
           placeholder = "Primary Email"
           type = "text"
-          handleChange = {this.updateStateObject()}
+          handleChange = {this.updateStateObject}
           objName = "emails"
           name = "primary"
         />
@@ -231,7 +224,7 @@ export default class NewContactForm extends Component {
           value = {this.state.emails.secondary}
           placeholder = "Secondary Email"
           type = "text"
-          handleChange = {this.updateStateObject()}
+          handleChange = {this.updateStateObject}
           objName = "emails"
           name = "secondary"
         />
@@ -240,7 +233,7 @@ export default class NewContactForm extends Component {
           value = {this.state.socialMedia.facebook}
           placeholder = "facebook"
           type = "text"
-          handleChange={this.updateStateObject()}
+          handleChange={this.updateStateObject}
           objName = "socialMedia"
           name = "facebook"
         />
@@ -249,7 +242,7 @@ export default class NewContactForm extends Component {
           value = {this.state.socialMedia.twitter}
           placeholder = "twitter"
           type = "text"
-          handleChange={this.updateStateObject()}
+          handleChange={this.updateStateObject}
           objName = "socialMedia"
           name = "twitter"
         />
@@ -258,7 +251,7 @@ export default class NewContactForm extends Component {
           value = {this.state.socialMedia.linkedIn}
           placeholder = "linkedIn"
           type = "text"
-          handleChange={this.updateStateObject()}
+          handleChange={this.updateStateObject}
           objName = "socialMedia"
           name = "linkedIn"
         />
@@ -267,7 +260,7 @@ export default class NewContactForm extends Component {
           value = {this.state.socialMedia.github}
           placeholder = "github"
           type = "text"
-          handleChange={this.updateStateObject()}
+          handleChange={this.updateStateObject}
           objName = "socialMedia"
           name = "github"
         />
@@ -276,7 +269,7 @@ export default class NewContactForm extends Component {
           value = {this.state.socialMedia.instagram}
           placeholder = "instagram"
           type = "text"
-          handleChange={this.updateStateObject()}
+          handleChange={this.updateStateObject}
           objName = "socialMedia"
           name = "instagram"
         />
@@ -285,13 +278,14 @@ export default class NewContactForm extends Component {
           value = {this.state.notes}
           placeholder = "Notes"
           type = "text"
-          handleChange={this.updateState()}
+          handleChange={this.updateState}
           name = "notes"
         />
 
-        {/* <AddImageButton
-          className = 'add-image-button'
-          handleChange={(e)=>{this.addImage(e)}}/> */}
+        <AddImageButton
+          className = "add-image-button"
+          handleChange={(e) => { this.addImage(e); }}
+        />
         {followup ? <img
           src="../images/yellow-flag-2.svg" alt="Yellow flag."
           className="flagged-for-followup-button"
@@ -314,7 +308,7 @@ export default class NewContactForm extends Component {
           />
         </label>
 
-        {/* <p className = "add-image-label input-field">Upload Image</p> */}
+        <p className = "add-image-label input-field">Upload Image</p>
 
         {imageDisplay}
         {groups.length > 0 ? groups : <p>No groups listed for this contact.</p>}
@@ -322,11 +316,9 @@ export default class NewContactForm extends Component {
 
         <button
           className = "submit-new-contact-btn"
-          onClick={this.submitNewContact()}
+          onClick={() => this.submitNewContact()}
         > Submit New Contact
         </button>
-
-
       </div>
     );
   }
