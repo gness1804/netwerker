@@ -32,7 +32,14 @@ describe("NewContactForm", ()=>{
     cellNumberInput.simulate('change', {target: {value: '99999999'}});
     assert.strictEqual(wrapper.state().numbers.cell, '99999999');
   });
-}); //end of describe NewContactForm
+  it('should change the state of followup when user clicks show followup button', () => {
+    const wrapper = mount(<NewContactForm numbers={{}} emails={{}} socialMedia={{}} fileReaderTest={"test"}/>);
+    const followupButton = wrapper.find('.not-flagged-for-followup-button');
+    wrapper.state().followup = false;
+    followupButton.simulate('click');
+    assert.strictEqual(wrapper.state('followup'), true);
+  });
+}); // end of describe NewContactForm
 
 describe("ContactCard", ()=>{
   const newContact = {
