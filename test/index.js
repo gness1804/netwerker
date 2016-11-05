@@ -71,7 +71,7 @@ describe("ContactCard", ()=>{
     wrapper.find('.expand-button').simulate('click')
 
     let name = wrapper.find('.fullname').text();
-    assert.strictEqual(name, 'John Cleese');
+    assert.strictEqual(name, 'Name: John Cleese');
     let cell = wrapper.find('.cell').text();
     assert.strictEqual(+cell, 44);
     let primEmail = wrapper.find('.primary-email').text();
@@ -93,11 +93,11 @@ describe("ContactCard", ()=>{
   });
 }); // end of describe ContactCard
 
-describe('ContactCardList',() => {
+describe('ContactCardList', () => {
   it('should change the state when user enters input into the search field', () => {
     const wrapper = mount(<ContactCardList contacts={['Hello', 'world']} />);
-    let search = wrapper.find('.search');
-    search.simulate('change', {target: {value: 'hello'}});
+    const search = wrapper.find('.search');
+    search.simulate('change', { target: { value: 'hello' } });
     assert.strictEqual(wrapper.state('searchString'), 'hello');
   });
 });
