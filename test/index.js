@@ -65,7 +65,7 @@ describe("ContactCard", ()=>{
       notes: 'I am the best actor from Monty Python.',
       image: 'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550'
   };
-  it("should display contact info when user enters it", ()=>{
+  it("should display contact info when user enters it", () =>{
 
     const wrapper = mount(<ContactCard {...newContact} test = {true}/>);
 
@@ -74,7 +74,7 @@ describe("ContactCard", ()=>{
   });
 
   it("should display all contact info when user clicks expand", ()=> {
-    const wrapper = mount(<ContactCard {...newContact} test={true}/>);
+    const wrapper = mount(<ContactCard {...newContact} test = {true}/>);
     wrapper.find('.expand-button').simulate('click');
 
     let name = wrapper.find('.fullname').text();
@@ -87,7 +87,7 @@ describe("ContactCard", ()=>{
     assert.strictEqual(github, 'Github: jcleese');
   });
 
-  it("should toggle off expand when user clicks expand button", ()=> {
+  it("should toggle off expand when user clicks expand button", () => {
     const wrapper = mount(<ContactCard {...newContact} test={true}/>);
     wrapper.find('.expand-button').simulate('click')
 
@@ -98,6 +98,13 @@ describe("ContactCard", ()=>{
     cell = wrapper.find('.cell');
     assert.strictEqual(cell.length, 0)
   });
+  // it('should delete a contact when user presses delete contact', () => {
+  //   const wrapper = mount(<ContactCard {...newContact} test={true}/>);
+  //   const editButton = wrapper.find('.edit-button');
+  //   editButton.simulate('click');
+  //   const deleteButton = wrapper.find('.delete-contact');
+  //   assert.strictEqual(wrapper.find('.cell').length, 0);
+  // });
 }); // end of describe ContactCard
 
 describe('ContactCardList', () => {
@@ -112,5 +119,9 @@ describe('ContactCardList', () => {
     const search = wrapper.find('.search');
     search.simulate('change', { target: { value: 'z' } });
     assert.strictEqual(wrapper.find('.contact-card-for-each-contact').length, 0);
+  });
+  it('should sort contacts alphabetically by default', () => {
+    const wrapper = mount(<ContactCardList contacts={[{firstName: 'John', lastName: 'Smith'}, {firstName: 'Bill', lastName: 'Clinton'}]} />);
+    assert.strictEqual(wrapper.props().contacts.length, 2);
   });
 });
