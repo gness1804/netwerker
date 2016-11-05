@@ -17,6 +17,7 @@ module.exports = {
         loader: 'babel',
         query: {
           presets: ['es2015', 'react', 'stage-1'],
+          plugins: ['transform-class-properties'],
         },
       },
       { test: /\.css$/, loader: 'style!css' },

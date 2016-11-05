@@ -282,10 +282,10 @@ export default class NewContactForm extends Component {
           name = "notes"
         />
 
-        <AddImageButton
+        {/* <AddImageButton
           className = "add-image-button"
           handleChange={(e) => { this.addImage(e); }}
-        />
+        /> */}
         {followup ? <img
           src="../images/yellow-flag-2.svg" alt="Yellow flag."
           className="flagged-for-followup-button"

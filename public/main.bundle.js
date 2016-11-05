@@ -28801,7 +28801,7 @@
 	
 	var _NewContactForm2 = _interopRequireDefault(_NewContactForm);
 	
-	var _ContactCardList = __webpack_require__(481);
+	var _ContactCardList = __webpack_require__(482);
 	
 	var _ContactCardList2 = _interopRequireDefault(_ContactCardList);
 	
@@ -28855,6 +28855,7 @@
 	    _this.addNewContact = function (newContactInfo, image) {
 	      _this.state.contactDatabase.push(newContactInfo);
 	      if (image) {
+	        console.log(image, newContactInfo);
 	        _this.state.contactImgStorage.child(_this.state.user.uid + '/' + newContactInfo.contactID + '.jpg').put(image);
 	      }
 	      _this.setState({ showAddForm: false });
@@ -47364,8 +47365,6 @@
 	  value: true
 	});
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
 	var _react = __webpack_require__(464);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -47373,6 +47372,10 @@
 	var _InputField = __webpack_require__(480);
 	
 	var _InputField2 = _interopRequireDefault(_InputField);
+	
+	var _AddImageButton = __webpack_require__(481);
+	
+	var _AddImageButton2 = _interopRequireDefault(_AddImageButton);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -47391,6 +47394,286 @@
 	    _classCallCheck(this, NewContactForm);
 	
 	    var _this = _possibleConstructorReturn(this, (NewContactForm.__proto__ || Object.getPrototypeOf(NewContactForm)).call(this, props));
+	
+	    _this.componentDidMount = function () {
+	      if (_this.state.reader !== 'test') {
+	        _this.state.reader.addEventListener('load', function () {
+	          _this.setState({ imgSource: _this.state.reader.result });
+	        });
+	      }
+	    };
+	
+	    _this.addContactToGroup = function () {
+	      var existingGroupMemberships = _this.state.groups;
+	      // get access to array of all groups
+	      existingGroupMemberships.push('Test Group');
+	    };
+	
+	    _this.addImage = function (e) {
+	      var image = e.target.files[0];
+	      _this.setState({ image: image }, _this.state.reader.readAsDataURL(image));
+	    };
+	
+	    _this.toggleFollowup = function () {
+	      _this.setState({ followup: !_this.state.followup });
+	    };
+	
+	    _this.updateState = function (e, keyName) {
+	      _this.setState(_defineProperty({}, keyName, e.target.value));
+	    };
+	
+	    _this.updateStateObject = function (e, keyName, objName) {
+	      var objState = _this.state[objName];
+	      objState[keyName] = e.target.value;
+	      _this.setState(_defineProperty({}, objName, objState));
+	    };
+	
+	    _this.submitNewContact = function () {
+	      var newContact = {
+	        contactID: _this.state.contactID,
+	        firstName: _this.state.firstName,
+	        lastName: _this.state.lastName,
+	        companyName: _this.state.companyName,
+	        title: _this.state.title,
+	        website: _this.state.website,
+	        numbers: {
+	          cell: _this.state.numbers.cell,
+	          work: _this.state.numbers.work,
+	          home: _this.state.numbers.home
+	        },
+	        emails: {
+	          primary: _this.state.emails.primary,
+	          secondary: _this.state.emails.secondary
+	        },
+	        socialMedia: {
+	          facebook: _this.state.socialMedia.facebook,
+	          twitter: _this.state.socialMedia.twitter,
+	          linkedIn: _this.state.socialMedia.linkedIn,
+	          github: _this.state.socialMedia.github,
+	          instagram: _this.state.socialMedia.instagram
+	        },
+	        notes: _this.state.notes,
+	        followup: _this.state.followup,
+	        groups: _this.state.groups
+	      };
+	      var image = _this.state.image;
+	      _this.props.handleNewContact(newContact, image);
+	    };
+	
+	    _this.render = function () {
+	      var _this$state = _this.state,
+	          followup = _this$state.followup,
+	          groups = _this$state.groups;
+	
+	      // let imgSource;
+	
+	      var imageDisplay = void 0;
+	
+	      if (_this.state.imgSource) {
+	        imageDisplay = _react2.default.createElement('img', {
+	          src: _this.state.imgSource,
+	          alt: 'The pic assigned to the contact.'
+	        });
+	      }
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'input-field-container' },
+	        _react2.default.createElement(_InputField2.default, {
+	          className: 'firstName-Input input-field',
+	          value: _this.state.firstName,
+	          placeholder: 'First Name',
+	          type: 'text',
+	          handleChange: _this.updateState,
+	          name: 'firstName'
+	        }),
+	        _react2.default.createElement(_InputField2.default, {
+	          className: 'lastName-Input input-field',
+	          value: _this.state.lastName,
+	          placeholder: 'Last Name',
+	          type: 'text',
+	          handleChange: _this.updateState,
+	          name: 'lastName'
+	        }),
+	        _react2.default.createElement(_InputField2.default, {
+	          className: 'companyName-Input input-field',
+	          value: _this.state.companyName,
+	          placeholder: 'Company Name',
+	          type: 'text',
+	          handleChange: _this.updateState,
+	          name: 'companyName'
+	        }),
+	        _react2.default.createElement(_InputField2.default, {
+	          className: 'title-Input input-field',
+	          value: _this.state.title,
+	          placeholder: 'Title',
+	          type: 'text',
+	          handleChange: _this.updateState,
+	          name: 'title'
+	        }),
+	        _react2.default.createElement(_InputField2.default, {
+	          className: 'website-Input input-field',
+	          value: _this.state.website,
+	          placeholder: 'Company Website',
+	          type: 'text',
+	          handleChange: _this.updateState,
+	          name: 'website'
+	        }),
+	        _react2.default.createElement(_InputField2.default, {
+	          className: 'cellNumber-Input input-field',
+	          value: _this.state.numbers.cell,
+	          placeholder: 'cell Number',
+	          type: 'text',
+	          handleChange: _this.updateStateObject,
+	          objName: 'numbers',
+	          name: 'cell'
+	        }),
+	        _react2.default.createElement(_InputField2.default, {
+	          className: 'workNumber-Input input-field',
+	          value: _this.state.numbers.work,
+	          placeholder: 'work Number',
+	          type: 'text',
+	          handleChange: _this.updateStateObject,
+	          objName: 'numbers',
+	          name: 'work'
+	        }),
+	        _react2.default.createElement(_InputField2.default, {
+	          className: 'homeNumber-Input input-field',
+	          value: _this.state.numbers.home,
+	          placeholder: 'home Number',
+	          type: 'text',
+	          handleChange: _this.updateStateObject,
+	          objName: 'numbers',
+	          name: 'home'
+	        }),
+	        _react2.default.createElement(_InputField2.default, {
+	          className: 'primaryEmail-Input input-field',
+	          value: _this.state.emails.primary,
+	          placeholder: 'Primary Email',
+	          type: 'text',
+	          handleChange: _this.updateStateObject,
+	          objName: 'emails',
+	          name: 'primary'
+	        }),
+	        _react2.default.createElement(_InputField2.default, {
+	          className: 'secondaryEmail-Input input-field',
+	          value: _this.state.emails.secondary,
+	          placeholder: 'Secondary Email',
+	          type: 'text',
+	          handleChange: _this.updateStateObject,
+	          objName: 'emails',
+	          name: 'secondary'
+	        }),
+	        _react2.default.createElement(_InputField2.default, {
+	          className: 'facebook-Input input-field',
+	          value: _this.state.socialMedia.facebook,
+	          placeholder: 'facebook',
+	          type: 'text',
+	          handleChange: _this.updateStateObject,
+	          objName: 'socialMedia',
+	          name: 'facebook'
+	        }),
+	        _react2.default.createElement(_InputField2.default, {
+	          className: 'twitter-Input input-field',
+	          value: _this.state.socialMedia.twitter,
+	          placeholder: 'twitter',
+	          type: 'text',
+	          handleChange: _this.updateStateObject,
+	          objName: 'socialMedia',
+	          name: 'twitter'
+	        }),
+	        _react2.default.createElement(_InputField2.default, {
+	          className: 'linkedIn-Input input-field',
+	          value: _this.state.socialMedia.linkedIn,
+	          placeholder: 'linkedIn',
+	          type: 'text',
+	          handleChange: _this.updateStateObject,
+	          objName: 'socialMedia',
+	          name: 'linkedIn'
+	        }),
+	        _react2.default.createElement(_InputField2.default, {
+	          className: 'github-Input input-field',
+	          value: _this.state.socialMedia.github,
+	          placeholder: 'github',
+	          type: 'text',
+	          handleChange: _this.updateStateObject,
+	          objName: 'socialMedia',
+	          name: 'github'
+	        }),
+	        _react2.default.createElement(_InputField2.default, {
+	          className: 'instagram-Input input-field',
+	          value: _this.state.socialMedia.instagram,
+	          placeholder: 'instagram',
+	          type: 'text',
+	          handleChange: _this.updateStateObject,
+	          objName: 'socialMedia',
+	          name: 'instagram'
+	        }),
+	        _react2.default.createElement(_InputField2.default, {
+	          className: 'notes-input input-field',
+	          value: _this.state.notes,
+	          placeholder: 'Notes',
+	          type: 'text',
+	          handleChange: _this.updateState,
+	          name: 'notes'
+	        }),
+	        followup ? _react2.default.createElement('img', {
+	          src: '../images/yellow-flag-2.svg', alt: 'Yellow flag.',
+	          className: 'flagged-for-followup-button',
+	          onClick: function onClick() {
+	            return _this.toggleFollowup();
+	          }
+	        }) : _react2.default.createElement('img', {
+	          src: '../images/gray-flag.svg',
+	          alt: '',
+	          className: 'not-flagged-for-followup-button',
+	          onClick: function onClick() {
+	            return _this.toggleFollowup();
+	          }
+	        }),
+	        _react2.default.createElement(
+	          'label',
+	          { htmlFor: 'add-image-button', className: 'add-image-wrapper' },
+	          _react2.default.createElement('img', { src: '../images/user-ph.jpg', alt: 'The user.' }),
+	          _react2.default.createElement('input', {
+	            className: 'add-image-button',
+	            type: 'file',
+	            onChange: function onChange(e) {
+	              _this.addImage(e);
+	            },
+	            accept: 'image/*'
+	          })
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          { className: 'add-image-label input-field' },
+	          'Upload Image'
+	        ),
+	        imageDisplay,
+	        groups.length > 0 ? groups : _react2.default.createElement(
+	          'p',
+	          null,
+	          'No groups listed for this contact.'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: function onClick() {
+	              _this.addContactToGroup();
+	            } },
+	          'Add to Group'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          {
+	            className: 'submit-new-contact-btn',
+	            onClick: function onClick() {
+	              return _this.submitNewContact();
+	            }
+	          },
+	          ' Submit New Contact'
+	        )
+	      );
+	    };
 	
 	    _this.state = {
 	      contactID: _this.props.contactID || Date.now(),
@@ -47422,308 +47705,10 @@
 	      groups: _this.props.groups || []
 	
 	    };
-	    _this.handleChange = _this.handleChange.bind(_this);
-	    _this.handleSubmit = _this.handleSubmit.bind(_this);
+	    // this.handleChange = this.handleChange();
+	    // this.handleSubmit = this.handleSubmit();
 	    return _this;
-	  }
-	
-	  _createClass(NewContactForm, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var _this2 = this;
-	
-	      if (this.state.reader !== 'test') {
-	        this.state.reader.addEventListener('load', function () {
-	          _this2.setState({ imgSource: _this2.state.reader.result });
-	        });
-	      }
-	    }
-	  }, {
-	    key: 'addContactToGroup',
-	    value: function addContactToGroup() {
-	      var existingGroupMemberships = this.state.groups;
-	      // get access to array of all groups
-	      existingGroupMemberships.push('Test Group');
-	    }
-	  }, {
-	    key: 'addImage',
-	    value: function addImage(e) {
-	      var image = e.target.files[0];
-	      this.setState({ image: image }, this.state.reader.readAsDataURL(image));
-	    }
-	  }, {
-	    key: 'toggleFollowup',
-	    value: function toggleFollowup() {
-	      this.setState({ followup: !this.state.followup });
-	    } // end of toggleFollowup
-	
-	  }, {
-	    key: 'updateState',
-	    value: function updateState(e, keyName) {
-	      this.setState(_defineProperty({}, keyName, e.target.value));
-	    }
-	  }, {
-	    key: 'updateStateObject',
-	    value: function updateStateObject(e, keyName, objName) {
-	      var objState = this.state[objName];
-	      objState[keyName] = e.target.value;
-	      this.setState(_defineProperty({}, objName, objState));
-	    }
-	  }, {
-	    key: 'handleChange',
-	    value: function handleChange(event) {
-	      this.setState({ numbers: event.target.value });
-	    }
-	  }, {
-	    key: 'handleSubmit',
-	    value: function handleSubmit() {
-	      alert('Select value is: ' + this.state.numbers);
-	    }
-	  }, {
-	    key: 'submitNewContact',
-	    value: function submitNewContact() {
-	      var newContact = {
-	        contactID: this.state.contactID,
-	        firstName: this.state.firstName,
-	        lastName: this.state.lastName,
-	        companyName: this.state.companyName,
-	        title: this.state.title,
-	        website: this.state.website,
-	        numbers: {
-	          cell: this.state.numbers.cell,
-	          work: this.state.numbers.work,
-	          home: this.state.numbers.home
-	        },
-	        emails: {
-	          primary: this.state.emails.primary,
-	          secondary: this.state.emails.secondary
-	        },
-	        socialMedia: {
-	          facebook: this.state.socialMedia.facebook,
-	          twitter: this.state.socialMedia.twitter,
-	          linkedIn: this.state.socialMedia.linkedIn,
-	          github: this.state.socialMedia.github,
-	          instagram: this.state.socialMedia.instagram
-	        },
-	        notes: this.state.notes,
-	        followup: this.state.followup,
-	        groups: this.state.groups
-	      };
-	      var image = this.state.image;
-	      this.props.handleNewContact(newContact, image);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this3 = this;
-	
-	      var _state = this.state,
-	          followup = _state.followup,
-	          groups = _state.groups;
-	
-	      // let imgSource;
-	
-	      var imageDisplay = void 0;
-	
-	      if (this.state.imgSource) {
-	        imageDisplay = _react2.default.createElement('img', {
-	          src: this.state.imgSource,
-	          alt: 'The pic assigned to the contact.'
-	        });
-	      }
-	
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'input-field-container' },
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'firstName-Input input-field',
-	          value: this.state.firstName,
-	          placeholder: 'First Name',
-	          type: 'text',
-	          handleChange: this.updateState.bind(this),
-	          name: 'firstName'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'lastName-Input input-field',
-	          value: this.state.lastName,
-	          placeholder: 'Last Name',
-	          type: 'text',
-	          handleChange: this.updateState.bind(this),
-	          name: 'lastName'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'companyName-Input input-field',
-	          value: this.state.companyName,
-	          placeholder: 'Company Name',
-	          type: 'text',
-	          handleChange: this.updateState.bind(this),
-	          name: 'companyName'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'title-Input input-field',
-	          value: this.state.title,
-	          placeholder: 'Title',
-	          type: 'text',
-	          handleChange: this.updateState.bind(this),
-	          name: 'title'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'website-Input input-field',
-	          value: this.state.website,
-	          placeholder: 'Company Website',
-	          type: 'text',
-	          handleChange: this.updateState.bind(this),
-	          name: 'website'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'cellNumber-Input input-field',
-	          value: this.state.numbers.cell,
-	          placeholder: 'cell Number',
-	          type: 'text',
-	          handleChange: this.updateStateObject.bind(this),
-	          objName: 'numbers',
-	          name: 'cell'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'workNumber-Input input-field',
-	          value: this.state.numbers.work,
-	          placeholder: 'work Number',
-	          type: 'text',
-	          handleChange: this.updateStateObject.bind(this),
-	          objName: 'numbers',
-	          name: 'work'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'homeNumber-Input input-field',
-	          value: this.state.numbers.home,
-	          placeholder: 'home Number',
-	          type: 'text',
-	          handleChange: this.updateStateObject.bind(this),
-	          objName: 'numbers',
-	          name: 'home'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'primaryEmail-Input input-field',
-	          value: this.state.emails.primary,
-	          placeholder: 'Primary Email',
-	          type: 'text',
-	          handleChange: this.updateStateObject.bind(this),
-	          objName: 'emails',
-	          name: 'primary'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'secondaryEmail-Input input-field',
-	          value: this.state.emails.secondary,
-	          placeholder: 'Secondary Email',
-	          type: 'text',
-	          handleChange: this.updateStateObject.bind(this),
-	          objName: 'emails',
-	          name: 'secondary'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'facebook-Input input-field',
-	          value: this.state.socialMedia.facebook,
-	          placeholder: 'facebook',
-	          type: 'text',
-	          handleChange: this.updateStateObject.bind(this),
-	          objName: 'socialMedia',
-	          name: 'facebook'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'twitter-Input input-field',
-	          value: this.state.socialMedia.twitter,
-	          placeholder: 'twitter',
-	          type: 'text',
-	          handleChange: this.updateStateObject.bind(this),
-	          objName: 'socialMedia',
-	          name: 'twitter'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'linkedIn-Input input-field',
-	          value: this.state.socialMedia.linkedIn,
-	          placeholder: 'linkedIn',
-	          type: 'text',
-	          handleChange: this.updateStateObject.bind(this),
-	          objName: 'socialMedia',
-	          name: 'linkedIn'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'github-Input input-field',
-	          value: this.state.socialMedia.github,
-	          placeholder: 'github',
-	          type: 'text',
-	          handleChange: this.updateStateObject.bind(this),
-	          objName: 'socialMedia',
-	          name: 'github'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'instagram-Input input-field',
-	          value: this.state.socialMedia.instagram,
-	          placeholder: 'instagram',
-	          type: 'text',
-	          handleChange: this.updateStateObject.bind(this),
-	          objName: 'socialMedia',
-	          name: 'instagram'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'notes-input input-field',
-	          value: this.state.notes,
-	          placeholder: 'Notes',
-	          type: 'text',
-	          handleChange: this.updateState.bind(this),
-	          name: 'notes'
-	        }),
-	        followup ? _react2.default.createElement('img', {
-	          src: '../images/yellow-flag-2.svg', alt: 'Yellow flag.',
-	          className: 'flagged-for-followup-button',
-	          onClick: function onClick() {
-	            return _this3.toggleFollowup();
-	          }
-	        }) : _react2.default.createElement('img', {
-	          src: '../images/gray-flag.svg',
-	          alt: '',
-	          className: 'not-flagged-for-followup-button',
-	          onClick: function onClick() {
-	            return _this3.toggleFollowup();
-	          }
-	        }),
-	        _react2.default.createElement(
-	          'label',
-	          { htmlFor: 'add-image-button', className: 'add-image-wrapper' },
-	          _react2.default.createElement('img', { src: '../images/user-ph.jpg', alt: 'The user.' }),
-	          _react2.default.createElement('input', {
-	            className: 'add-image-button',
-	            type: 'file',
-	            onChange: function onChange(e) {
-	              _this3.addImage(e);
-	            },
-	            accept: 'image/*'
-	          })
-	        ),
-	        imageDisplay,
-	        groups.length > 0 ? groups : _react2.default.createElement(
-	          'p',
-	          null,
-	          'No groups listed for this contact.'
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: function onClick() {
-	              _this3.addContactToGroup();
-	            } },
-	          'Add to Group'
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          {
-	            className: 'submit-new-contact-btn',
-	            onClick: this.submitNewContact.bind(this)
-	          },
-	          ' Submit New Contact'
-	        )
-	      );
-	    }
-	  }]);
+	  } // end of toggleFollowup
 	
 	  return NewContactForm;
 	}(_react.Component);
@@ -47773,6 +47758,56 @@
 /* 481 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(464);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var AddImageButton = function (_Component) {
+	  _inherits(AddImageButton, _Component);
+	
+	  function AddImageButton() {
+	    _classCallCheck(this, AddImageButton);
+	
+	    return _possibleConstructorReturn(this, (AddImageButton.__proto__ || Object.getPrototypeOf(AddImageButton)).apply(this, arguments));
+	  }
+	
+	  _createClass(AddImageButton, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement("input", {
+	        className: "add-image-button",
+	        type: "file",
+	        onChange: this.props.handleChange,
+	        accept: "image/*"
+	      });
+	    }
+	  }]);
+	
+	  return AddImageButton;
+	}(_react.Component);
+	
+	exports.default = AddImageButton;
+
+/***/ },
+/* 482 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
@@ -47791,7 +47826,7 @@
 	
 	var _lodash = __webpack_require__(470);
 	
-	var _ContactCard = __webpack_require__(482);
+	var _ContactCard = __webpack_require__(483);
 	
 	var _ContactCard2 = _interopRequireDefault(_ContactCard);
 	
@@ -47918,7 +47953,7 @@
 	exports.default = ContactCardList;
 
 /***/ },
-/* 482 */
+/* 483 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47939,7 +47974,7 @@
 	
 	var _NewContactForm2 = _interopRequireDefault(_NewContactForm);
 	
-	var _AddImageButton = __webpack_require__(483);
+	var _AddImageButton = __webpack_require__(481);
 	
 	var _AddImageButton2 = _interopRequireDefault(_AddImageButton);
 	
@@ -47966,11 +48001,9 @@
 	    _this.toggleExpand = function () {
 	      if (!_this.state.expanded) {
 	        if (!_this.props.test) {
-	          _this.props.imgStorage.child(_this.props.user.uid + '/\n                        ' + _this.props.contactImgID + '.jpg').getDownloadURL().then(function (url) {
+	          _this.props.imgStorage.child(_this.props.user.uid + '/' + _this.props.contactImgID + '.jpg').getDownloadURL().then(function (url) {
 	            _this.setState({ contactImgURL: url });
-	          }).catch(function () {
-	            console.log('error - no image for this contact');
-	          });
+	          }).catch(function () {});
 	        }
 	      }
 	      _this.setState({ expanded: !_this.state.expanded });
@@ -48006,33 +48039,6 @@
 	    value: function render() {
 	      var _this2 = this;
 	
-	      // <<<<<<< HEAD
-	      //     const { firstName, lastName, companyName, title, numbers, emails, socialMedia, notes, contactID, image, followup, groups, website } = this.props
-	      //     let display;
-	      //     if (this.state.expanded) {
-	      //       display = (<div className="expanded">
-	      //       <div className='fullname firstName lastName'><span className="label">Name: </span> {firstName} {lastName}</div>
-	      //       <div>{website ? <div className='companyName'><span className="label">Company: </span> <a href={website} target="_blank">{companyName}</a> </div> : <div className='companyName'><span className="label">Company: </span> {companyName}</div>}</div>
-	      //       <div className='title'><span className="label">Title: </span> {title}</div>
-	      //       <div className = 'cell'><span className="label">Cell Number: </span> {numbers.cell}</div>
-	      //       <div className = 'home'><span className="label">Home Number: </span> {numbers.home}</div>
-	      //       <div className = 'work'><span className="label">Work Number: </span> {numbers.work}</div>
-	      //       <div className = 'primary-email'><span className="label">Email 1: </span> {emails.primary}</div>
-	      //       <div className = 'secondary-email'><span className="label">Email 2: </span> {emails.secondary}</div>
-	      //       <div className = 'facebook'><span className="label">Facebook: </span> {socialMedia.facebook}</div>
-	      //       <div className = 'twitter'><span className="label">Twitter: </span> {socialMedia.twitter}</div>
-	      //       <div className = 'linkedIn'><span className="label">LinkedIn: </span>{socialMedia.linkedIn}</div>
-	      //       <div className = 'github'><span className="label">Github: </span> {socialMedia.github}</div>
-	      //       <div className = 'instagram'><span className="label">Instagram: </span> {socialMedia.instagram}</div>
-	      //       <div className='notes'><span className="label">Notes:  </span> {notes}</div>
-	      //       <div className="groups">{groups}</div>
-	      //       <div className="image-container">{this.state.contactImgURL ? <img className="image" src={this.state.contactImgURL} /> : <AddImageButton handleClick={()=>{this.addImage()}} />}</div>
-	      //
-	      //       </div>)
-	      //     }
-	      //     else {
-	      //       display = <div className='fullname firstName lastName'>{firstName} {lastName}</div>
-	      // =======
 	      var _props = this.props,
 	          firstName = _props.firstName,
 	          lastName = _props.lastName,
@@ -48238,7 +48244,6 @@
 	          ' ',
 	          lastName
 	        );
-	        // >>>>>>> 9e9ae444aa10448c69ab23b79d518b152646b14a
 	      }
 	
 	      if (this.state.editable) {
@@ -48265,25 +48270,48 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'contact-card-top-buttons-container' },
-	          followup ? _react2.default.createElement('img', { src: '../images/yellow-flag-2.svg', alt: '', className: 'flagged-for-followup-button', onClick: function onClick() {
+	          followup ? _react2.default.createElement('img', {
+	            src: '../images/yellow-flag-2.svg',
+	            alt: '',
+	            className: 'flagged-for-followup-button',
+	            onClick: function onClick() {
 	              return _this2.toggleFollowup();
-	            } }) : _react2.default.createElement('img', { src: '../images/gray-flag.svg', alt: '', className: 'not-flagged-for-followup-button', onClick: function onClick() {
+	            }
+	          }) : _react2.default.createElement('img', {
+	            src: '../images/gray-flag.svg',
+	            alt: '',
+	            className: 'not-flagged-for-followup-button',
+	            onClick: function onClick() {
 	              return _this2.toggleFollowup();
-	            } }),
-	          _react2.default.createElement('img', { src: '../images/edit.png', alt: 'Icon to show that user can edit the contact card.', className: 'edit-button', onClick: function onClick() {
+	            }
+	          }),
+	          _react2.default.createElement('img', {
+	            src: '../images/edit.png',
+	            alt: 'Icon to show that user can edit the contact card.',
+	            className: 'edit-button',
+	            onClick: function onClick() {
 	              return _this2.toggleEdit();
-	            } }),
-	          _react2.default.createElement('img', { src: '../images/thin-down.svg', alt: 'Icon to show that user can expand the contact card.', className: 'expand-button', onClick: function onClick() {
+	            }
+	          }),
+	          _react2.default.createElement('img', {
+	            src: '../images/thin-down.svg',
+	            alt: 'Icon to show that user can expand the contact card.', className: 'expand-button',
+	            onClick: function onClick() {
 	              return _this2.toggleExpand();
-	            } })
+	            }
+	          })
 	        ),
 	        display,
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'delete-image' },
-	          this.props.image ? _react2.default.createElement(_DeleteImageButton2.default, { handleClick: function handleClick() {
-	              _this2.deleteImage();
-	            } }) : ''
+	          {
+	            className: 'delete-image'
+	          },
+	          this.props.image ? _react2.default.createElement(_DeleteImageButton2.default, {
+	            handleClick: function handleClick() {
+	              return _this2.deleteImage();
+	            }
+	          }) : ''
 	        )
 	      );
 	    }
@@ -48295,63 +48323,13 @@
 	exports.default = ContactCard;
 
 /***/ },
-/* 483 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(464);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var AddImageButton = function (_Component) {
-	  _inherits(AddImageButton, _Component);
-	
-	  function AddImageButton() {
-	    _classCallCheck(this, AddImageButton);
-	
-	    return _possibleConstructorReturn(this, (AddImageButton.__proto__ || Object.getPrototypeOf(AddImageButton)).apply(this, arguments));
-	  }
-	
-	  _createClass(AddImageButton, [{
-	    key: "render",
-	    value: function render() {
-	      return _react2.default.createElement("input", {
-	        className: "add-image-button",
-	        type: "file",
-	        onChange: this.props.handleChange,
-	        accept: "image/*"
-	      });
-	    }
-	  }]);
-	
-	  return AddImageButton;
-	}(_react.Component);
-	
-	exports.default = AddImageButton;
-
-/***/ },
 /* 484 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -48369,31 +48347,30 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var DeleteImageButton = function (_Component) {
-	  _inherits(DeleteImageButton, _Component);
+		_inherits(DeleteImageButton, _Component);
 	
-	  function DeleteImageButton() {
-	    _classCallCheck(this, DeleteImageButton);
+		function DeleteImageButton() {
+			_classCallCheck(this, DeleteImageButton);
 	
-	    var _this = _possibleConstructorReturn(this, (DeleteImageButton.__proto__ || Object.getPrototypeOf(DeleteImageButton)).call(this));
+			var _this = _possibleConstructorReturn(this, (DeleteImageButton.__proto__ || Object.getPrototypeOf(DeleteImageButton)).call(this));
 	
-	    _this.state = {};
-	    return _this;
-	  } //end of constructor
+			_this.state = {};
+			return _this;
+		} //end of constructor
 	
-	  _createClass(DeleteImageButton, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'button',
-	        { onClick: this.props.handleClick },
-	        'Delete Image'
-	      );
-	    }
-	  }]);
+		_createClass(DeleteImageButton, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'button',
+					{ onClick: this.props.handleClick },
+					'Delete Image'
+				);
+			}
+		}]);
 	
-	  return DeleteImageButton;
-	}(_react.Component); //end of DeleteImageButton
-	
+		return DeleteImageButton;
+	}(_react.Component);
 	
 	exports.default = DeleteImageButton;
 
@@ -48780,7 +48757,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".add-contact-img {\n  width: 30px; }\n\n.greeting {\n  color: #88BBD6; }\n\n.contact-Container {\n  text-align: center;\n  margin-left: 20%;\n  margin-right: 20%; }\n  .contact-Container .contact-card-for-each-contact {\n    border: 2px solid #88BBD6;\n    border-radius: 5px;\n    padding: 10px;\n    margin: 5px; }\n  .contact-Container .contact-card-top-buttons-container {\n    float: right; }\n    .contact-Container .contact-card-top-buttons-container img {\n      height: 30px;\n      margin: 0 4px;\n      width: 30px; }\n  .contact-Container .add-image-button {\n    display: none; }\n  .contact-Container .contracted {\n    height: 40px; }\n  .contact-Container .expanded {\n    margin-left: 20px;\n    height: auto;\n    text-align: left; }\n    .contact-Container .expanded div {\n      margin: 5px; }\n  .contact-Container .label {\n    color: #88BBD6;\n    font-weight: 300; }\n\n@media screen and (max-width: 800px) {\n  h1 {\n    font-size: 25px; }\n  header {\n    height: 80px; }\n  .active-user span {\n    font-size: 16px;\n    font-style: italic; }\n  .active-user .auth-button {\n    background-color: #88BBD6;\n    display: inline-block;\n    color: white;\n    border-radius: 5px;\n    border: none;\n    font-size: 18px;\n    padding: 10px;\n    width: 120px;\n    margin: 10px;\n    float: left;\n    position: absolute;\n    top: 5px;\n    left: 5px;\n    background-color: #88BBD6; }\n  .add-contact-button {\n    position: absolute;\n    right: 40px;\n    top: 20px;\n    float: right;\n    background-color: #88BBD6;\n    color: white;\n    border-radius: 15px;\n    border: none; }\n  .contact-Container {\n    text-align: center;\n    margin-left: 5%;\n    margin-right: 5%; } }\n\n.contact-card-for-each-contact .fullname {\n  font-size: 32px; }\n\n.input-field-container {\n  margin-left: 40px;\n  margin-top: 30px; }\n\n.input-field {\n  font-size: 18px;\n  display: block;\n  margin: 5px;\n  border: none;\n  border-bottom: 1px dotted black; }\n\n.submit-new-contact-btn {\n  background-color: #88BBD6;\n  display: inline-block;\n  color: white;\n  border-radius: 5px;\n  border: none;\n  font-size: 18px;\n  padding: 10px;\n  width: 120px;\n  margin: 10px;\n  width: 300px; }\n\n.followup-button {\n  background-color: #88BBD6;\n  display: inline-block;\n  color: white;\n  border-radius: 5px;\n  border: none;\n  font-size: 18px;\n  padding: 10px;\n  width: 120px;\n  margin: 10px;\n  width: 200px; }\n\n.add-image-wrapper {\n  float: right;\n  position: absolute;\n  right: 160px;\n  top: 175px;\n  width: 150px; }\n  .add-image-wrapper img {\n    border-radius: 150px;\n    width: 200px; }\n\nhtml {\n  font-family: \"Roboto\", sans-serif;\n  color: #747474; }\n\nheader {\n  background: white;\n  border-bottom: 3px solid #CDCDCD;\n  height: 115px;\n  margin-bottom: 15px; }\n\nh1 {\n  color: #88BBD6;\n  font-size: 60px;\n  margin: auto;\n  text-align: center;\n  padding: 15px 0;\n  width: 40vw; }\n\n.active-user {\n  text-align: center; }\n  .active-user span {\n    font-size: 16px;\n    font-style: italic; }\n  .active-user .auth-button {\n    background-color: #88BBD6;\n    display: inline-block;\n    color: white;\n    border-radius: 5px;\n    border: none;\n    font-size: 18px;\n    padding: 10px;\n    width: 120px;\n    margin: 10px;\n    float: left;\n    position: absolute;\n    top: 5px;\n    left: 5px;\n    background-color: #88BBD6; }\n\n.add-contact-button {\n  position: absolute;\n  right: 40px;\n  top: 20px;\n  float: right;\n  background-color: #88BBD6;\n  color: white;\n  border-radius: 15px;\n  border: none; }\n\n.follow-up-label {\n  display: flex;\n  align-items: center;\n  position: relative;\n  bottom: 5px;\n  right: 20px;\n  float: right; }\n\n.show-followup-list-button {\n  margin-left: 10px;\n  right: 30px;\n  width: 40px; }\n\n.search {\n  display: block;\n  width: 300px;\n  text-align: center;\n  font-size: 25px;\n  margin: auto; }\n", ""]);
+	exports.push([module.id, ".add-contact-img {\n  width: 30px; }\n\n.greeting {\n  color: #88BBD6; }\n\n.contact-Container {\n  text-align: center;\n  margin-left: 20%;\n  margin-right: 20%; }\n  .contact-Container .contact-card-for-each-contact {\n    border: 2px solid #88BBD6;\n    border-radius: 5px;\n    padding: 10px;\n    margin: 5px; }\n  .contact-Container .contact-card-top-buttons-container {\n    float: right; }\n    .contact-Container .contact-card-top-buttons-container img {\n      height: 30px;\n      margin: 0 4px;\n      width: 30px; }\n  .contact-Container .contracted {\n    height: 40px; }\n  .contact-Container .expanded {\n    margin-left: 20px;\n    height: auto;\n    text-align: left; }\n    .contact-Container .expanded div {\n      margin: 5px; }\n  .contact-Container .label {\n    color: #88BBD6;\n    font-weight: 300; }\n\n@media screen and (max-width: 800px) {\n  h1 {\n    font-size: 25px; }\n  header {\n    height: 80px; }\n  .active-user span {\n    font-size: 16px;\n    font-style: italic; }\n  .active-user .auth-button {\n    background-color: #88BBD6;\n    display: inline-block;\n    color: white;\n    border-radius: 5px;\n    border: none;\n    font-size: 18px;\n    padding: 10px;\n    width: 120px;\n    margin: 10px;\n    float: left;\n    position: absolute;\n    top: 5px;\n    left: 5px;\n    background-color: #88BBD6; }\n  .add-contact-button {\n    position: absolute;\n    right: 40px;\n    top: 20px;\n    float: right;\n    background-color: #88BBD6;\n    color: white;\n    border-radius: 15px;\n    border: none; }\n  .contact-Container {\n    text-align: center;\n    margin-left: 5%;\n    margin-right: 5%; } }\n\n.contact-card-for-each-contact .fullname {\n  font-size: 32px; }\n\n.input-field-container {\n  margin-left: 40px;\n  margin-top: 30px; }\n\n.input-field {\n  font-size: 18px;\n  display: block;\n  margin: 5px;\n  border: none;\n  border-bottom: 1px dotted black; }\n\n.submit-new-contact-btn {\n  background-color: #88BBD6;\n  display: inline-block;\n  color: white;\n  border-radius: 5px;\n  border: none;\n  font-size: 18px;\n  padding: 10px;\n  width: 120px;\n  margin: 10px;\n  width: 300px; }\n\n.followup-button {\n  background-color: #88BBD6;\n  display: inline-block;\n  color: white;\n  border-radius: 5px;\n  border: none;\n  font-size: 18px;\n  padding: 10px;\n  width: 120px;\n  margin: 10px;\n  width: 200px; }\n\n.add-image-wrapper {\n  float: right;\n  position: absolute;\n  right: 160px;\n  top: 175px;\n  width: 150px; }\n  .add-image-wrapper img {\n    border-radius: 150px;\n    width: 200px; }\n\nhtml {\n  font-family: \"Roboto\", sans-serif;\n  color: #747474; }\n\nheader {\n  background: white;\n  border-bottom: 3px solid #CDCDCD;\n  height: 115px;\n  margin-bottom: 15px; }\n\nh1 {\n  color: #88BBD6;\n  font-size: 60px;\n  margin: auto;\n  text-align: center;\n  padding: 15px 0;\n  width: 40vw; }\n\n.active-user {\n  text-align: center; }\n  .active-user span {\n    font-size: 16px;\n    font-style: italic; }\n  .active-user .auth-button {\n    background-color: #88BBD6;\n    display: inline-block;\n    color: white;\n    border-radius: 5px;\n    border: none;\n    font-size: 18px;\n    padding: 10px;\n    width: 120px;\n    margin: 10px;\n    float: left;\n    position: absolute;\n    top: 5px;\n    left: 5px;\n    background-color: #88BBD6; }\n\n.add-contact-button {\n  position: absolute;\n  right: 40px;\n  top: 20px;\n  float: right;\n  background-color: #88BBD6;\n  color: white;\n  border-radius: 15px;\n  border: none; }\n\n.follow-up-label {\n  display: flex;\n  align-items: center;\n  position: relative;\n  bottom: 5px;\n  right: 20px;\n  float: right; }\n\n.show-followup-list-button {\n  margin-left: 10px;\n  right: 30px;\n  width: 40px; }\n\n.search {\n  display: block;\n  width: 300px;\n  text-align: center;\n  font-size: 25px;\n  margin: auto; }\n", ""]);
 	
 	// exports
 

@@ -16,8 +16,7 @@ export default class ContactCard extends Component {
     if (!this.state.expanded) {
       if (!this.props.test) {
         this.props.imgStorage.child(
-                        `${this.props.user.uid}/
-                        ${this.props.contactImgID}.jpg`)
+                        `${this.props.user.uid}/${this.props.contactImgID}.jpg`)
                         .getDownloadURL()
                         .then((url) => {
                           this.setState({ contactImgURL: url });

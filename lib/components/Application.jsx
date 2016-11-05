@@ -55,6 +55,7 @@ class Application extends Component {
   addNewContact = (newContactInfo, image) => {
     this.state.contactDatabase.push(newContactInfo);
     if (image) {
+      console.log(image, newContactInfo)
       this.state.contactImgStorage.child(`${this.state.user.uid}/${newContactInfo.contactID}.jpg`).put(image);
     }
     this.setState({ showAddForm: false });
