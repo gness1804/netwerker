@@ -85,7 +85,7 @@ describe("ContactCard", ()=>{
     wrapper.find('.expand-button').simulate('click')
 
     let cell = wrapper.find('.cell').text();
-    assert.strictEqual(+cell, 44);
+    assert.strictEqual(cell, 'Cell Number: 44');
 
     wrapper.find('.expand-button').simulate('click');
     cell = wrapper.find('.cell');
