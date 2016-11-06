@@ -30,12 +30,11 @@ $button-background: $darkerblue;
   border: none;
 }
 
-.add-contact-img{
-  width: 50px;
+.add-contact-img {
+  width: $contact-img-width;
+}
 
-  &:hover {
-    cursor: pointer;
-    // background-color: $button-hover;
-  }
-
+.add-contact-img-hover {
+  cursor: pointer;
+  width: $contact-img-width;
 }

@@ -52,7 +52,27 @@ h1 {
 .add-contact-button {
   @include add-contact-button;
 
-}
+  img {
+
+    &:last-child {
+      display: none;
+    }
+
+  } // end of img
+
+  &:hover {
+
+    img:first-child {
+      display: none;
+    }
+
+    img:last-child {
+      display: inline-block;
+    }
+
+  } // end of &:hover
+
+} // end of .add-contact-button
 
 .follow-up-label{
   display: flex;
