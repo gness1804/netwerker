@@ -74,6 +74,17 @@ h1 {
 
 } // end of .add-contact-button
 
+.delete-contact {
+  @include button-standard;
+  background-color: $button-alarm-color;
+
+  &:hover {
+    @include button-standard-hover;
+    background-color: $button-alarm-hover;
+  }
+
+}
+
 .follow-up-label{
   display: flex;
   align-items: center;
