@@ -91,6 +91,7 @@ export default class ContactCardList extends Component {
           }}
         />
         {sortedList}
+        <div className="empty-card"></div>
       </div>
     );
   }

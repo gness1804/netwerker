@@ -78,8 +78,13 @@ class Application extends Component {
   render() {
     const { user } = this.state;
     let pageDisplay;
+    let addNewContactClass;
+    let addNewContactClassHover
 
     if (this.state.showAddForm) {
+      addNewContactClass = "add-contact-img add-button-exit"
+      addNewContactClassHover = "add-contact-img-hover add-button-exit"
+
       pageDisplay = (
         <NewContactForm
           handleNewContact = {this.addNewContact}
@@ -89,6 +94,8 @@ class Application extends Component {
         />
       );
     } else {
+      addNewContactClass = "add-contact-img";
+      addNewContactClassHover = "add-contact-img-hover";
       pageDisplay = (
         <ContactCardList
           user = {this.state.user}
@@ -135,12 +142,12 @@ class Application extends Component {
             <img
               src="../images/plus.svg"
               alt="Icon to show that user can add contact."
-              className="add-contact-img"
+              className={addNewContactClass}
             />
             <img
               src="../images/plus-lighter.svg"
               alt="Lighter version add contact for hover."
-              className="add-contact-img-hover"
+              className={addNewContactClassHover}
             />
           </button>
         </header>
