@@ -41,8 +41,7 @@ export default class ContactCardList extends Component {
           }
         }
       );
-
-        testResult = includes(fullName.toLowerCase(), this.state.searchString.toLowerCase());
+        testResult = (includes(fullName.toLowerCase(), this.state.searchString.toLowerCase()) || testResult);
 
         return testResult;
       });
