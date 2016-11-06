@@ -134,7 +134,7 @@ export default class ContactCard extends Component {
     } else {
       display = (
         <div
-          className="fullname firstName lastName"
+          className="fullname firstName lastName contracted"
         >
           {firstName} {lastName}
         </div>
