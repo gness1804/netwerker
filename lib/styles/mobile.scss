@@ -61,6 +61,11 @@ $breakpoint: 800px;
   .submit-new-contact-button{
     @include button-standard
     width: 300px;
+
+    &:hover{
+      @include button-standard-hover;
+    }
+
   }
 
   .followup-button{
@@ -69,6 +74,7 @@ $breakpoint: 800px;
   }
 
   .add-image-wrapper{
+    cursor: pointer;
     text-align: center;
     position: absolute;
     right: 50px;
