@@ -40,12 +40,49 @@ h1 {
       position: absolute;
       top: 20px;
       left: 20px;
-      background-color: $darkerblue
+      background-color: $darkerblue;
+
+      &:hover {
+        @include button-standard-hover;
+      }
+
     }
 } //end of active-user
 
 .add-contact-button {
   @include add-contact-button;
+
+  img {
+
+    &:last-child {
+      display: none;
+    }
+
+  } // end of img
+
+  &:hover {
+
+    img:first-child {
+      display: none;
+    }
+
+    img:last-child {
+      display: inline-block;
+    }
+
+  } // end of &:hover
+
+} // end of .add-contact-button
+
+.delete-contact {
+  @include button-standard;
+  background-color: $button-alarm-color;
+
+  &:hover {
+    @include button-standard-hover;
+    background-color: $button-alarm-hover;
+  }
+
 }
 
 .follow-up-label{
@@ -56,10 +93,13 @@ h1 {
   right: 20px;
   float: right;
 }
+
 .show-followup-list-button {
+  cursor: pointer;
   margin-left: 10px;
-      right: 30px;
-      width: 40px;
+  right: 30px;
+  width: 40px;
+
 }
 .search {
   display: block;

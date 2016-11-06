@@ -108,7 +108,7 @@ class Application extends Component {
           </h1>
           <div className="active-user">
             {user ?
-              <span className="greeting">
+              <span className="greeting" title={`Logged in as ${user.email}`}>
                 Hi,&nbsp;
                 <span className="bold">
                   {user.displayName}
@@ -136,6 +136,11 @@ class Application extends Component {
               src="../images/plus.svg"
               alt="Icon to show that user can add contact."
               className="add-contact-img"
+            />
+            <img
+              src="../images/plus-lighter.svg"
+              alt="Lighter version add contact for hover."
+              className="add-contact-img-hover"
             />
           </button>
         </header>

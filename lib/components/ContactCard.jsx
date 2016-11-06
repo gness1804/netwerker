@@ -44,7 +44,10 @@ export default class ContactCard extends Component {
     this.toggleEdit();
   }
   deleteContact = () => {
-    this.props.deleteContact(this.props.contactTextID);
+    const warning = confirm('Do you really want to delete this contact?');
+    if (warning) {
+      this.props.deleteContact(this.props.contactTextID);
+    }
   }
   render() {
     const { firstName, lastName, companyName, title, website, numbers, emails,
@@ -54,12 +57,12 @@ export default class ContactCard extends Component {
     if (this.state.expanded) {
       display = (<div className="expanded">
         <div className="fullname firstName lastName">
-          <span className="label">Name: </span>
+          <span className="label"></span>
           {firstName} {lastName}
         </div>
         <div>{website ?
           <div className = "companyName">
-            <span className = "label"> Company: </span>
+            <span className = "label">Company: </span>
             <a href={website}>{companyName}</a>
           </div> :
             <div className="companyName">

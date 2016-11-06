@@ -13,11 +13,14 @@
 
   .contact-card-top-buttons-container {
     float: right;
+
     img {
+      cursor: pointer;
       height: 30px;
       margin: 0 4px;
       width: 30px;
     }
+
   }
 
   .add-image-button{
@@ -28,6 +31,10 @@
 
   }
 
+  .flagged-for-followup-button, .not-flagged-for-followup-button {
+    cursor: pointer;
+  }
+
   .contracted{
     height: 40px;
   }
@@ -36,6 +43,13 @@
     div{
       margin: 5px;
     }
+
+    .fullname {
+      font-weight: 500;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
     margin-left: 20px;
     height: auto;
     text-align: left;

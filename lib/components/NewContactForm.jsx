@@ -298,7 +298,7 @@ export default class NewContactForm extends Component {
         <button onClick={() => { this.addContactToGroup(); }}>Add to Group</button>
 
         <button
-          className = "submit-new-contact-btn"
+          className = "submit-new-contact-button"
           onClick={() => this.submitNewContact()}
         > Submit New Contact
         </button>
