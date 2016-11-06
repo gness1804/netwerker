@@ -44,7 +44,10 @@ export default class ContactCard extends Component {
     this.toggleEdit();
   }
   deleteContact = () => {
-    this.props.deleteContact(this.props.contactTextID);
+    const warning = confirm('Do you really want to delete this contact?');
+    if (warning) {
+      this.props.deleteContact(this.props.contactTextID);
+    }
   }
   render() {
     const { firstName, lastName, companyName, title, website, numbers, emails,
