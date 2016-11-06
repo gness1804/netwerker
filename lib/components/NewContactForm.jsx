@@ -117,171 +117,148 @@ export default class NewContactForm extends Component {
 
     return (
       <div className = "input-field-container">
-        <InputField
-          className = "firstName-Input input-field"
-          value = {this.state.firstName}
-          placeholder = "First Name"
-          type = "text"
-          handleChange = {this.updateState}
-          name = "firstName"
-        />
-        <InputField
-          className = "lastName-Input input-field"
-          value = {this.state.lastName}
-          placeholder = "Last Name"
-          type = "text"
-          handleChange = {this.updateState}
-          name = "lastName"
-        />
-        <InputField
-          className = "companyName-Input input-field"
-          value = {this.state.companyName}
-          placeholder = "Company Name"
-          type = "text"
-          handleChange = {this.updateState}
-          name = "companyName"
-        />
-        <InputField
-          className = "title-Input input-field"
-          value = {this.state.title}
-          placeholder = "Title"
-          type = "text"
-          handleChange = {this.updateState}
-          name = "title"
-        />
-        <InputField
-          className = "website-Input input-field"
-          value = {this.state.website}
-          placeholder = "Company Website"
-          type = "text"
-          handleChange = {this.updateState}
-          name = "website"
-        />
-        {/* <div>
-        <select value={this.state.numbers} onChange={this.handleChange}>
-          <option value="cell">Cell</option>
-          <option value="work">Work</option>
-          <option value="home">Home</option>
-        </select>
-        <InputField className='phoneNumber-Input'
-        value = {this.state.numbers} placeholder = 'Phone Number'
-        type = "text" handleChange={this.updateStateObject()}
-        objName = 'numbers'/>
-      </div> */}
-        <InputField
-          className = "cellNumber-Input input-field"
-          value = {this.state.numbers.cell}
-          placeholder = "cell Number"
-          type = "text"
-          handleChange = {this.updateStateObject}
-          objName = "numbers"
-          name = "cell"
-        />
-        <InputField
-          className = "workNumber-Input input-field"
-          value = {this.state.numbers.work}
-          placeholder = "work Number"
-          type = "text"
-          handleChange = {this.updateStateObject}
-          objName = "numbers"
-          name = "work"
-        />
-        <InputField
-          className = "homeNumber-Input input-field"
-          value = {this.state.numbers.home}
-          placeholder = "home Number"
-          type = "text"
-          handleChange = {this.updateStateObject}
-          objName = "numbers"
-          name = "home"
-        />
-        <InputField
-          className = "primaryEmail-Input input-field"
-          value = {this.state.emails.primary}
-          placeholder = "Primary Email"
-          type = "text"
-          handleChange = {this.updateStateObject}
-          objName = "emails"
-          name = "primary"
-        />
-        <InputField
-          className = "secondaryEmail-Input input-field"
-          value = {this.state.emails.secondary}
-          placeholder = "Secondary Email"
-          type = "text"
-          handleChange = {this.updateStateObject}
-          objName = "emails"
-          name = "secondary"
-        />
-        <InputField
-          className = "facebook-Input input-field"
-          value = {this.state.socialMedia.facebook}
-          placeholder = "facebook"
-          type = "text"
-          handleChange={this.updateStateObject}
-          objName = "socialMedia"
-          name = "facebook"
-        />
-        <InputField
-          className="twitter-Input input-field"
-          value = {this.state.socialMedia.twitter}
-          placeholder = "twitter"
-          type = "text"
-          handleChange={this.updateStateObject}
-          objName = "socialMedia"
-          name = "twitter"
-        />
-        <InputField
-          className = "linkedIn-Input input-field"
-          value = {this.state.socialMedia.linkedIn}
-          placeholder = "linkedIn"
-          type = "text"
-          handleChange={this.updateStateObject}
-          objName = "socialMedia"
-          name = "linkedIn"
-        />
-        <InputField
-          className = "github-Input input-field"
-          value = {this.state.socialMedia.github}
-          placeholder = "github"
-          type = "text"
-          handleChange={this.updateStateObject}
-          objName = "socialMedia"
-          name = "github"
-        />
-        <InputField
-          className = "instagram-Input input-field"
-          value = {this.state.socialMedia.instagram}
-          placeholder = "instagram"
-          type = "text"
-          handleChange={this.updateStateObject}
-          objName = "socialMedia"
-          name = "instagram"
-        />
-        <InputField
-          className = "notes-input input-field"
-          value = {this.state.notes}
-          placeholder = "Notes"
-          type = "text"
-          handleChange={this.updateState}
-          name = "notes"
-        />
-
-        {/* <AddImageButton
-          className = "add-image-button"
-          handleChange={(e) => { this.addImage(e); }}
-        /> */}
-        {followup ? <img
-          src="../images/yellow-flag-2.svg" alt="Yellow flag."
-          className="flagged-for-followup-button"
-          onClick={() => this.toggleFollowup()}
-        /> :
-          <img
-            src="../images/gray-flag.svg"
-            alt=""
-            className="not-flagged-for-followup-button"
-            onClick={() => this.toggleFollowup()}
-          />}
+        <div className="form-container">
+          <InputField
+            className = "firstName-Input input-field"
+            value = {this.state.firstName}
+            placeholder = "First Name"
+            type = "text"
+            handleChange = {this.updateState}
+            name = "firstName"
+          />
+          <InputField
+            className = "lastName-Input input-field"
+            value = {this.state.lastName}
+            placeholder = "Last Name"
+            type = "text"
+            handleChange = {this.updateState}
+            name = "lastName"
+          />
+          <InputField
+            className = "companyName-Input input-field"
+            value = {this.state.companyName}
+            placeholder = "Company Name"
+            type = "text"
+            handleChange = {this.updateState}
+            name = "companyName"
+          />
+          <InputField
+            className = "title-Input input-field"
+            value = {this.state.title}
+            placeholder = "Title"
+            type = "text"
+            handleChange = {this.updateState}
+            name = "title"
+          />
+          <InputField
+            className = "website-Input input-field"
+            value = {this.state.website}
+            placeholder = "Company Website"
+            type = "text"
+            handleChange = {this.updateState}
+            name = "website"
+          />
+          <InputField
+            className = "cellNumber-Input input-field"
+            value = {this.state.numbers.cell}
+            placeholder = "Cell Number"
+            type = "text"
+            handleChange = {this.updateStateObject}
+            objName = "numbers"
+            name = "cell"
+          />
+          <InputField
+            className = "workNumber-Input input-field"
+            value = {this.state.numbers.work}
+            placeholder = "Work Number"
+            type = "text"
+            handleChange = {this.updateStateObject}
+            objName = "numbers"
+            name = "work"
+          />
+          <InputField
+            className = "homeNumber-Input input-field"
+            value = {this.state.numbers.home}
+            placeholder = "Home Number"
+            type = "text"
+            handleChange = {this.updateStateObject}
+            objName = "numbers"
+            name = "home"
+          />
+          <InputField
+            className = "primaryEmail-Input input-field"
+            value = {this.state.emails.primary}
+            placeholder = "Primary Email"
+            type = "text"
+            handleChange = {this.updateStateObject}
+            objName = "emails"
+            name = "primary"
+          />
+          <InputField
+            className = "secondaryEmail-Input input-field"
+            value = {this.state.emails.secondary}
+            placeholder = "Secondary Email"
+            type = "text"
+            handleChange = {this.updateStateObject}
+            objName = "emails"
+            name = "secondary"
+          />
+          <InputField
+            className = "facebook-Input input-field"
+            value = {this.state.socialMedia.facebook}
+            placeholder = "Facebook"
+            type = "text"
+            handleChange={this.updateStateObject}
+            objName = "socialMedia"
+            name = "facebook"
+          />
+          <InputField
+            className="twitter-Input input-field"
+            value = {this.state.socialMedia.twitter}
+            placeholder = "Twitter"
+            type = "text"
+            handleChange={this.updateStateObject}
+            objName = "socialMedia"
+            name = "twitter"
+          />
+          <InputField
+            className = "linkedIn-Input input-field"
+            value = {this.state.socialMedia.linkedIn}
+            placeholder = "LinkedIn"
+            type = "text"
+            handleChange={this.updateStateObject}
+            objName = "socialMedia"
+            name = "linkedIn"
+          />
+          <InputField
+            className = "github-Input input-field"
+            value = {this.state.socialMedia.github}
+            placeholder = "Github"
+            type = "text"
+            handleChange={this.updateStateObject}
+            objName = "socialMedia"
+            name = "github"
+          />
+          <InputField
+            className = "instagram-Input input-field"
+            value = {this.state.socialMedia.instagram}
+            placeholder = "Instagram"
+            type = "text"
+            handleChange={this.updateStateObject}
+            objName = "socialMedia"
+            name = "instagram"
+          />
+          <textarea
+            className = "notes-input input-field"
+            value = {this.state.notes}
+            placeholder="Notes..."
+            onChange={e => this.updateState(e, 'notes')}
+            type="text"
+            name="notes"
+          >
+            Notes...
+          </textarea>
+        </div>
 
         <label className = "add-image-wrapper">
           <img src={imageSrc} alt="The user." />
@@ -293,9 +270,6 @@ export default class NewContactForm extends Component {
           />
           <p className = "add-image-label">Click To Upload Image</p>
         </label>
-
-        {groups.length > 0 ? groups : <p>No groups listed for this contact.</p>}
-        <button onClick={() => { this.addContactToGroup(); }}>Add to Group</button>
 
         <button
           className = "submit-new-contact-button"

@@ -39,20 +39,6 @@ $breakpoint2: 645px;
 
     }
 
-  .input-field-container{
-    position: relative;
-    margin-left: 40px;
-    margin-top: 30px;
-  }
-
-  .input-field{
-    font-size: 18px;
-    display: block;
-    margin: 5px;
-    border: none;
-    border-bottom: 1px dotted black ;
-  }
-
   .submit-new-contact-button{
     @include button-standard
     width: 300px;
@@ -68,18 +54,7 @@ $breakpoint2: 645px;
     width: 200px;
   }
 
-  .add-image-wrapper{
-    cursor: pointer;
-    text-align: center;
-    position: absolute;
-    right: 50px;
-    top: 20px;
-    width: 200px;
-    img{
-      border-radius: 150px;
-      width: 200px;
-    }
-  }
+
 
 @media screen and (max-width: $breakpoint2) {
 
@@ -96,12 +71,14 @@ $breakpoint2: 645px;
   }
 
   .add-image-wrapper{
+    display: block;
     cursor: pointer;
     text-align: center;
-    position: absolute;
+    vertical-align: top;
     right: 50px;
     top: 20px;
     width: 180px;
+    margin: 20px auto 20px auto;
     img{
       border-radius: 150px;
       width: 180px;
