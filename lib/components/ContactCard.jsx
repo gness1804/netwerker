@@ -57,7 +57,7 @@ export default class ContactCard extends Component {
     if (this.state.expanded) {
       display = (<div className="expanded">
         <div className="fullname firstName lastName">
-          <span className="label">Name: </span>
+          <span className="label"></span>
           {firstName} {lastName}
         </div>
         <div>{website ?

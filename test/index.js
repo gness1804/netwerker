@@ -78,7 +78,7 @@ describe("ContactCard", () => {
     wrapper.find('.expand-button').simulate('click');
 
     let name = wrapper.find('.fullname').text();
-    assert.strictEqual(name, 'Name: John Cleese');
+    assert.strictEqual(name, 'John Cleese');
     let cell = wrapper.find('.cell').text();
     assert.strictEqual(cell, 'Cell Number: 44');
     let primEmail = wrapper.find('.primary-email').text();
