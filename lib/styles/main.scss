@@ -2,7 +2,6 @@
 @import "forms.scss";
 @import "typography.scss";
 @import "contactCard.scss";
-@import "mobile.scss";
 @import "debug.scss";
 @import "variables.scss";
 
@@ -88,8 +87,7 @@ h1 {
 .follow-up-label{
   display: flex;
   align-items: center;
-  position: relative;
-  bottom: 5px;
+  position: absolute;
   right: 20px;
   float: right;
 }
@@ -99,7 +97,6 @@ h1 {
   margin-left: 10px;
   right: 30px;
   width: 40px;
-
 }
 .search {
   display: block;
@@ -107,4 +104,7 @@ h1 {
   text-align: center;
   font-size: 25px;
   margin: auto;
+  margin-bottom: 15px;
 }
+
+@import "mobile.scss";
