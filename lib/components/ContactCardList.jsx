@@ -98,6 +98,7 @@ export default class ContactCardList extends Component {
           <span className = 'sign-in-text'>Please Sign In</span>
           <img
             className = "cute-pug-pic"
+            alt = "a really cute pug"
             src = "../images/cutepug.jpeg"
           />
           </div>

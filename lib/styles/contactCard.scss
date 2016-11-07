@@ -8,9 +8,10 @@
   .contact-card-for-each-contact {
     background-color: white;
     position: relative;
-    border: 2px solid $contact-card-border;
-        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    border-radius: 5px 5px 0px 0px;
+    border-style: solid;
+    border-color: $tan;
+    border-width: 2px 2px 0px 2px;
+    border-radius: 10px 10px 0px 0px;
     padding: 10px;
     // margin: 5px;
   }
@@ -20,6 +21,7 @@
     background-color: white;
     height: 300px;
     z-index: 99;
+    border-top: 2px solid $tan;
   }
 
   .contact-card-top-buttons-container {
