@@ -65,7 +65,8 @@
     z-index: 99;
   }
 
-  .expanded {
+
+  .contact-card-for-each-contact .expanded {
     animation-name: expand;
     animation-duration: 1s;
     z-index: 1;
@@ -73,7 +74,7 @@
       margin-bottom: 8px;
     }
 
-    height: 350px;
+    height: auto;
     text-align: left;
 
   }

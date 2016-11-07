@@ -30,13 +30,18 @@ $breakpoint2: 645px;
 
     }
 
-    .contact-card-for-each-contact {
+    .contact-Container .contact-card-for-each-contact {
       // height: 500px;
 
       .fullname {
         font-size: 32px;
         margin-bottom: 20px;
       }
+
+      .expanded {
+        height: auto;
+      }
+
 
     }
 
