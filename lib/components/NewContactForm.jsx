@@ -32,7 +32,6 @@ export default class NewContactForm extends Component {
       image: this.props.image || '',
       followup: this.props.followup || false,
       reader: this.props.fileReaderTest || new FileReader(),
-      groups: this.props.groups || [],
       imgSource: this.props.image || '',
     };
   }
@@ -44,11 +43,6 @@ export default class NewContactForm extends Component {
       }); }
   }
 
-  addContactToGroup = () => {
-    const existingGroupMemberships = this.state.groups;
-    existingGroupMemberships.push('Test Group');
-  }
-
   addImage = (e) => {
     const image = e.target.files[0];
     this.setState({ image },
@@ -58,7 +52,7 @@ export default class NewContactForm extends Component {
 
   toggleFollowup = () => {
     this.setState({ followup: !this.state.followup });
-  }// end of toggleFollowup
+  }
 
   updateState = (e, keyName) => {
     this.setState({ [keyName]: e.target.value });
@@ -96,16 +90,13 @@ export default class NewContactForm extends Component {
       },
       notes: this.state.notes,
       followup: this.state.followup,
-      groups: this.state.groups,
     };
     const image = this.state.image;
     this.props.handleNewContact(newContact, image);
   }
 
   render = () => {
-    const {
-      followup,
-      groups } = this.state;
+    const { followup } = this.state;
 
     let imageSrc;
 

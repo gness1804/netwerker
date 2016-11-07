@@ -9,7 +9,6 @@ export default class ContactCardList extends Component {
       showFollowupList: false,
       filteredContacts: [],
       searchString: '',
-      allGroups: [],
     };
   }
   searchContacts = (e) => {
@@ -70,26 +69,39 @@ export default class ContactCardList extends Component {
     const sortedList = contactList.sort((a, b) => a.props.lastName > b.props.lastName);
     return (
       <div className="contact-card-container">
-        <span className="follow-up-label">Show:
-        <img
-          alt="mark as follow up"
-          src="../images/black-flag.svg"
-          className="show-followup-list-button"
-          onClick={() => {
-            this.setState({
-              showFollowupList: !this.state.showFollowupList,
-            });
-          }}
-        />
-        </span>
-        <input
-          className="search"
-          placeholder="search"
-          aria-label="Search Contacts"
-          onChange={(e) => {
-            this.searchContacts(e);
-          }}
-        />
+
+        {this.props.user ?
+          <div>
+            <span className="follow-up-label">Show:
+            <img
+              alt="mark as follow up"
+              src="../images/black-flag.svg"
+              className="show-followup-list-button"
+              onClick={() => {
+                this.setState({
+                  showFollowupList: !this.state.showFollowupList,
+                });
+              }}
+            />
+            </span>
+            <input
+              className="search"
+              placeholder="search"
+              aria-label="Search Contacts"
+              onChange={(e) => {
+                this.searchContacts(e);
+              }}
+            />
+          </div>
+          :
+          <div>
+          <span className = 'sign-in-text'>Please Sign In</span>
+          <img
+            className = "cute-pug-pic"
+            src = "../images/cutepug.jpeg"
+          />
+          </div>
+        }
         {sortedList}
         <div className="empty-card"></div>
       </div>

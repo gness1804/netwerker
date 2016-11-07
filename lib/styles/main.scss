@@ -41,9 +41,6 @@ h1 {
       top: 20px;
       left: 20px;
 
-
-
-
       &:hover {
 
 
@@ -60,6 +57,17 @@ h1 {
   background-color: #00aa55;
 }
 
+.sign-in-text{
+  font-family: $second-font;
+  font-size: 25px;
+  color: $darkerblue;
+}
+.cute-pug-pic{
+  width: 60vw;
+  margin: auto;
+  margin-top: 20px;
+
+}
 .add-contact-button {
   @include add-contact-button;
   outline: none;

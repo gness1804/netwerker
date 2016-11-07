@@ -44,10 +44,7 @@ export default class ContactCard extends Component {
     this.toggleEdit();
   }
   deleteContact = () => {
-    const warning = confirm('Do you really want to delete this contact?');
-    if (warning) {
-      this.props.deleteContact(this.props.contactTextID);
-    }
+    this.props.deleteContact(this.props.contactTextID);
   }
   render() {
     const { firstName, lastName, companyName, title, website, numbers, emails,
@@ -129,7 +126,9 @@ export default class ContactCard extends Component {
               className="image"
               src={this.state.contactImgURL}
             /> :
-              <AddImageButton handleClick={() => { this.addImage(); }} />
+              <AddImageButton
+                handleClick={() => { this.addImage(); }}
+              />
           }
         </div>
       </div>);
@@ -189,7 +188,6 @@ export default class ContactCard extends Component {
           <img
             src="../images/thin-down.svg"
             alt="Icon to show that user can expand the contact card."
-            // className="expand-button"
             className={expandButtonClass}
             onClick={() => this.toggleExpand()}
           />

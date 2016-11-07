@@ -95,11 +95,11 @@ describe('ContactCardList', () => {
     assert.strictEqual(wrapper.find('.contact-card-for-each-contact').length, 0);
   });
   it('should sort contacts alphabetically by default', () => {
-    const wrapper = mount(<ContactCardList contacts={[{firstName: 'Jerry', lastName: 'Seinfeld'}, {firstName: 'Bill', lastName: 'Clinton'}]} />);
+    const wrapper = mount(<ContactCardList contacts={[{ firstName: 'Jerry', lastName: 'Seinfeld' }, { firstName: 'Bill', lastName: 'Clinton' }]} />);
     assert.strictEqual(wrapper.props().contacts.length, 2);
     assert.strictEqual(wrapper.find('.contact-card-container').text(), 'Show:Bill ClintonJerry Seinfeld');
   });
-  it('should show only flagged contacts when user toggles flag on', ()=>{
+  it('should show only flagged contacts when user toggles flag on', () => {
     const wrapper = mount(<ContactCardList contacts={contactList} />);
     assert.strictEqual(wrapper.find('.contact-card-for-each-contact').length, 2);
     wrapper.find('.show-followup-list-button').simulate('click');

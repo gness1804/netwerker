@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { map, extend } from 'lodash';
 import firebase, { signIn, signOut } from '../firebase';
+import Header from './Header.jsx'
 import NewContactForm from './NewContactForm.jsx';
 import ContactCardList from './ContactCardList.jsx';
 
@@ -77,15 +78,10 @@ class Application extends Component {
 
   render() {
     const { user } = this.state;
+
     let pageDisplay;
-    let addNewContactClass;
-    let addNewContactClassHover;
-    // let auth-button;
 
     if (this.state.showAddForm) {
-      addNewContactClass = "add-contact-img add-button-exit"
-      addNewContactClassHover = "add-contact-img-hover add-button-exit"
-
       pageDisplay = (
         <NewContactForm
           handleNewContact = {this.addNewContact}
@@ -95,8 +91,6 @@ class Application extends Component {
         />
       );
     } else {
-      addNewContactClass = "add-contact-img";
-      addNewContactClassHover = "add-contact-img-hover";
       pageDisplay = (
         <ContactCardList
           user = {this.state.user}
@@ -110,53 +104,7 @@ class Application extends Component {
     }
     return (
       <div className = "application">
-        <header>
-          <h1>
-            Netwerker
-          </h1>
-          <div className="active-user">
-            {user ? <div>
-              <span className="greeting" title={`Logged in as ${user.email}`}>
-                Hi,&nbsp;
-                <span className="bold">
-                  {user.displayName}
-                </span>
-              </span>
-
-              <button
-                className= "signed-in auth-button"
-                // {auth-button}
-                onClick={() => signOut()}
-              >Sign Out
-              </button>
-              </div>
-            :
-              <button
-                className= "signed-out auth-button"
-                // {auth-button}
-                onClick={() => signIn()}
-              >
-              Sign In
-              </button>
-            }
-          </div>
-          <button
-            className="add-contact-button"
-            onClick={() => this.toggleShowAddForm()}
-          >
-            <img
-              src="../images/plus.svg"
-              alt="Icon to show that user can add contact."
-              className={addNewContactClass}
-            />
-            <img
-              src="../images/plus-lighter.svg"
-              alt="Lighter version add contact for hover."
-              className={addNewContactClassHover}
-            />
-          </button>
-        </header>
-
+        <Header user = {this.state.user} handleShowForm = {()=>this.toggleShowAddForm()} showForm = {this.state.showAddForm} />
         <main className = "contact-Container">
           {pageDisplay}
         </main>
