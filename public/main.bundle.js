@@ -28855,7 +28855,6 @@
 	    _this.addNewContact = function (newContactInfo, image) {
 	      _this.state.contactDatabase.push(newContactInfo);
 	      if (image) {
-	        console.log(image, newContactInfo);
 	        _this.state.contactImgStorage.child(_this.state.user.uid + '/' + newContactInfo.contactID + '.jpg').put(image);
 	      }
 	      _this.setState({ showAddForm: false });
@@ -28903,8 +28902,14 @@
 	      var user = this.state.user;
 	
 	      var pageDisplay = void 0;
+	      var addNewContactClass = void 0;
+	      var addNewContactClassHover = void 0;
+	      // let auth-button;
 	
 	      if (this.state.showAddForm) {
+	        addNewContactClass = "add-contact-img add-button-exit";
+	        addNewContactClassHover = "add-contact-img-hover add-button-exit";
+	
 	        pageDisplay = _react2.default.createElement(_NewContactForm2.default, {
 	          handleNewContact: this.addNewContact,
 	          numbers: {},
@@ -28912,6 +28917,8 @@
 	          socialMedia: {}
 	        });
 	      } else {
+	        addNewContactClass = "add-contact-img";
+	        addNewContactClassHover = "add-contact-img-hover";
 	        pageDisplay = _react2.default.createElement(_ContactCardList2.default, {
 	          user: this.state.user,
 	          imgStorage: this.state.contactImgStorage,
@@ -28936,19 +28943,24 @@
 	            'div',
 	            { className: 'active-user' },
 	            user ? _react2.default.createElement(
-	              'span',
-	              { className: 'greeting' },
-	              'Hi,\xA0',
+	              'div',
+	              null,
 	              _react2.default.createElement(
 	                'span',
-	                { className: 'bold' },
-	                user.displayName
+	                { className: 'greeting', title: 'Logged in as ' + user.email },
+	                'Hi,\xA0',
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'bold' },
+	                  user.displayName
+	                )
 	              ),
 	              _react2.default.createElement(
 	                'button',
 	                {
-	                  className: 'auth-button button',
-	                  onClick: function onClick() {
+	                  className: 'signed-in auth-button'
+	                  // {auth-button}
+	                  , onClick: function onClick() {
 	                    return (0, _firebase.signOut)();
 	                  }
 	                },
@@ -28957,8 +28969,9 @@
 	            ) : _react2.default.createElement(
 	              'button',
 	              {
-	                className: 'auth-button',
-	                onClick: function onClick() {
+	                className: 'signed-out auth-button'
+	                // {auth-button}
+	                , onClick: function onClick() {
 	                  return (0, _firebase.signIn)();
 	                }
 	              },
@@ -28974,9 +28987,14 @@
 	              }
 	            },
 	            _react2.default.createElement('img', {
-	              src: '../images/plus.png',
+	              src: '../images/plus.svg',
 	              alt: 'Icon to show that user can add contact.',
-	              className: 'add-contact-img'
+	              className: addNewContactClass
+	            }),
+	            _react2.default.createElement('img', {
+	              src: '../images/plus-lighter.svg',
+	              alt: 'Lighter version add contact for hover.',
+	              className: addNewContactClassHover
 	            })
 	          )
 	        ),
@@ -47405,7 +47423,6 @@
 	
 	    _this.addContactToGroup = function () {
 	      var existingGroupMemberships = _this.state.groups;
-	      // get access to array of all groups
 	      existingGroupMemberships.push('Test Group');
 	    };
 	
@@ -47465,176 +47482,170 @@
 	          followup = _this$state.followup,
 	          groups = _this$state.groups;
 	
-	      // let imgSource;
 	
-	      var imageDisplay = void 0;
+	      var imageSrc = void 0;
 	
 	      if (_this.state.imgSource) {
-	        imageDisplay = _react2.default.createElement('img', {
-	          src: _this.state.imgSource,
-	          alt: 'The pic assigned to the contact.'
-	        });
+	        imageSrc = _this.state.imgSource;
+	      } else {
+	        imageSrc = '../images/user-ph.jpg';
 	      }
 	
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'input-field-container' },
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'firstName-Input input-field',
-	          value: _this.state.firstName,
-	          placeholder: 'First Name',
-	          type: 'text',
-	          handleChange: _this.updateState,
-	          name: 'firstName'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'lastName-Input input-field',
-	          value: _this.state.lastName,
-	          placeholder: 'Last Name',
-	          type: 'text',
-	          handleChange: _this.updateState,
-	          name: 'lastName'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'companyName-Input input-field',
-	          value: _this.state.companyName,
-	          placeholder: 'Company Name',
-	          type: 'text',
-	          handleChange: _this.updateState,
-	          name: 'companyName'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'title-Input input-field',
-	          value: _this.state.title,
-	          placeholder: 'Title',
-	          type: 'text',
-	          handleChange: _this.updateState,
-	          name: 'title'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'website-Input input-field',
-	          value: _this.state.website,
-	          placeholder: 'Company Website',
-	          type: 'text',
-	          handleChange: _this.updateState,
-	          name: 'website'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'cellNumber-Input input-field',
-	          value: _this.state.numbers.cell,
-	          placeholder: 'cell Number',
-	          type: 'text',
-	          handleChange: _this.updateStateObject,
-	          objName: 'numbers',
-	          name: 'cell'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'workNumber-Input input-field',
-	          value: _this.state.numbers.work,
-	          placeholder: 'work Number',
-	          type: 'text',
-	          handleChange: _this.updateStateObject,
-	          objName: 'numbers',
-	          name: 'work'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'homeNumber-Input input-field',
-	          value: _this.state.numbers.home,
-	          placeholder: 'home Number',
-	          type: 'text',
-	          handleChange: _this.updateStateObject,
-	          objName: 'numbers',
-	          name: 'home'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'primaryEmail-Input input-field',
-	          value: _this.state.emails.primary,
-	          placeholder: 'Primary Email',
-	          type: 'text',
-	          handleChange: _this.updateStateObject,
-	          objName: 'emails',
-	          name: 'primary'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'secondaryEmail-Input input-field',
-	          value: _this.state.emails.secondary,
-	          placeholder: 'Secondary Email',
-	          type: 'text',
-	          handleChange: _this.updateStateObject,
-	          objName: 'emails',
-	          name: 'secondary'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'facebook-Input input-field',
-	          value: _this.state.socialMedia.facebook,
-	          placeholder: 'facebook',
-	          type: 'text',
-	          handleChange: _this.updateStateObject,
-	          objName: 'socialMedia',
-	          name: 'facebook'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'twitter-Input input-field',
-	          value: _this.state.socialMedia.twitter,
-	          placeholder: 'twitter',
-	          type: 'text',
-	          handleChange: _this.updateStateObject,
-	          objName: 'socialMedia',
-	          name: 'twitter'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'linkedIn-Input input-field',
-	          value: _this.state.socialMedia.linkedIn,
-	          placeholder: 'linkedIn',
-	          type: 'text',
-	          handleChange: _this.updateStateObject,
-	          objName: 'socialMedia',
-	          name: 'linkedIn'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'github-Input input-field',
-	          value: _this.state.socialMedia.github,
-	          placeholder: 'github',
-	          type: 'text',
-	          handleChange: _this.updateStateObject,
-	          objName: 'socialMedia',
-	          name: 'github'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'instagram-Input input-field',
-	          value: _this.state.socialMedia.instagram,
-	          placeholder: 'instagram',
-	          type: 'text',
-	          handleChange: _this.updateStateObject,
-	          objName: 'socialMedia',
-	          name: 'instagram'
-	        }),
-	        _react2.default.createElement(_InputField2.default, {
-	          className: 'notes-input input-field',
-	          value: _this.state.notes,
-	          placeholder: 'Notes',
-	          type: 'text',
-	          handleChange: _this.updateState,
-	          name: 'notes'
-	        }),
-	        followup ? _react2.default.createElement('img', {
-	          src: '../images/yellow-flag-2.svg', alt: 'Yellow flag.',
-	          className: 'flagged-for-followup-button',
-	          onClick: function onClick() {
-	            return _this.toggleFollowup();
-	          }
-	        }) : _react2.default.createElement('img', {
-	          src: '../images/gray-flag.svg',
-	          alt: '',
-	          className: 'not-flagged-for-followup-button',
-	          onClick: function onClick() {
-	            return _this.toggleFollowup();
-	          }
-	        }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'form-container' },
+	          _react2.default.createElement(_InputField2.default, {
+	            className: 'firstName-Input input-field',
+	            value: _this.state.firstName,
+	            placeholder: 'First Name',
+	            type: 'text',
+	            handleChange: _this.updateState,
+	            name: 'firstName'
+	          }),
+	          _react2.default.createElement(_InputField2.default, {
+	            className: 'lastName-Input input-field',
+	            value: _this.state.lastName,
+	            placeholder: 'Last Name',
+	            type: 'text',
+	            handleChange: _this.updateState,
+	            name: 'lastName'
+	          }),
+	          _react2.default.createElement(_InputField2.default, {
+	            className: 'companyName-Input input-field',
+	            value: _this.state.companyName,
+	            placeholder: 'Company Name',
+	            type: 'text',
+	            handleChange: _this.updateState,
+	            name: 'companyName'
+	          }),
+	          _react2.default.createElement(_InputField2.default, {
+	            className: 'title-Input input-field',
+	            value: _this.state.title,
+	            placeholder: 'Title',
+	            type: 'text',
+	            handleChange: _this.updateState,
+	            name: 'title'
+	          }),
+	          _react2.default.createElement(_InputField2.default, {
+	            className: 'website-Input input-field',
+	            value: _this.state.website,
+	            placeholder: 'Company Website',
+	            type: 'text',
+	            handleChange: _this.updateState,
+	            name: 'website'
+	          }),
+	          _react2.default.createElement(_InputField2.default, {
+	            className: 'cellNumber-Input input-field',
+	            value: _this.state.numbers.cell,
+	            placeholder: 'Cell Number',
+	            type: 'text',
+	            handleChange: _this.updateStateObject,
+	            objName: 'numbers',
+	            name: 'cell'
+	          }),
+	          _react2.default.createElement(_InputField2.default, {
+	            className: 'workNumber-Input input-field',
+	            value: _this.state.numbers.work,
+	            placeholder: 'Work Number',
+	            type: 'text',
+	            handleChange: _this.updateStateObject,
+	            objName: 'numbers',
+	            name: 'work'
+	          }),
+	          _react2.default.createElement(_InputField2.default, {
+	            className: 'homeNumber-Input input-field',
+	            value: _this.state.numbers.home,
+	            placeholder: 'Home Number',
+	            type: 'text',
+	            handleChange: _this.updateStateObject,
+	            objName: 'numbers',
+	            name: 'home'
+	          }),
+	          _react2.default.createElement(_InputField2.default, {
+	            className: 'primaryEmail-Input input-field',
+	            value: _this.state.emails.primary,
+	            placeholder: 'Primary Email',
+	            type: 'text',
+	            handleChange: _this.updateStateObject,
+	            objName: 'emails',
+	            name: 'primary'
+	          }),
+	          _react2.default.createElement(_InputField2.default, {
+	            className: 'secondaryEmail-Input input-field',
+	            value: _this.state.emails.secondary,
+	            placeholder: 'Secondary Email',
+	            type: 'text',
+	            handleChange: _this.updateStateObject,
+	            objName: 'emails',
+	            name: 'secondary'
+	          }),
+	          _react2.default.createElement(_InputField2.default, {
+	            className: 'facebook-Input input-field',
+	            value: _this.state.socialMedia.facebook,
+	            placeholder: 'Facebook',
+	            type: 'text',
+	            handleChange: _this.updateStateObject,
+	            objName: 'socialMedia',
+	            name: 'facebook'
+	          }),
+	          _react2.default.createElement(_InputField2.default, {
+	            className: 'twitter-Input input-field',
+	            value: _this.state.socialMedia.twitter,
+	            placeholder: 'Twitter',
+	            type: 'text',
+	            handleChange: _this.updateStateObject,
+	            objName: 'socialMedia',
+	            name: 'twitter'
+	          }),
+	          _react2.default.createElement(_InputField2.default, {
+	            className: 'linkedIn-Input input-field',
+	            value: _this.state.socialMedia.linkedIn,
+	            placeholder: 'LinkedIn',
+	            type: 'text',
+	            handleChange: _this.updateStateObject,
+	            objName: 'socialMedia',
+	            name: 'linkedIn'
+	          }),
+	          _react2.default.createElement(_InputField2.default, {
+	            className: 'github-Input input-field',
+	            value: _this.state.socialMedia.github,
+	            placeholder: 'Github',
+	            type: 'text',
+	            handleChange: _this.updateStateObject,
+	            objName: 'socialMedia',
+	            name: 'github'
+	          }),
+	          _react2.default.createElement(_InputField2.default, {
+	            className: 'instagram-Input input-field',
+	            value: _this.state.socialMedia.instagram,
+	            placeholder: 'Instagram',
+	            type: 'text',
+	            handleChange: _this.updateStateObject,
+	            objName: 'socialMedia',
+	            name: 'instagram'
+	          }),
+	          _react2.default.createElement(
+	            'textarea',
+	            {
+	              className: 'notes-input input-field',
+	              value: _this.state.notes,
+	              placeholder: 'Notes...',
+	              onChange: function onChange(e) {
+	                return _this.updateState(e, 'notes');
+	              },
+	              type: 'text',
+	              name: 'notes'
+	            },
+	            'Notes...'
+	          )
+	        ),
 	        _react2.default.createElement(
 	          'label',
-	          { htmlFor: 'add-image-button', className: 'add-image-wrapper' },
-	          _react2.default.createElement('img', { src: '../images/user-ph.jpg', alt: 'The user.' }),
+	          { className: 'add-image-wrapper' },
+	          _react2.default.createElement('img', { src: imageSrc, alt: 'The user.' }),
 	          _react2.default.createElement('input', {
 	            className: 'add-image-button',
 	            type: 'file',
@@ -47642,25 +47653,12 @@
 	              _this.addImage(e);
 	            },
 	            accept: 'image/*'
-	          })
-	        ),
-	        _react2.default.createElement(
-	          'p',
-	          { className: 'add-image-label input-field' },
-	          'Upload Image'
-	        ),
-	        imageDisplay,
-	        groups.length > 0 ? groups : _react2.default.createElement(
-	          'p',
-	          null,
-	          'No groups listed for this contact.'
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: function onClick() {
-	              _this.addContactToGroup();
-	            } },
-	          'Add to Group'
+	          }),
+	          _react2.default.createElement(
+	            'p',
+	            { className: 'add-image-label' },
+	            'Click To Upload Image'
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'button',
@@ -47702,11 +47700,9 @@
 	      image: _this.props.image || '',
 	      followup: _this.props.followup || false,
 	      reader: _this.props.fileReaderTest || new FileReader(),
-	      groups: _this.props.groups || []
-	
+	      groups: _this.props.groups || [],
+	      imgSource: _this.props.image || ''
 	    };
-	    // this.handleChange = this.handleChange();
-	    // this.handleSubmit = this.handleSubmit();
 	    return _this;
 	  } // end of toggleFollowup
 	
@@ -47722,7 +47718,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
 	
 	var _react = __webpack_require__(464);
@@ -47732,24 +47728,24 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var InputField = function InputField(_ref) {
-	  var className = _ref.className,
-	      value = _ref.value,
-	      type = _ref.type,
-	      handleChange = _ref.handleChange,
-	      placeholder = _ref.placeholder,
-	      name = _ref.name,
-	      objName = _ref.objName;
+		var className = _ref.className,
+		    value = _ref.value,
+		    type = _ref.type,
+		    handleChange = _ref.handleChange,
+		    placeholder = _ref.placeholder,
+		    name = _ref.name,
+		    objName = _ref.objName;
 	
-	  return _react2.default.createElement('input', {
-	    className: className,
-	    value: value,
-	    type: type,
-	    name: name,
-	    placeholder: placeholder,
-	    onChange: function onChange(e) {
-	      handleChange(e, name, objName);
-	    }
-	  });
+		return _react2.default.createElement('input', {
+			className: className,
+			value: value,
+			type: type,
+			name: name,
+			placeholder: placeholder,
+			onChange: function onChange(e) {
+				handleChange(e, name, objName);
+			}
+		});
 	};
 	
 	exports.default = InputField;
@@ -47886,8 +47882,7 @@
 	              if (result) testResult = true;
 	            }
 	          });
-	
-	          testResult = (0, _lodash.includes)(fullName.toLowerCase(), _this2.state.searchString.toLowerCase());
+	          testResult = (0, _lodash.includes)(fullName.toLowerCase(), _this2.state.searchString.toLowerCase()) || testResult;
 	
 	          return testResult;
 	        });
@@ -47923,7 +47918,7 @@
 	        _react2.default.createElement(
 	          'span',
 	          { className: 'follow-up-label' },
-	          ' Show:',
+	          'Show:',
 	          _react2.default.createElement('img', {
 	            alt: 'mark as follow up',
 	            src: '../images/black-flag.svg',
@@ -47938,11 +47933,13 @@
 	        _react2.default.createElement('input', {
 	          className: 'search',
 	          placeholder: 'search',
+	          'aria-label': 'Search Contacts',
 	          onChange: function onChange(e) {
 	            _this2.searchContacts(e);
 	          }
 	        }),
-	        sortedList
+	        sortedList,
+	        _react2.default.createElement('div', { className: 'empty-card' })
 	      );
 	    }
 	  }]);
@@ -47998,18 +47995,25 @@
 	
 	    var _this = _possibleConstructorReturn(this, (ContactCard.__proto__ || Object.getPrototypeOf(ContactCard)).call(this));
 	
+	    _this.getContactImageURL = function () {
+	      _this.props.imgStorage.child(_this.props.user.uid + '/' + _this.props.contactImgID + '.jpg').getDownloadURL().then(function (url) {
+	        _this.setState({ contactImgURL: url });
+	      }).catch(function () {});
+	    };
+	
 	    _this.toggleExpand = function () {
 	      if (!_this.state.expanded) {
 	        if (!_this.props.test) {
-	          _this.props.imgStorage.child(_this.props.user.uid + '/' + _this.props.contactImgID + '.jpg').getDownloadURL().then(function (url) {
-	            _this.setState({ contactImgURL: url });
-	          }).catch(function () {});
+	          _this.getContactImageURL();
 	        }
 	      }
 	      _this.setState({ expanded: !_this.state.expanded });
 	    };
 	
 	    _this.toggleEdit = function () {
+	      if (!_this.props.test) {
+	        _this.getContactImageURL();
+	      }
 	      _this.setState({ editable: !_this.state.editable });
 	    };
 	
@@ -48023,7 +48027,10 @@
 	    };
 	
 	    _this.deleteContact = function () {
-	      _this.props.deleteContact(_this.props.contactTextID);
+	      var warning = confirm('Do you really want to delete this contact?');
+	      if (warning) {
+	        _this.props.deleteContact(_this.props.contactTextID);
+	      }
 	    };
 	
 	    _this.state = {
@@ -48053,18 +48060,16 @@
 	          groups = _props.groups;
 	
 	      var display = void 0;
+	      var expandButtonClass = void 0;
 	      if (this.state.expanded) {
+	        expandButtonClass = 'expand-button invert';
 	        display = _react2.default.createElement(
 	          'div',
 	          { className: 'expanded' },
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'fullname firstName lastName' },
-	            _react2.default.createElement(
-	              'span',
-	              { className: 'label' },
-	              'Name: '
-	            ),
+	            _react2.default.createElement('span', { className: 'label' }),
 	            firstName,
 	            ' ',
 	            lastName
@@ -48078,7 +48083,7 @@
 	              _react2.default.createElement(
 	                'span',
 	                { className: 'label' },
-	                ' Company: '
+	                'Company: '
 	              ),
 	              _react2.default.createElement(
 	                'a',
@@ -48235,10 +48240,11 @@
 	          )
 	        );
 	      } else {
+	        expandButtonClass = 'expand-button';
 	        display = _react2.default.createElement(
 	          'div',
 	          {
-	            className: 'fullname firstName lastName'
+	            className: 'fullname firstName lastName contracted'
 	          },
 	          firstName,
 	          ' ',
@@ -48252,7 +48258,9 @@
 	          null,
 	          _react2.default.createElement(_NewContactForm2.default, _extends({
 	            handleNewContact: this.submitEdit
-	          }, this.props)),
+	          }, this.props, {
+	            image: this.state.contactImgURL
+	          })),
 	          _react2.default.createElement(
 	            'button',
 	            {
@@ -48286,7 +48294,7 @@
 	            }
 	          }),
 	          _react2.default.createElement('img', {
-	            src: '../images/edit.png',
+	            src: '../images/pencil.svg',
 	            alt: 'Icon to show that user can edit the contact card.',
 	            className: 'edit-button',
 	            onClick: function onClick() {
@@ -48295,7 +48303,9 @@
 	          }),
 	          _react2.default.createElement('img', {
 	            src: '../images/thin-down.svg',
-	            alt: 'Icon to show that user can expand the contact card.', className: 'expand-button',
+	            alt: 'Icon to show that user can expand the contact card.'
+	            // className="expand-button"
+	            , className: expandButtonClass,
 	            onClick: function onClick() {
 	              return _this2.toggleExpand();
 	            }
@@ -48757,7 +48767,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".add-contact-img {\n  width: 30px; }\n\n.greeting {\n  color: #88BBD6; }\n\n.contact-Container {\n  text-align: center;\n  margin-left: 20%;\n  margin-right: 20%; }\n  .contact-Container .contact-card-for-each-contact {\n    border: 2px solid #88BBD6;\n    border-radius: 5px;\n    padding: 10px;\n    margin: 5px; }\n  .contact-Container .contact-card-top-buttons-container {\n    float: right; }\n    .contact-Container .contact-card-top-buttons-container img {\n      height: 30px;\n      margin: 0 4px;\n      width: 30px; }\n  .contact-Container .contracted {\n    height: 40px; }\n  .contact-Container .expanded {\n    margin-left: 20px;\n    height: auto;\n    text-align: left; }\n    .contact-Container .expanded div {\n      margin: 5px; }\n  .contact-Container .label {\n    color: #88BBD6;\n    font-weight: 300; }\n\n@media screen and (max-width: 800px) {\n  h1 {\n    font-size: 25px; }\n  header {\n    height: 80px; }\n  .active-user span {\n    font-size: 16px;\n    font-style: italic; }\n  .active-user .auth-button {\n    background-color: #88BBD6;\n    display: inline-block;\n    color: white;\n    border-radius: 5px;\n    border: none;\n    font-size: 18px;\n    padding: 10px;\n    width: 120px;\n    margin: 10px;\n    float: left;\n    position: absolute;\n    top: 5px;\n    left: 5px;\n    background-color: #88BBD6; }\n  .add-contact-button {\n    position: absolute;\n    right: 40px;\n    top: 20px;\n    float: right;\n    background-color: #88BBD6;\n    color: white;\n    border-radius: 15px;\n    border: none; }\n  .contact-Container {\n    text-align: center;\n    margin-left: 5%;\n    margin-right: 5%; } }\n\n.contact-card-for-each-contact .fullname {\n  font-size: 32px; }\n\n.input-field-container {\n  margin-left: 40px;\n  margin-top: 30px; }\n\n.input-field {\n  font-size: 18px;\n  display: block;\n  margin: 5px;\n  border: none;\n  border-bottom: 1px dotted black; }\n\n.submit-new-contact-button {\n  background-color: #88BBD6;\n  display: inline-block;\n  color: white;\n  border-radius: 5px;\n  border: none;\n  font-size: 18px;\n  padding: 10px;\n  width: 120px;\n  margin: 10px;\n  width: 300px; }\n\n.followup-button {\n  background-color: #88BBD6;\n  display: inline-block;\n  color: white;\n  border-radius: 5px;\n  border: none;\n  font-size: 18px;\n  padding: 10px;\n  width: 120px;\n  margin: 10px;\n  width: 200px; }\n\n.add-image-wrapper {\n  float: right;\n  position: absolute;\n  right: 160px;\n  top: 175px;\n  width: 150px; }\n  .add-image-wrapper img {\n    border-radius: 150px;\n    width: 200px; }\n\nhtml {\n  font-family: \"Roboto\", sans-serif;\n  color: #747474; }\n\nheader {\n  background: white;\n  border-bottom: 3px solid #CDCDCD;\n  height: 115px;\n  margin-bottom: 15px; }\n\nh1 {\n  color: #88BBD6;\n  font-size: 60px;\n  margin: auto;\n  text-align: center;\n  padding: 15px 0;\n  width: 40vw; }\n\n.active-user {\n  text-align: center; }\n  .active-user span {\n    font-size: 16px;\n    font-style: italic; }\n  .active-user .auth-button {\n    background-color: #88BBD6;\n    display: inline-block;\n    color: white;\n    border-radius: 5px;\n    border: none;\n    font-size: 18px;\n    padding: 10px;\n    width: 120px;\n    margin: 10px;\n    float: left;\n    position: absolute;\n    top: 5px;\n    left: 5px;\n    background-color: #88BBD6; }\n\n.add-contact-button {\n  position: absolute;\n  right: 40px;\n  top: 20px;\n  float: right;\n  background-color: #88BBD6;\n  color: white;\n  border-radius: 15px;\n  border: none; }\n\n.follow-up-label {\n  display: flex;\n  align-items: center;\n  position: relative;\n  bottom: 5px;\n  right: 20px;\n  float: right; }\n\n.show-followup-list-button {\n  margin-left: 10px;\n  right: 30px;\n  width: 40px; }\n\n.search {\n  display: block;\n  width: 300px;\n  text-align: center;\n  font-size: 25px;\n  margin: auto; }\n", ""]);
+	exports.push([module.id, ".add-contact-img {\n  width: 50px; }\n\n.add-contact-img-hover {\n  cursor: pointer;\n  width: 50px; }\n\n.input-field-container {\n  position: relative;\n  text-align: center;\n  margin-top: 30px; }\n\n.input-field {\n  width: 275px;\n  font-size: 18px;\n  display: block;\n  margin: 5px;\n  border: none;\n  border-bottom: 1px dotted black; }\n\ntextarea {\n  width: 300px;\n  height: 120px; }\n\n.form-container {\n  display: inline-block; }\n\n.add-image-wrapper {\n  vertical-align: top;\n  display: inline-block;\n  cursor: pointer;\n  text-align: center;\n  margin-left: 20px;\n  width: 200px; }\n  .add-image-wrapper img {\n    border-radius: 150px;\n    width: 200px; }\n\n.submit-new-contact-button {\n  display: block;\n  margin: auto;\n  margin-bottom: 10px; }\n\n.greeting {\n  color: #3498db; }\n\n.contact-Container {\n  background-color: white;\n  position: relative;\n  text-align: center;\n  margin-left: 20%;\n  margin-right: 20%; }\n  .contact-Container .contact-card-for-each-contact {\n    background-color: white;\n    position: relative;\n    border: 2px solid #3498db;\n    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);\n    border-radius: 5px 5px 0px 0px;\n    padding: 10px; }\n  .contact-Container .empty-card {\n    position: relative;\n    background-color: white;\n    height: 300px;\n    z-index: 99; }\n  .contact-Container .contact-card-top-buttons-container {\n    position: absolute;\n    right: 10px; }\n    .contact-Container .contact-card-top-buttons-container img {\n      cursor: pointer;\n      height: 30px;\n      margin: 0 5px;\n      width: 30px; }\n  .contact-Container .add-image-button {\n    display: none; }\n  .contact-Container .flagged-for-followup-button, .contact-Container .not-flagged-for-followup-button {\n    cursor: pointer; }\n\n@keyframes expand {\n  from {\n    height: 40px; }\n  to {\n    height: 350px; } }\n\n@keyframes contract {\n  from {\n    height: 350px; }\n  to {\n    height: 40px; } }\n  .contact-Container .contracted {\n    animation-name: contract;\n    animation-duration: .5s;\n    height: 40px;\n    z-index: 99; }\n  .contact-Container .contact-card-for-each-contact .expanded {\n    animation-name: expand;\n    animation-duration: 1s;\n    z-index: 1;\n    height: auto;\n    text-align: left; }\n    .contact-Container .contact-card-for-each-contact .expanded div {\n      margin-bottom: 8px; }\n  .contact-Container .invert {\n    transform: rotate(180deg); }\n  .contact-Container .label {\n    color: #3498db;\n    font-weight: 300; }\n  .contact-Container .image {\n    top: 100px;\n    right: 60px;\n    position: absolute;\n    width: 220px; }\n\n.fullname {\n  font-weight: 500;\n  margin-bottom: 20px;\n  text-align: center; }\n\n.input-field {\n  margin-bottom: 15px; }\n\n.submit-new-contact-button {\n  margin-top: 20px; }\n\nhtml {\n  font-family: \"Roboto\", sans-serif;\n  color: #747474; }\n\nheader {\n  background: white;\n  border-bottom: 3px solid #CDCDCD;\n  height: 115px;\n  margin-bottom: 15px; }\n\nh1 {\n  color: #3498db;\n  font-size: 50px;\n  margin: auto;\n  text-align: center;\n  padding: 15px 0; }\n\n.active-user {\n  text-align: center; }\n  .active-user span {\n    font-size: 22px;\n    font-style: italic;\n    font-weight: bold; }\n  .active-user .auth-button {\n    color: white;\n    border-radius: 5px;\n    border: none;\n    font-weight: bold;\n    font-size: 20px;\n    padding: 10px;\n    width: 120px;\n    float: left;\n    position: absolute;\n    top: 20px;\n    left: 20px; }\n\n.signed-in {\n  background-color: #f64747; }\n\n.signed-out {\n  background-color: #00aa55; }\n\n.add-contact-button {\n  position: absolute;\n  right: 60px;\n  top: 15px;\n  float: right;\n  background-color: white;\n  color: #88BBD6;\n  border-radius: 15px;\n  border: none;\n  outline: none; }\n  .add-contact-button img:last-child {\n    display: none; }\n  .add-contact-button:hover img:first-child {\n    display: none; }\n  .add-contact-button:hover img:last-child {\n    display: inline-block; }\n\n@keyframes rotate {\n  from {\n    transform: rotate(0deg); }\n  to {\n    transform: rotate(45deg); } }\n\n.add-button-exit {\n  outline: none;\n  -webkit-transform: rotate(45deg);\n  /* Chrome, Safari, Opera */\n  transform: rotate(45deg); }\n  .add-button-exit:hover {\n    animation-name: rotate;\n    animation-duration: 0s; }\n    .add-button-exit:hover img:first-child {\n      display: none; }\n    .add-button-exit:hover img:last-child {\n      display: inline-block; }\n\n.delete-contact {\n  color: white;\n  border-radius: 5px;\n  border: none;\n  font-weight: bold;\n  font-size: 20px;\n  padding: 10px;\n  width: 120px;\n  background-color: #cc3615;\n  width: 200px; }\n  .delete-contact:hover {\n    background-color: #3498db;\n    cursor: pointer;\n    background-color: #d76f53; }\n\n.follow-up-label {\n  display: flex;\n  align-items: center;\n  position: absolute;\n  right: 20px;\n  float: right; }\n\n.show-followup-list-button {\n  cursor: pointer;\n  margin-left: 10px;\n  right: 30px;\n  width: 40px; }\n\n.search {\n  display: block;\n  text-align: center;\n  font-size: 25px;\n  margin: auto;\n  margin-bottom: 15px; }\n\n@media screen and (max-width: 930px) and (min-width: 645px) {\n  h1 {\n    font-size: 45px; }\n  .active-user span {\n    font-size: 22px;\n    font-style: italic; }\n  .add-contact-button {\n    position: absolute;\n    right: 60px;\n    top: 15px;\n    float: right;\n    background-color: white;\n    color: #88BBD6;\n    border-radius: 15px;\n    border: none; }\n  .contact-Container {\n    text-align: center;\n    margin-left: 8%;\n    margin-right: 8%; } }\n\n.contact-Container .contact-card-for-each-contact .fullname {\n  font-size: 32px;\n  margin-bottom: 20px; }\n\n.contact-Container .contact-card-for-each-contact .expanded {\n  height: auto; }\n\n.submit-new-contact-button {\n  color: white;\n  border-radius: 5px;\n  border: none;\n  font-weight: bold;\n  font-size: 20px;\n  padding: 10px;\n  width: 120px;\n  width: 300px; }\n  .submit-new-contact-button:hover {\n    background-color: #3498db;\n    cursor: pointer; }\n\n.followup-button {\n  color: white;\n  border-radius: 5px;\n  border: none;\n  font-weight: bold;\n  font-size: 20px;\n  padding: 10px;\n  width: 120px;\n  width: 200px; }\n\n@media screen and (max-width: 645px) {\n  header {\n    height: 200px; }\n  h1 {\n    font-size: 35px;\n    margin-top: 10px;\n    margin-bottom: 20px; }\n  .add-contact-button {\n    top: 83px;\n    right: 22px;\n    position: absolute; }\n  .active-user .auth-button {\n    position: absolute;\n    top: 90px; }\n  .active-user .greeting {\n    position: relative;\n    top: 80px;\n    font-size: 20px; }\n  .contact-Container {\n    text-align: center;\n    margin-left: 8%;\n    margin-right: 8%; }\n  .add-image-wrapper {\n    display: block;\n    cursor: pointer;\n    text-align: center;\n    vertical-align: top;\n    right: 50px;\n    top: 20px;\n    width: 180px;\n    margin: 20px auto 20px auto; }\n    .add-image-wrapper img {\n      border-radius: 150px;\n      width: 180px; }\n  .contact-Container .image {\n    display: block;\n    position: static; }\n  .contact-Container .contact-card-for-each-contact .fullname {\n    text-align: left;\n    font-size: 24px;\n    max-width: 200px; }\n  .contact-Container .contact-card-top-buttons-container img {\n    height: 20px;\n    width: 20px; }\n  .follow-up-label {\n    align-items: center;\n    justify-content: center;\n    position: static;\n    display: flex;\n    margin-bottom: 10px;\n    right: 20px;\n    float: none; } }\n", ""]);
 	
 	// exports
 

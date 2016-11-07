@@ -10,7 +10,7 @@ $breakpoint2: 645px;
 
     .active-user {
       span {
-        font-size: 16px;
+        font-size: 22px;
         font-style: italic;
       }
       .auth-button {
@@ -90,6 +90,7 @@ $breakpoint2: 645px;
   .active-user .greeting {
     position: relative;
     top: 80px;
+    font-size: 20px;
   }
 
 

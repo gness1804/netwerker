@@ -30,8 +30,9 @@ h1 {
 .active-user {
   text-align: center;
     span {
-      font-size: 16px;
+      font-size: 22px;
       font-style: italic;
+      font-weight: bold;
     }
     .auth-button {
       @include button-standard;
@@ -44,7 +45,7 @@ h1 {
 
 
       &:hover {
-    
+
 
       }
 
@@ -52,11 +53,11 @@ h1 {
 } //end of active-user
 
 .signed-in {
-  background-color: red;
+  background-color: #f64747;
 }
 
 .signed-out {
-  background-color: green;
+  background-color: #00aa55;
 }
 
 .add-contact-button {

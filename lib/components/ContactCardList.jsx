@@ -85,6 +85,7 @@ export default class ContactCardList extends Component {
         <input
           className="search"
           placeholder="search"
+          aria-label="Search Contacts"
           onChange={(e) => {
             this.searchContacts(e);
           }}
