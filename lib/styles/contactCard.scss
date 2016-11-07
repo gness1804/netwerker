@@ -9,7 +9,8 @@
     background-color: white;
     position: relative;
     border: 2px solid $contact-card-border;
-    border-radius: 5px;
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 5px 5px 0px 0px;
     padding: 10px;
     // margin: 5px;
   }
@@ -22,12 +23,12 @@
   }
 
   .contact-card-top-buttons-container {
-    float: right;
-
+    position: absolute;
+    right: 10px;
     img {
       cursor: pointer;
       height: 30px;
-      margin: 0 4px;
+      margin: 0 5px;
       width: 30px;
     }
 
@@ -37,9 +38,6 @@
     display: none;
   }
 
-  .add-image-label{
-
-  }
 
   .flagged-for-followup-button, .not-flagged-for-followup-button {
     cursor: pointer;
@@ -55,31 +53,30 @@
       to {height: 40px;}
   }
 
-  .contracted{
+
+
+  .contracted {
     animation-name: contract;
     animation-duration: .5s;
     height: 40px;
     z-index: 99;
   }
 
-  .expanded {
+  .contact-card-for-each-contact .expanded {
     animation-name: expand;
     animation-duration: 1s;
     z-index: 1;
     div{
-      margin: 5px;
+      margin-bottom: 8px;
     }
 
-    .fullname {
-      font-weight: 500;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    margin-left: 20px;
     height: auto;
     text-align: left;
 
+  }
+
+  .invert{
+    transform: rotate(180deg);
   }
 
   .label {
@@ -93,4 +90,18 @@
     position: absolute;
     width: 220px;
   }
+}
+
+.fullname {
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.input-field {
+  margin-bottom: 15px;
+}
+
+.submit-new-contact-button {
+  margin-top: 20px;
 }

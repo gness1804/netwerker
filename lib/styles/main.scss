@@ -39,17 +39,29 @@ h1 {
       position: absolute;
       top: 20px;
       left: 20px;
-      background-color: $darkerblue;
+
+
+
 
       &:hover {
-        @include button-standard-hover;
+    
+
       }
 
     }
 } //end of active-user
 
+.signed-in {
+  background-color: red;
+}
+
+.signed-out {
+  background-color: green;
+}
+
 .add-contact-button {
   @include add-contact-button;
+  outline: none;
 
   img {
 
@@ -80,6 +92,7 @@ h1 {
 }
 
 .add-button-exit{
+    outline: none;
     -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
     transform: rotate(45deg);
     // animation-name: rotate;
@@ -99,6 +112,7 @@ h1 {
 .delete-contact {
   @include button-standard;
   background-color: $button-alarm-color;
+  width: 200px;
 
   &:hover {
     @include button-standard-hover;
@@ -123,7 +137,7 @@ h1 {
 }
 .search {
   display: block;
-  width: 300px;
+  // width: 300px;
   text-align: center;
   font-size: 25px;
   margin: auto;

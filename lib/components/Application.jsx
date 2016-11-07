@@ -79,7 +79,8 @@ class Application extends Component {
     const { user } = this.state;
     let pageDisplay;
     let addNewContactClass;
-    let addNewContactClassHover
+    let addNewContactClassHover;
+    // let auth-button;
 
     if (this.state.showAddForm) {
       addNewContactClass = "add-contact-img add-button-exit"
@@ -114,21 +115,25 @@ class Application extends Component {
             Netwerker
           </h1>
           <div className="active-user">
-            {user ?
+            {user ? <div>
               <span className="greeting" title={`Logged in as ${user.email}`}>
                 Hi,&nbsp;
                 <span className="bold">
                   {user.displayName}
                 </span>
-                <button
-                  className="auth-button button"
-                  onClick={() => signOut()}
-                >Sign Out
-                </button>
               </span>
+
+              <button
+                className= "signed-in auth-button"
+                // {auth-button}
+                onClick={() => signOut()}
+              >Sign Out
+              </button>
+              </div>
             :
               <button
-                className="auth-button"
+                className= "signed-out auth-button"
+                // {auth-button}
                 onClick={() => signIn()}
               >
               Sign In

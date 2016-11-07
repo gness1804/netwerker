@@ -30,12 +30,19 @@ $breakpoint2: 645px;
 
     }
 
-    .contact-card-for-each-contact {
+    .contact-Container .contact-card-for-each-contact {
+      // height: 500px;
 
       .fullname {
         font-size: 32px;
         margin-bottom: 20px;
+        // max-width: 250px;
       }
+
+      .expanded {
+        height: auto;
+      }
+
 
     }
 
@@ -58,11 +65,33 @@ $breakpoint2: 645px;
 
 @media screen and (max-width: $breakpoint2) {
 
+  header {
+    height: 200px;
+  }
   h1 {
     font-size: 35px;
     margin-top: 10px;
     margin-bottom: 20px;
+
   }
+
+
+  .add-contact-button {
+    top: 83px;
+    right: 22px;
+    position: absolute;
+  }
+
+  .active-user .auth-button {
+    position: absolute;
+    top: 90px;
+  }
+
+  .active-user .greeting {
+    position: relative;
+    top: 80px;
+  }
+
 
   .contact-Container {
     text-align: center;
@@ -82,7 +111,25 @@ $breakpoint2: 645px;
     img{
       border-radius: 150px;
       width: 180px;
+
     }
+  }
+
+  .contact-Container .image {
+    display: block;
+    position: static;
+
+  }
+
+  .contact-Container .contact-card-for-each-contact .fullname {
+    text-align: left;
+    font-size: 24px;
+    max-width: 200px;
+  }
+
+  .contact-Container .contact-card-top-buttons-container img {
+    height: 20px;
+    width: 20px;
   }
 
   .follow-up-label{

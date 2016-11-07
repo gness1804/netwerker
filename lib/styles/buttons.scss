@@ -3,7 +3,7 @@
 $button-background: $darkerblue;
 
 @mixin button-standard {
-  background-color: $button-background;
+  // background-color: $button-background;
   color: white;
   border-radius: 5px;
   border: none;
@@ -19,8 +19,8 @@ $button-background: $darkerblue;
 
 @mixin add-contact-button {
   position: absolute;
-  right: 50px;
-  top: 20px;
+  right: 60px;
+  top: 15px;
   float: right;
   background-color: white;
   color: #88BBD6;
