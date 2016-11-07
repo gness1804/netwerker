@@ -54,7 +54,9 @@ export default class ContactCard extends Component {
           socialMedia, notes, followup, groups,
         } = this.props;
     let display;
+    let expandButtonClass;
     if (this.state.expanded) {
+      expandButtonClass = 'expand-button invert';
       display = (<div className="expanded">
         <div className="fullname firstName lastName">
           <span className="label"></span>
@@ -132,6 +134,7 @@ export default class ContactCard extends Component {
         </div>
       </div>);
     } else {
+      expandButtonClass = 'expand-button';
       display = (
         <div
           className="fullname firstName lastName contracted"
@@ -185,7 +188,9 @@ export default class ContactCard extends Component {
           />
           <img
             src="../images/thin-down.svg"
-            alt="Icon to show that user can expand the contact card." className="expand-button"
+            alt="Icon to show that user can expand the contact card."
+            // className="expand-button"
+            className={expandButtonClass}
             onClick={() => this.toggleExpand()}
           />
         </div>
