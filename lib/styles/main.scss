@@ -50,6 +50,7 @@ h1 {
 
 .add-contact-button {
   @include add-contact-button;
+  outline: none;
 
   img {
 
@@ -80,6 +81,7 @@ h1 {
 }
 
 .add-button-exit{
+    outline: none;
     -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
     transform: rotate(45deg);
     // animation-name: rotate;
