@@ -7,6 +7,7 @@ import Application from '../lib/components/Application';
 import NewContactForm from '../lib/components/NewContactForm';
 import ContactCard from '../lib/components/ContactCard';
 import ContactCardList from '../lib/components/ContactCardList';
+import contactList from './helpers/fake-contacts.js';
 
 describe("application", ()=>{
   it("should render as a div", ()=>{
@@ -32,39 +33,12 @@ describe("NewContactForm", ()=>{
     cellNumberInput.simulate('change', {target: {value: '99999999'}});
     assert.strictEqual(wrapper.state().numbers.cell, '99999999');
   });
-  it('should change the state of followup when user clicks show followup button', () => {
-    const wrapper = mount(<NewContactForm numbers={{}} emails={{}} socialMedia={{}} fileReaderTest={"test"}/>);
-    const followupButton = wrapper.find('.not-flagged-for-followup-button');
-    wrapper.state().followup = false;
-    followupButton.simulate('click');
-    assert.strictEqual(wrapper.state('followup'), true);
-  });
+
 }); // end of describe NewContactForm
 
 describe("ContactCard", () => {
-  const newContact = {
-      firstName: 'John',
-      lastName: 'Cleese',
-      companyName: 'Monty Python',
-      numbers: {
-        cell: 44,
-        work: 454,
-        home: 46
-      },
-      emails: {
-        primary: 'john@schoolofsillywalks.com',
-        secondary: 'john@spanishinquisition.org'
-      },
-      socialMedia: {
-        facebook: 'john_cleese_fb',
-        twitter: '@johncleese',
-        linkedIn: 'jcleese',
-        github: 'jcleese',
-        instagram: 'j-cleese-photos'
-      },
-      notes: 'I am the best actor from Monty Python.',
-      image: 'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550'
-  };
+  console.log(contactList);
+  const newContact = contactList[0];
   it("should display contact info when user enters it", () =>{
 
     const wrapper = mount(<ContactCard {...newContact} test = {true}/>);
