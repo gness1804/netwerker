@@ -31,6 +31,7 @@ $breakpoint2: 645px;
     }
 
     .contact-card-for-each-contact {
+      height: 500px;
 
       .fullname {
         font-size: 32px;
@@ -82,13 +83,20 @@ $breakpoint2: 645px;
     img{
       border-radius: 150px;
       width: 180px;
+
     }
+  }
+
+  .contact-Container .image {
+    display: block;
+    position: static;
+
   }
 
   .fullname {
     text-align: left;
   }
-  
+
   .follow-up-label{
     align-items: center;
     justify-content: center;
