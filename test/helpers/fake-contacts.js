@@ -19,7 +19,8 @@ const contactList = [{
       instagram: 'j-cleese-photos'
     },
     notes: 'I am the best actor from Monty Python.',
-    image: 'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550'
+    image: 'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550',
+    followup: true,
 },
 {
     firstName: 'Big',
@@ -42,7 +43,8 @@ const contactList = [{
       instagram: 'hotshot-photos'
     },
     notes: 'Blah Blah Blah.',
-    image: 'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550'
+    image: 'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550',
+    followup: false,
   }];
 
   export default contactList;
