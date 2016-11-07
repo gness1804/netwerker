@@ -114,18 +114,20 @@ class Application extends Component {
             Netwerker
           </h1>
           <div className="active-user">
-            {user ?
+            {user ? <div>
               <span className="greeting" title={`Logged in as ${user.email}`}>
                 Hi,&nbsp;
                 <span className="bold">
                   {user.displayName}
                 </span>
-                <button
-                  className="auth-button button"
-                  onClick={() => signOut()}
-                >Sign Out
-                </button>
               </span>
+
+              <button
+                className="auth-button button"
+                onClick={() => signOut()}
+              >Sign Out
+              </button>
+              </div>
             :
               <button
                 className="auth-button"

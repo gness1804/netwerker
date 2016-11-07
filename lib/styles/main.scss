@@ -101,6 +101,7 @@ h1 {
 .delete-contact {
   @include button-standard;
   background-color: $button-alarm-color;
+  width: 200px;
 
   &:hover {
     @include button-standard-hover;
@@ -125,7 +126,7 @@ h1 {
 }
 .search {
   display: block;
-  width: 300px;
+  // width: 300px;
   text-align: center;
   font-size: 25px;
   margin: auto;

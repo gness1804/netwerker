@@ -65,11 +65,33 @@ $breakpoint2: 645px;
 
 @media screen and (max-width: $breakpoint2) {
 
+  header {
+    height: 200px;
+  }
   h1 {
     font-size: 35px;
     margin-top: 10px;
     margin-bottom: 20px;
+
   }
+
+
+  .add-contact-button {
+    top: 83px;
+    right: 22px;
+    position: absolute;
+  }
+
+  .active-user .auth-button {
+    position: absolute;
+    top: 90px;
+  }
+
+  .active-user .greeting {
+    position: relative;
+    top: 80px;
+  }
+
 
   .contact-Container {
     text-align: center;

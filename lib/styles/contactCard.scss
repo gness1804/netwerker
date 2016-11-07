@@ -38,9 +38,6 @@
     display: none;
   }
 
-  .add-image-label{
-
-  }
 
   .flagged-for-followup-button, .not-flagged-for-followup-button {
     cursor: pointer;
@@ -99,4 +96,12 @@
   font-weight: 500;
   margin-bottom: 20px;
   text-align: center;
+}
+
+.input-field {
+  margin-bottom: 15px;
+}
+
+.submit-new-contact-button {
+  margin-top: 20px;
 }
