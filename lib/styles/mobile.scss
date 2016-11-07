@@ -36,6 +36,7 @@ $breakpoint2: 645px;
       .fullname {
         font-size: 32px;
         margin-bottom: 20px;
+        // max-width: 250px;
       }
 
       .expanded {
@@ -98,8 +99,14 @@ $breakpoint2: 645px;
 
   }
 
-  .fullname {
+  .contact-Container .contact-card-for-each-contact .fullname {
     text-align: left;
+    font-size: 24px;
+  }
+
+  .contact-Container .contact-card-top-buttons-container img {
+    height: 20px;
+    width: 20px;
   }
 
   .follow-up-label{
