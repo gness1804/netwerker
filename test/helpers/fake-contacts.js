@@ -3,9 +3,9 @@ const contactList = [{
     lastName: 'Cleese',
     companyName: 'Monty Python',
     numbers: {
-      cell: 44,
-      work: 454,
-      home: 46
+      cell: '44',
+      work: '454',
+      home: '46'
     },
     emails: {
       primary: 'john@schoolofsillywalks.com',
@@ -26,9 +26,9 @@ const contactList = [{
     lastName: 'Showman',
     companyName: 'Hollywood',
     numbers: {
-      cell: 4444,
-      work: 455554,
-      home: 46555
+      cell: '4444',
+      work: '455554',
+      home: '46555'
     },
     emails: {
       primary: 'big@bigman.com',

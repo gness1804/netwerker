@@ -37,7 +37,6 @@ describe("NewContactForm", ()=>{
 }); // end of describe NewContactForm
 
 describe("ContactCard", () => {
-  console.log(contactList);
   const newContact = contactList[0];
   it("should display contact info when user enters it", () =>{
 
@@ -82,6 +81,14 @@ describe("ContactCard", () => {
 }); // end of describe ContactCard
 
 describe('ContactCardList', () => {
+  // const newContact = contactList[0];
+  it('should allow search of contact cards', ()=>{
+    const wrapper = mount(<ContactCardList contacts={contactList} />);
+    const search = wrapper.find('.search');
+    search.simulate('change', { target: { value: 'Cleese' } });
+    assert.strictEqual(wrapper.find('.contact-card-for-each-contact').length, 1);
+    assert.strictEqual(wrapper.find('.fullname').text(), 'John Cleese');
+  });
   it('should change the state when user enters input into the search field', () => {
     const wrapper = mount(<ContactCardList contacts={['Hello', 'world']} />);
     const search = wrapper.find('.search');
