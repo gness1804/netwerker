@@ -7,6 +7,7 @@ import Application from '../lib/components/Application';
 import NewContactForm from '../lib/components/NewContactForm';
 import ContactCard from '../lib/components/ContactCard';
 import ContactCardList from '../lib/components/ContactCardList';
+import contactList from './helpers/fake-contacts.js';
 
 describe("application", ()=>{
   it("should render as a div", ()=>{
@@ -32,39 +33,11 @@ describe("NewContactForm", ()=>{
     cellNumberInput.simulate('change', {target: {value: '99999999'}});
     assert.strictEqual(wrapper.state().numbers.cell, '99999999');
   });
-  it('should change the state of followup when user clicks show followup button', () => {
-    const wrapper = mount(<NewContactForm numbers={{}} emails={{}} socialMedia={{}} fileReaderTest={"test"}/>);
-    const followupButton = wrapper.find('.not-flagged-for-followup-button');
-    wrapper.state().followup = false;
-    followupButton.simulate('click');
-    assert.strictEqual(wrapper.state('followup'), true);
-  });
+
 }); // end of describe NewContactForm
 
 describe("ContactCard", () => {
-  const newContact = {
-      firstName: 'John',
-      lastName: 'Cleese',
-      companyName: 'Monty Python',
-      numbers: {
-        cell: 44,
-        work: 454,
-        home: 46
-      },
-      emails: {
-        primary: 'john@schoolofsillywalks.com',
-        secondary: 'john@spanishinquisition.org'
-      },
-      socialMedia: {
-        facebook: 'john_cleese_fb',
-        twitter: '@johncleese',
-        linkedIn: 'jcleese',
-        github: 'jcleese',
-        instagram: 'j-cleese-photos'
-      },
-      notes: 'I am the best actor from Monty Python.',
-      image: 'http://theprojectheal.org/wp-content/uploads/2016/01/Aaaaaawwwwwwwwww-Sweet-puppies-9415255-1600-1200.jpg?x79550'
-  };
+  const newContact = contactList[0];
   it("should display contact info when user enters it", () =>{
 
     const wrapper = mount(<ContactCard {...newContact} test = {true}/>);
@@ -98,16 +71,17 @@ describe("ContactCard", () => {
     cell = wrapper.find('.cell');
     assert.strictEqual(cell.length, 0)
   });
-  // it('should delete a contact when user presses delete contact', () => {
-  //   const wrapper = mount(<ContactCard {...newContact} test={true}/>);
-  //   const editButton = wrapper.find('.edit-button');
-  //   editButton.simulate('click');
-  //   const deleteButton = wrapper.find('.delete-contact');
-  //   assert.strictEqual(wrapper.find('.cell').length, 0);
-  // });
 }); // end of describe ContactCard
 
 describe('ContactCardList', () => {
+  // const newContact = contactList[0];
+  it('should allow search of contact cards', ()=>{
+    const wrapper = mount(<ContactCardList contacts={contactList} />);
+    const search = wrapper.find('.search');
+    search.simulate('change', { target: { value: 'Cleese' } });
+    assert.strictEqual(wrapper.find('.contact-card-for-each-contact').length, 1);
+    assert.strictEqual(wrapper.find('.fullname').text(), 'John Cleese');
+  });
   it('should change the state when user enters input into the search field', () => {
     const wrapper = mount(<ContactCardList contacts={['Hello', 'world']} />);
     const search = wrapper.find('.search');
@@ -124,5 +98,11 @@ describe('ContactCardList', () => {
     const wrapper = mount(<ContactCardList contacts={[{firstName: 'Jerry', lastName: 'Seinfeld'}, {firstName: 'Bill', lastName: 'Clinton'}]} />);
     assert.strictEqual(wrapper.props().contacts.length, 2);
     assert.strictEqual(wrapper.find('.contact-card-container').text(), 'Show:Bill ClintonJerry Seinfeld');
+  });
+  it('should show only flagged contacts when user toggles flag on', ()=>{
+    const wrapper = mount(<ContactCardList contacts={contactList} />);
+    assert.strictEqual(wrapper.find('.contact-card-for-each-contact').length, 2);
+    wrapper.find('.show-followup-list-button').simulate('click');
+    assert.strictEqual(wrapper.find('.contact-card-for-each-contact').length, 1);
   });
 });
