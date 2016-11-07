@@ -3,7 +3,7 @@
 $button-background: $darkerblue;
 
 @mixin button-standard {
-  background-color: $button-background;
+  // background-color: $button-background;
   color: white;
   border-radius: 5px;
   border: none;

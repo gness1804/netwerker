@@ -39,14 +39,25 @@ h1 {
       position: absolute;
       top: 20px;
       left: 20px;
-      background-color: $darkerblue;
+
+
+
 
       &:hover {
-        @include button-standard-hover;
+    
+
       }
 
     }
 } //end of active-user
+
+.signed-in {
+  background-color: red;
+}
+
+.signed-out {
+  background-color: green;
+}
 
 .add-contact-button {
   @include add-contact-button;

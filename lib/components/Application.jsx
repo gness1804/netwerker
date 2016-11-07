@@ -79,7 +79,8 @@ class Application extends Component {
     const { user } = this.state;
     let pageDisplay;
     let addNewContactClass;
-    let addNewContactClassHover
+    let addNewContactClassHover;
+    // let auth-button;
 
     if (this.state.showAddForm) {
       addNewContactClass = "add-contact-img add-button-exit"
@@ -123,14 +124,16 @@ class Application extends Component {
               </span>
 
               <button
-                className="auth-button button"
+                className= "signed-in auth-button"
+                // {auth-button}
                 onClick={() => signOut()}
               >Sign Out
               </button>
               </div>
             :
               <button
-                className="auth-button"
+                className= "signed-out auth-button"
+                // {auth-button}
                 onClick={() => signIn()}
               >
               Sign In
