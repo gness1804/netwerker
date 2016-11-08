@@ -28904,7 +28904,6 @@
 	      var pageDisplay = void 0;
 	      var addNewContactClass = void 0;
 	      var addNewContactClassHover = void 0;
-	      // let auth-button;
 	
 	      if (this.state.showAddForm) {
 	        addNewContactClass = "add-contact-img add-button-exit";
@@ -28958,9 +28957,8 @@
 	              _react2.default.createElement(
 	                'button',
 	                {
-	                  className: 'signed-in auth-button'
-	                  // {auth-button}
-	                  , onClick: function onClick() {
+	                  className: 'signed-in auth-button',
+	                  onClick: function onClick() {
 	                    return (0, _firebase.signOut)();
 	                  }
 	                },
@@ -28969,9 +28967,8 @@
 	            ) : _react2.default.createElement(
 	              'button',
 	              {
-	                className: 'signed-out auth-button'
-	                // {auth-button}
-	                , onClick: function onClick() {
+	                className: 'signed-out auth-button',
+	                onClick: function onClick() {
 	                  return (0, _firebase.signIn)();
 	                }
 	              },
@@ -47414,7 +47411,7 @@
 	    var _this = _possibleConstructorReturn(this, (NewContactForm.__proto__ || Object.getPrototypeOf(NewContactForm)).call(this, props));
 	
 	    _this.componentDidMount = function () {
-	      if (_this.state.reader !== 'test') {
+	      if (_this.state.reader.constructor.name === 'FileReader') {
 	        _this.state.reader.addEventListener('load', function () {
 	          _this.setState({ imgSource: _this.state.reader.result });
 	        });
@@ -47503,7 +47500,8 @@
 	            placeholder: 'First Name',
 	            type: 'text',
 	            handleChange: _this.updateState,
-	            name: 'firstName'
+	            name: 'firstName',
+	            'aria-label': 'firstName'
 	          }),
 	          _react2.default.createElement(_InputField2.default, {
 	            className: 'lastName-Input input-field',
@@ -47511,7 +47509,8 @@
 	            placeholder: 'Last Name',
 	            type: 'text',
 	            handleChange: _this.updateState,
-	            name: 'lastName'
+	            name: 'lastName',
+	            'aria-label': 'lastName'
 	          }),
 	          _react2.default.createElement(_InputField2.default, {
 	            className: 'companyName-Input input-field',
@@ -47519,7 +47518,8 @@
 	            placeholder: 'Company Name',
 	            type: 'text',
 	            handleChange: _this.updateState,
-	            name: 'companyName'
+	            name: 'companyName',
+	            'aria-label': 'companyName'
 	          }),
 	          _react2.default.createElement(_InputField2.default, {
 	            className: 'title-Input input-field',
@@ -47527,7 +47527,8 @@
 	            placeholder: 'Title',
 	            type: 'text',
 	            handleChange: _this.updateState,
-	            name: 'title'
+	            name: 'title',
+	            'aria-label': 'title'
 	          }),
 	          _react2.default.createElement(_InputField2.default, {
 	            className: 'website-Input input-field',
@@ -47535,16 +47536,18 @@
 	            placeholder: 'Company Website',
 	            type: 'text',
 	            handleChange: _this.updateState,
-	            name: 'website'
+	            name: 'website',
+	            'aria-label': 'website'
 	          }),
 	          _react2.default.createElement(_InputField2.default, {
 	            className: 'cellNumber-Input input-field',
 	            value: _this.state.numbers.cell,
-	            placeholder: 'Cell Number',
+	            placeholder: 'Primary Cell Number',
 	            type: 'text',
 	            handleChange: _this.updateStateObject,
 	            objName: 'numbers',
-	            name: 'cell'
+	            name: 'cell',
+	            'aria-label': 'cell'
 	          }),
 	          _react2.default.createElement(_InputField2.default, {
 	            className: 'workNumber-Input input-field',
@@ -47553,7 +47556,8 @@
 	            type: 'text',
 	            handleChange: _this.updateStateObject,
 	            objName: 'numbers',
-	            name: 'work'
+	            name: 'work',
+	            'aria-label': 'work'
 	          }),
 	          _react2.default.createElement(_InputField2.default, {
 	            className: 'homeNumber-Input input-field',
@@ -47562,7 +47566,8 @@
 	            type: 'text',
 	            handleChange: _this.updateStateObject,
 	            objName: 'numbers',
-	            name: 'home'
+	            name: 'home',
+	            'aria-label': 'home'
 	          }),
 	          _react2.default.createElement(_InputField2.default, {
 	            className: 'primaryEmail-Input input-field',
@@ -47571,7 +47576,8 @@
 	            type: 'text',
 	            handleChange: _this.updateStateObject,
 	            objName: 'emails',
-	            name: 'primary'
+	            name: 'primary',
+	            'aria-label': 'primary-email'
 	          }),
 	          _react2.default.createElement(_InputField2.default, {
 	            className: 'secondaryEmail-Input input-field',
@@ -47580,7 +47586,8 @@
 	            type: 'text',
 	            handleChange: _this.updateStateObject,
 	            objName: 'emails',
-	            name: 'secondary'
+	            name: 'secondary',
+	            'aria-label': 'secondary-email'
 	          }),
 	          _react2.default.createElement(_InputField2.default, {
 	            className: 'facebook-Input input-field',
@@ -47589,7 +47596,8 @@
 	            type: 'text',
 	            handleChange: _this.updateStateObject,
 	            objName: 'socialMedia',
-	            name: 'facebook'
+	            name: 'facebook',
+	            'aria-label': 'facebook'
 	          }),
 	          _react2.default.createElement(_InputField2.default, {
 	            className: 'twitter-Input input-field',
@@ -47598,7 +47606,8 @@
 	            type: 'text',
 	            handleChange: _this.updateStateObject,
 	            objName: 'socialMedia',
-	            name: 'twitter'
+	            name: 'twitter',
+	            'aria-label': 'twitter'
 	          }),
 	          _react2.default.createElement(_InputField2.default, {
 	            className: 'linkedIn-Input input-field',
@@ -47607,7 +47616,8 @@
 	            type: 'text',
 	            handleChange: _this.updateStateObject,
 	            objName: 'socialMedia',
-	            name: 'linkedIn'
+	            name: 'linkedIn',
+	            'aria-label': 'linkedIn'
 	          }),
 	          _react2.default.createElement(_InputField2.default, {
 	            className: 'github-Input input-field',
@@ -47616,7 +47626,8 @@
 	            type: 'text',
 	            handleChange: _this.updateStateObject,
 	            objName: 'socialMedia',
-	            name: 'github'
+	            name: 'github',
+	            'aria-label': 'github'
 	          }),
 	          _react2.default.createElement(_InputField2.default, {
 	            className: 'instagram-Input input-field',
@@ -47625,7 +47636,8 @@
 	            type: 'text',
 	            handleChange: _this.updateStateObject,
 	            objName: 'socialMedia',
-	            name: 'instagram'
+	            name: 'instagram',
+	            'aria-label': 'instagram'
 	          }),
 	          _react2.default.createElement(
 	            'textarea',
@@ -47637,7 +47649,8 @@
 	                return _this.updateState(e, 'notes');
 	              },
 	              type: 'text',
-	              name: 'notes'
+	              name: 'notes',
+	              'aria-label': 'notes'
 	            },
 	            'Notes...'
 	          )
@@ -47652,7 +47665,8 @@
 	            onChange: function onChange(e) {
 	              _this.addImage(e);
 	            },
-	            accept: 'image/*'
+	            accept: 'image/*',
+	            'aria-label': 'image'
 	          }),
 	          _react2.default.createElement(
 	            'p',
@@ -47704,7 +47718,7 @@
 	      imgSource: _this.props.image || ''
 	    };
 	    return _this;
-	  } // end of toggleFollowup
+	  }
 	
 	  return NewContactForm;
 	}(_react.Component);
@@ -48068,7 +48082,7 @@
 	          { className: 'expanded' },
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'fullname firstName lastName' },
+	            { className: 'fullname firstName lastName', 'aria-label': 'fullname' },
 	            _react2.default.createElement('span', { className: 'label' }),
 	            firstName,
 	            ' ',
@@ -48079,7 +48093,7 @@
 	            null,
 	            website ? _react2.default.createElement(
 	              'div',
-	              { className: 'companyName' },
+	              { className: 'companyName', 'aria-label': 'companyName' },
 	              _react2.default.createElement(
 	                'span',
 	                { className: 'label' },
@@ -48092,7 +48106,7 @@
 	              )
 	            ) : _react2.default.createElement(
 	              'div',
-	              { className: 'companyName' },
+	              { className: 'companyName', 'aria-label': 'companyName' },
 	              _react2.default.createElement(
 	                'span',
 	                { className: 'label' },
@@ -48104,7 +48118,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'title' },
+	            { className: 'title', 'aria-label': 'title' },
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'label' },
@@ -48114,7 +48128,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'cell' },
+	            { className: 'cell', 'aria-label': 'cell' },
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'label' },
@@ -48124,7 +48138,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'home' },
+	            { className: 'home', 'aria-label': 'home' },
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'label' },
@@ -48134,7 +48148,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'work' },
+	            { className: 'work', 'aria-label': 'work' },
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'label' },
@@ -48144,7 +48158,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'primary-email' },
+	            { className: 'primary-email', 'aria-label': 'primary-email' },
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'label' },
@@ -48154,7 +48168,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'secondary-email' },
+	            { className: 'secondary-email', 'aria-label': 'secondary-email' },
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'label' },
@@ -48164,7 +48178,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'facebook' },
+	            { className: 'facebook', 'aria-label': 'facebook' },
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'label' },
@@ -48174,7 +48188,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'twitter' },
+	            { className: 'twitter', 'aria-label': 'twitter' },
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'label' },
@@ -48184,7 +48198,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'linkedIn' },
+	            { className: 'linkedIn', 'aria-label': 'linkedIn' },
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'label' },
@@ -48194,7 +48208,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'github' },
+	            { className: 'github', 'aria-label': 'github' },
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'label' },
@@ -48204,7 +48218,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'instagram' },
+	            { className: 'instagram', 'aria-label': 'instagram' },
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'label' },
@@ -48214,7 +48228,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'notes' },
+	            { className: 'notes', 'aria-label': 'notes' },
 	            _react2.default.createElement(
 	              'span',
 	              { className: 'label' },
@@ -48224,12 +48238,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'groups' },
-	            groups
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'image-container' },
+	            { className: 'image-container', 'aria-label': 'image' },
 	            this.state.contactImgURL ? _react2.default.createElement('img', {
 	              alt: 'contact URL',
 	              className: 'image',
@@ -48366,7 +48375,7 @@
 	
 			_this.state = {};
 			return _this;
-		} //end of constructor
+		}
 	
 		_createClass(DeleteImageButton, [{
 			key: 'render',
@@ -48767,7 +48776,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".add-contact-img {\n  width: 50px; }\n\n.add-contact-img-hover {\n  cursor: pointer;\n  width: 50px; }\n\n.input-field-container {\n  position: relative;\n  text-align: center;\n  margin-top: 30px; }\n\n.input-field {\n  width: 275px;\n  font-size: 18px;\n  display: block;\n  margin: 5px;\n  border: none;\n  border-bottom: 1px dotted black; }\n\ntextarea {\n  width: 300px;\n  height: 120px; }\n\n.form-container {\n  display: inline-block; }\n\n.add-image-wrapper {\n  vertical-align: top;\n  display: inline-block;\n  cursor: pointer;\n  text-align: center;\n  margin-left: 20px;\n  width: 200px; }\n  .add-image-wrapper img {\n    border-radius: 150px;\n    width: 200px; }\n\n.submit-new-contact-button {\n  display: block;\n  margin: auto;\n  margin-bottom: 10px; }\n\n.greeting {\n  color: #3498db; }\n\n.contact-Container {\n  background-color: white;\n  position: relative;\n  text-align: center;\n  margin-left: 20%;\n  margin-right: 20%; }\n  .contact-Container .contact-card-for-each-contact {\n    background-color: white;\n    position: relative;\n    border: 2px solid #3498db;\n    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);\n    border-radius: 5px 5px 0px 0px;\n    padding: 10px; }\n  .contact-Container .empty-card {\n    position: relative;\n    background-color: white;\n    height: 300px;\n    z-index: 99; }\n  .contact-Container .contact-card-top-buttons-container {\n    position: absolute;\n    right: 10px; }\n    .contact-Container .contact-card-top-buttons-container img {\n      cursor: pointer;\n      height: 30px;\n      margin: 0 5px;\n      width: 30px; }\n  .contact-Container .add-image-button {\n    display: none; }\n  .contact-Container .flagged-for-followup-button, .contact-Container .not-flagged-for-followup-button {\n    cursor: pointer; }\n\n@keyframes expand {\n  from {\n    height: 40px; }\n  to {\n    height: 350px; } }\n\n@keyframes contract {\n  from {\n    height: 350px; }\n  to {\n    height: 40px; } }\n  .contact-Container .contracted {\n    animation-name: contract;\n    animation-duration: .5s;\n    height: 40px;\n    z-index: 99; }\n  .contact-Container .contact-card-for-each-contact .expanded {\n    animation-name: expand;\n    animation-duration: 1s;\n    z-index: 1;\n    height: auto;\n    text-align: left; }\n    .contact-Container .contact-card-for-each-contact .expanded div {\n      margin-bottom: 8px; }\n  .contact-Container .invert {\n    transform: rotate(180deg); }\n  .contact-Container .label {\n    color: #3498db;\n    font-weight: 300; }\n  .contact-Container .image {\n    top: 100px;\n    right: 60px;\n    position: absolute;\n    width: 220px; }\n\n.fullname {\n  font-weight: 500;\n  margin-bottom: 20px;\n  text-align: center; }\n\n.input-field {\n  margin-bottom: 15px; }\n\n.submit-new-contact-button {\n  margin-top: 20px; }\n\nhtml {\n  font-family: \"Roboto\", sans-serif;\n  color: #747474; }\n\nheader {\n  background: white;\n  border-bottom: 3px solid #CDCDCD;\n  height: 115px;\n  margin-bottom: 15px; }\n\nh1 {\n  color: #3498db;\n  font-size: 50px;\n  margin: auto;\n  text-align: center;\n  padding: 15px 0; }\n\n.active-user {\n  text-align: center; }\n  .active-user span {\n    font-size: 22px;\n    font-style: italic;\n    font-weight: bold; }\n  .active-user .auth-button {\n    color: white;\n    border-radius: 5px;\n    border: none;\n    font-weight: bold;\n    font-size: 20px;\n    padding: 10px;\n    width: 120px;\n    float: left;\n    position: absolute;\n    top: 20px;\n    left: 20px; }\n\n.signed-in {\n  background-color: #f64747; }\n\n.signed-out {\n  background-color: #00aa55; }\n\n.add-contact-button {\n  position: absolute;\n  right: 60px;\n  top: 15px;\n  float: right;\n  background-color: white;\n  color: #88BBD6;\n  border-radius: 15px;\n  border: none;\n  outline: none; }\n  .add-contact-button img:last-child {\n    display: none; }\n  .add-contact-button:hover img:first-child {\n    display: none; }\n  .add-contact-button:hover img:last-child {\n    display: inline-block; }\n\n@keyframes rotate {\n  from {\n    transform: rotate(0deg); }\n  to {\n    transform: rotate(45deg); } }\n\n.add-button-exit {\n  outline: none;\n  -webkit-transform: rotate(45deg);\n  /* Chrome, Safari, Opera */\n  transform: rotate(45deg); }\n  .add-button-exit:hover {\n    animation-name: rotate;\n    animation-duration: 0s; }\n    .add-button-exit:hover img:first-child {\n      display: none; }\n    .add-button-exit:hover img:last-child {\n      display: inline-block; }\n\n.delete-contact {\n  color: white;\n  border-radius: 5px;\n  border: none;\n  font-weight: bold;\n  font-size: 20px;\n  padding: 10px;\n  width: 120px;\n  background-color: #cc3615;\n  width: 200px; }\n  .delete-contact:hover {\n    background-color: #3498db;\n    cursor: pointer;\n    background-color: #d76f53; }\n\n.follow-up-label {\n  display: flex;\n  align-items: center;\n  position: absolute;\n  right: 20px;\n  float: right; }\n\n.show-followup-list-button {\n  cursor: pointer;\n  margin-left: 10px;\n  right: 30px;\n  width: 40px; }\n\n.search {\n  display: block;\n  text-align: center;\n  font-size: 25px;\n  margin: auto;\n  margin-bottom: 15px; }\n\n@media screen and (max-width: 930px) and (min-width: 645px) {\n  h1 {\n    font-size: 45px; }\n  .active-user span {\n    font-size: 22px;\n    font-style: italic; }\n  .add-contact-button {\n    position: absolute;\n    right: 60px;\n    top: 15px;\n    float: right;\n    background-color: white;\n    color: #88BBD6;\n    border-radius: 15px;\n    border: none; }\n  .contact-Container {\n    text-align: center;\n    margin-left: 8%;\n    margin-right: 8%; } }\n\n.contact-Container .contact-card-for-each-contact .fullname {\n  font-size: 32px;\n  margin-bottom: 20px; }\n\n.contact-Container .contact-card-for-each-contact .expanded {\n  height: auto; }\n\n.submit-new-contact-button {\n  color: white;\n  border-radius: 5px;\n  border: none;\n  font-weight: bold;\n  font-size: 20px;\n  padding: 10px;\n  width: 120px;\n  width: 300px; }\n  .submit-new-contact-button:hover {\n    background-color: #3498db;\n    cursor: pointer; }\n\n.followup-button {\n  color: white;\n  border-radius: 5px;\n  border: none;\n  font-weight: bold;\n  font-size: 20px;\n  padding: 10px;\n  width: 120px;\n  width: 200px; }\n\n@media screen and (max-width: 645px) {\n  header {\n    height: 200px; }\n  h1 {\n    font-size: 35px;\n    margin-top: 10px;\n    margin-bottom: 20px; }\n  .add-contact-button {\n    top: 83px;\n    right: 22px;\n    position: absolute; }\n  .active-user .auth-button {\n    position: absolute;\n    top: 90px; }\n  .active-user .greeting {\n    position: relative;\n    top: 80px;\n    font-size: 20px; }\n  .contact-Container {\n    text-align: center;\n    margin-left: 8%;\n    margin-right: 8%; }\n  .add-image-wrapper {\n    display: block;\n    cursor: pointer;\n    text-align: center;\n    vertical-align: top;\n    right: 50px;\n    top: 20px;\n    width: 180px;\n    margin: 20px auto 20px auto; }\n    .add-image-wrapper img {\n      border-radius: 150px;\n      width: 180px; }\n  .contact-Container .image {\n    display: block;\n    position: static; }\n  .contact-Container .contact-card-for-each-contact .fullname {\n    text-align: left;\n    font-size: 24px;\n    max-width: 200px; }\n  .contact-Container .contact-card-top-buttons-container img {\n    height: 20px;\n    width: 20px; }\n  .follow-up-label {\n    align-items: center;\n    justify-content: center;\n    position: static;\n    display: flex;\n    margin-bottom: 10px;\n    right: 20px;\n    float: none; } }\n", ""]);
+	exports.push([module.id, ".add-contact-img {\n  width: 50px; }\n\n.add-contact-img-hover {\n  cursor: pointer;\n  width: 50px; }\n\n.auth-button {\n  color: white;\n  border-radius: 5px;\n  border: none;\n  font-weight: normal;\n  font-size: 20px;\n  padding: 10px;\n  width: 120px;\n  float: left;\n  position: absolute;\n  top: 20px;\n  left: 20px; }\n\n.signed-in {\n  background-color: #d50a0a; }\n  .signed-in:hover {\n    cursor: pointer;\n    background-color: #bd0909; }\n\n.signed-out {\n  background-color: #00aa55; }\n  .signed-out:hover {\n    cursor: pointer;\n    background-color: #009148; }\n\n.add-contact-button {\n  position: absolute;\n  right: 60px;\n  top: 15px;\n  float: right;\n  background-color: white;\n  border-radius: 15px;\n  border: none;\n  outline: none; }\n  .add-contact-button img:last-child {\n    display: none; }\n  .add-contact-button:hover img:first-child {\n    display: none; }\n  .add-contact-button:hover img:last-child {\n    display: inline-block; }\n\n@keyframes rotate {\n  from {\n    transform: rotate(0deg); }\n  to {\n    transform: rotate(45deg); } }\n\n.add-button-exit {\n  outline: none;\n  -webkit-transform: rotate(45deg);\n  transform: rotate(45deg); }\n  .add-button-exit:hover {\n    cursor: pointer;\n    animation-name: rotate;\n    animation-duration: 0s; }\n    .add-button-exit:hover img:first-child {\n      display: none; }\n    .add-button-exit:hover img:last-child {\n      display: inline-block; }\n\n.submit-new-contact-button {\n  color: white;\n  border-radius: 5px;\n  border: none;\n  font-weight: normal;\n  font-size: 20px;\n  padding: 10px;\n  width: 120px;\n  background-color: #1b689b;\n  width: 300px;\n  display: block;\n  margin: 20px auto 20px auto; }\n  .submit-new-contact-button:hover {\n    cursor: pointer;\n    background-color: #175985; }\n\n.delete-contact {\n  color: white;\n  border-radius: 5px;\n  border: none;\n  font-weight: normal;\n  font-size: 20px;\n  padding: 10px;\n  width: 120px;\n  background-color: #d50a0a;\n  width: 200px; }\n  .delete-contact:hover {\n    cursor: pointer;\n    background-color: #bd0909; }\n\n.show-followup-list-button {\n  cursor: pointer;\n  margin-left: 10px;\n  right: 30px;\n  width: 40px; }\n\n.contact-card-top-buttons-container {\n  position: absolute;\n  right: 10px; }\n  .contact-card-top-buttons-container img {\n    cursor: pointer;\n    height: 30px;\n    margin: 0 5px;\n    width: 30px; }\n\n.add-image-button {\n  display: none; }\n\n.flagged-for-followup-button, .not-flagged-for-followup-button {\n  cursor: pointer; }\n\n.input-field-container {\n  position: relative;\n  text-align: center;\n  margin-top: 30px; }\n\n.input-field {\n  width: 275px;\n  font-size: 18px;\n  display: block;\n  margin: 5px 5px 15px 5px;\n  border: none;\n  border-bottom: 1px dotted black; }\n\ntextarea {\n  width: 300px;\n  height: 120px; }\n\n.form-container {\n  display: inline-block; }\n\n.add-image-wrapper {\n  vertical-align: top;\n  display: inline-block;\n  cursor: pointer;\n  text-align: center;\n  margin-left: 20px;\n  margin-top: 20px;\n  width: 200px; }\n  .add-image-wrapper img {\n    border-radius: 150px;\n    width: 200px; }\n\n.contact-Container {\n  background-color: white;\n  position: relative;\n  text-align: center;\n  margin-left: 20%;\n  margin-right: 20%; }\n  .contact-Container .contact-card-for-each-contact {\n    background-color: white;\n    position: relative;\n    border: 2px solid #1b689b;\n    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);\n    border-radius: 5px 5px 0px 0px;\n    padding: 10px; }\n  .contact-Container .empty-card {\n    position: relative;\n    background-color: white;\n    height: 300px;\n    z-index: 99; }\n\n@keyframes expand {\n  from {\n    height: 40px; }\n  to {\n    height: 350px; } }\n\n@keyframes contract {\n  from {\n    height: 350px; }\n  to {\n    height: 40px; } }\n  .contact-Container .contracted {\n    animation-name: contract;\n    animation-duration: .5s;\n    height: 40px;\n    z-index: 99; }\n  .contact-Container .contact-card-for-each-contact .expanded {\n    animation-name: expand;\n    animation-duration: 1s;\n    z-index: 1;\n    height: auto;\n    text-align: left; }\n    .contact-Container .contact-card-for-each-contact .expanded div {\n      margin-bottom: 8px; }\n  .contact-Container .invert {\n    transform: rotate(180deg); }\n  .contact-Container .label {\n    color: #1b689b;\n    font-weight: 300; }\n  .contact-Container .image {\n    top: 100px;\n    right: 60px;\n    position: absolute;\n    width: 220px; }\n\n.fullname {\n  font-weight: 500;\n  margin-bottom: 20px;\n  text-align: center; }\n\nhtml {\n  font-family: \"Roboto\", sans-serif;\n  color: #747474; }\n\nheader {\n  background: white;\n  border-bottom: 3px solid #CDCDCD;\n  height: 115px;\n  margin-bottom: 15px; }\n\nh1 {\n  color: #1b689b;\n  font-size: 50px;\n  margin: auto;\n  text-align: center;\n  padding: 15px 0; }\n\n.greeting {\n  color: #1b689b; }\n\n.active-user {\n  text-align: center; }\n  .active-user span {\n    font-size: 22px;\n    font-style: italic;\n    font-weight: normal; }\n\n.follow-up-label {\n  display: flex;\n  align-items: center;\n  position: absolute;\n  right: 20px;\n  float: right; }\n\n.search {\n  display: block;\n  text-align: center;\n  font-size: 25px;\n  margin: auto;\n  margin-bottom: 15px; }\n\n@media screen and (max-width: 930px) and (min-width: 645px) {\n  h1 {\n    font-size: 45px; }\n  .active-user span {\n    font-size: 22px;\n    font-style: italic; }\n  .add-contact-button {\n    position: absolute;\n    right: 60px;\n    top: 15px;\n    float: right;\n    background-color: white;\n    border-radius: 15px;\n    border: none; }\n  .contact-Container {\n    text-align: center;\n    margin-left: 8%;\n    margin-right: 8%; } }\n\n.contact-Container .contact-card-for-each-contact .fullname {\n  font-size: 32px;\n  margin-bottom: 20px; }\n\n.contact-Container .contact-card-for-each-contact .expanded {\n  height: auto; }\n\n.followup-button {\n  color: white;\n  border-radius: 5px;\n  border: none;\n  font-weight: normal;\n  font-size: 20px;\n  padding: 10px;\n  width: 120px;\n  width: 200px; }\n\n@media screen and (max-width: 645px) {\n  header {\n    height: 200px; }\n  h1 {\n    font-size: 35px;\n    margin-top: 10px;\n    margin-bottom: 20px; }\n  .add-contact-button {\n    top: 83px;\n    right: 22px;\n    position: absolute; }\n  .active-user .auth-button {\n    position: absolute;\n    top: 90px; }\n  .active-user .greeting {\n    position: relative;\n    top: 80px;\n    font-size: 20px; }\n  .contact-Container {\n    text-align: center;\n    margin-left: 8%;\n    margin-right: 8%; }\n  .add-image-wrapper {\n    display: block;\n    cursor: pointer;\n    text-align: center;\n    vertical-align: top;\n    right: 50px;\n    top: 20px;\n    width: 180px;\n    margin: 20px auto 20px auto; }\n    .add-image-wrapper img {\n      border-radius: 150px;\n      width: 180px; }\n  .contact-Container .image {\n    display: block;\n    position: static; }\n  .contact-Container .contact-card-for-each-contact .fullname {\n    text-align: left;\n    font-size: 24px;\n    max-width: 200px; }\n  .contact-Container .contact-card-top-buttons-container img {\n    height: 20px;\n    width: 20px; }\n  .follow-up-label {\n    align-items: center;\n    justify-content: center;\n    position: static;\n    display: flex;\n    margin-bottom: 10px;\n    right: 20px;\n    float: none; } }\n", ""]);
 	
 	// exports
 
