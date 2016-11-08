@@ -41,7 +41,8 @@ export default class ContactCardList extends Component {
           }
         }
       );
-        testResult = (includes(fullName.toLowerCase(), this.state.searchString.toLowerCase()) || testResult);
+        testResult = (includes(fullName.toLowerCase(),
+                      this.state.searchString.toLowerCase()) || testResult);
 
         return testResult;
       });
@@ -91,7 +92,9 @@ export default class ContactCardList extends Component {
           }}
         />
         {sortedList}
-        <div className="empty-card"></div>
+        <div
+          className="empty-card"
+        />
       </div>
     );
   }
