@@ -125,6 +125,7 @@ export default class NewContactForm extends Component {
             type = "text"
             handleChange = {this.updateState}
             name = "firstName"
+						aria-label="firstName"
           />
           <InputField
             className = "lastName-Input input-field"
@@ -133,6 +134,7 @@ export default class NewContactForm extends Component {
             type = "text"
             handleChange = {this.updateState}
             name = "lastName"
+						aria-label="lastName"
           />
           <InputField
             className = "companyName-Input input-field"
@@ -141,6 +143,7 @@ export default class NewContactForm extends Component {
             type = "text"
             handleChange = {this.updateState}
             name = "companyName"
+						aria-label="companyName"
           />
           <InputField
             className = "title-Input input-field"
@@ -149,6 +152,7 @@ export default class NewContactForm extends Component {
             type = "text"
             handleChange = {this.updateState}
             name = "title"
+						aria-label="title"
           />
           <InputField
             className = "website-Input input-field"
@@ -157,6 +161,7 @@ export default class NewContactForm extends Component {
             type = "text"
             handleChange = {this.updateState}
             name = "website"
+						aria-label="website"
           />
           <InputField
             className = "cellNumber-Input input-field"
@@ -166,6 +171,7 @@ export default class NewContactForm extends Component {
             handleChange = {this.updateStateObject}
             objName = "numbers"
             name = "cell"
+						aria-label="cell"
           />
           <InputField
             className = "workNumber-Input input-field"
@@ -175,6 +181,7 @@ export default class NewContactForm extends Component {
             handleChange = {this.updateStateObject}
             objName = "numbers"
             name = "work"
+						aria-label="work"
           />
           <InputField
             className = "homeNumber-Input input-field"
@@ -184,6 +191,7 @@ export default class NewContactForm extends Component {
             handleChange = {this.updateStateObject}
             objName = "numbers"
             name = "home"
+						aria-label="home"
           />
           <InputField
             className = "primaryEmail-Input input-field"
@@ -193,6 +201,7 @@ export default class NewContactForm extends Component {
             handleChange = {this.updateStateObject}
             objName = "emails"
             name = "primary"
+						aria-label="primary-email"
           />
           <InputField
             className = "secondaryEmail-Input input-field"
@@ -202,6 +211,7 @@ export default class NewContactForm extends Component {
             handleChange = {this.updateStateObject}
             objName = "emails"
             name = "secondary"
+						aria-label="secondary-email"
           />
           <InputField
             className = "facebook-Input input-field"
@@ -211,6 +221,7 @@ export default class NewContactForm extends Component {
             handleChange={this.updateStateObject}
             objName = "socialMedia"
             name = "facebook"
+						aria-label="facebook"
           />
           <InputField
             className="twitter-Input input-field"
@@ -220,6 +231,7 @@ export default class NewContactForm extends Component {
             handleChange={this.updateStateObject}
             objName = "socialMedia"
             name = "twitter"
+						aria-label="twitter"
           />
           <InputField
             className = "linkedIn-Input input-field"
@@ -229,6 +241,7 @@ export default class NewContactForm extends Component {
             handleChange={this.updateStateObject}
             objName = "socialMedia"
             name = "linkedIn"
+						aria-label="linkedIn"
           />
           <InputField
             className = "github-Input input-field"
@@ -238,6 +251,7 @@ export default class NewContactForm extends Component {
             handleChange={this.updateStateObject}
             objName = "socialMedia"
             name = "github"
+						aria-label="github"
           />
           <InputField
             className = "instagram-Input input-field"
@@ -247,6 +261,7 @@ export default class NewContactForm extends Component {
             handleChange={this.updateStateObject}
             objName = "socialMedia"
             name = "instagram"
+						aria-label="instagram"
           />
           <textarea
             className = "notes-input input-field"
@@ -255,6 +270,7 @@ export default class NewContactForm extends Component {
             onChange={e => this.updateState(e, 'notes')}
             type="text"
             name="notes"
+						aria-label="notes"
           >
             Notes...
           </textarea>
@@ -267,6 +283,7 @@ export default class NewContactForm extends Component {
             type="file"
             onChange={(e) => { this.addImage(e); }}
             accept="image/*"
+						aria-label="image"
           />
           <p className = "add-image-label">Click To Upload Image</p>
         </label>

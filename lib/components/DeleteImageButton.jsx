@@ -6,7 +6,7 @@ export default class DeleteImageButton extends Component {
 		this.state = {
 
 		};
-	} //end of constructor
+	}
 
 	render() {
 		return(

@@ -1,3 +1,5 @@
+@import "variables.scss";
+
 .input-field-container{
   position: relative;
   text-align: center;
@@ -8,7 +10,7 @@
   width: 275px;
   font-size: 18px;
   display: block;
-  margin: 5px;
+  margin: 5px 5px 15px 5px;
   border: none;
   border-bottom: 1px dotted black ;
 }
@@ -28,15 +30,10 @@ textarea{
   cursor: pointer;
   text-align: center;
   margin-left: 20px;
+	margin-top: 20px;
   width: 200px;
   img{
     border-radius: 150px;
     width: 200px;
   }
-}
-
-.submit-new-contact-button {
-  display: block;
-  margin: auto;
-  margin-bottom: 10px;
 }

@@ -58,71 +58,68 @@ export default class ContactCard extends Component {
     if (this.state.expanded) {
       expandButtonClass = 'expand-button invert';
       display = (<div className="expanded">
-        <div className="fullname firstName lastName">
+        <div className="fullname firstName lastName" aria-label="fullname">
           <span className="label"></span>
           {firstName} {lastName}
         </div>
         <div>{website ?
-          <div className = "companyName">
+          <div className = "companyName" aria-label="companyName">
             <span className = "label">Company: </span>
             <a href={website}>{companyName}</a>
           </div> :
-            <div className="companyName">
+            <div className="companyName" aria-label="companyName">
               <span className="label">Company: </span> {companyName}
             </div>}
         </div>
-        <div className="title">
+        <div className="title" aria-label="title">
           <span className="label">Title: </span>
           {title}
         </div>
-        <div className = "cell">
+        <div className = "cell" aria-label="cell">
           <span className="label">Cell Number: </span>
           {numbers.cell}
         </div>
-        <div className = "home">
+        <div className = "home" aria-label="home">
           <span className="label">Home Number: </span>
           {numbers.home}
         </div>
-        <div className = "work">
+        <div className = "work" aria-label="work">
           <span className="label">Work Number: </span>
           {numbers.work}
         </div>
-        <div className = "primary-email">
+        <div className = "primary-email" aria-label="primary-email">
           <span className="label">Email 1: </span>
           {emails.primary}
         </div>
-        <div className = "secondary-email">
+        <div className = "secondary-email" aria-label="secondary-email">
           <span className="label">Email 2: </span>
           {emails.secondary}
         </div>
-        <div className = "facebook">
+        <div className = "facebook" aria-label="facebook">
           <span className="label">Facebook: </span>
           {socialMedia.facebook}
         </div>
-        <div className = "twitter">
+        <div className = "twitter" aria-label="twitter">
           <span className="label">Twitter: </span>
           {socialMedia.twitter}
         </div>
-        <div className = "linkedIn">
+        <div className = "linkedIn" aria-label="linkedIn">
           <span className="label">LinkedIn: </span>
           {socialMedia.linkedIn}
         </div>
-        <div className = "github">
+        <div className = "github" aria-label="github">
           <span className="label">Github: </span>
           {socialMedia.github}
         </div>
-        <div className = "instagram">
+        <div className = "instagram" aria-label="instagram">
           <span className="label">Instagram: </span>
           {socialMedia.instagram}
         </div>
-        <div className="notes">
+        <div className="notes" aria-label="notes">
           <span className="label">Notes: </span>
           {notes}
         </div>
-        <div className="groups">
-          {groups}
-        </div>
-        <div className="image-container">
+        <div className="image-container" aria-label="image">
           {this.state.contactImgURL ?
             <img
               alt="contact URL"
