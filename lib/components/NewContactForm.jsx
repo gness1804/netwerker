@@ -38,7 +38,7 @@ export default class NewContactForm extends Component {
   }
 
   componentDidMount = () => {
-    if (this.state.reader !== 'test') {
+    if (this.state.reader.constructor.name === 'FileReader') {
       this.state.reader.addEventListener('load', () => {
         this.setState({ imgSource: this.state.reader.result });
       }); }
@@ -58,7 +58,7 @@ export default class NewContactForm extends Component {
 
   toggleFollowup = () => {
     this.setState({ followup: !this.state.followup });
-  }// end of toggleFollowup
+  }
 
   updateState = (e, keyName) => {
     this.setState({ [keyName]: e.target.value });
@@ -166,7 +166,7 @@ export default class NewContactForm extends Component {
           <InputField
             className = "cellNumber-Input input-field"
             value = {this.state.numbers.cell}
-            placeholder = "Cell Number"
+            placeholder = "Primary Cell Number"
             type = "text"
             handleChange = {this.updateStateObject}
             objName = "numbers"

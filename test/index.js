@@ -13,8 +13,8 @@ describe("application", ()=>{
   it("should render as a div", ()=>{
     const wrapper = shallow(<Application/>);
     assert.strictEqual(wrapper.type(), 'div');
-  }); //end of render as div
-}); //end of describe application
+  });
+});
 
 describe("NewContactForm", ()=>{
   it("should change state when user enters info in a field", ()=>{
@@ -23,7 +23,7 @@ describe("NewContactForm", ()=>{
     assert.strictEqual(wrapper.state('firstName'), '');
     firstNameInput.simulate('change', {target: {value: 'Hello World'}});
     assert.strictEqual(wrapper.state('firstName'), 'Hello World');
-  }); //end of change state when user enters info in a field
+  });
 
   it("should change state on entry of a more complex data item like cell phone number", ()=>{
     const wrapper = mount(<NewContactForm numbers={{}} emails={{}} socialMedia={{}} fileReaderTest={"test"}/>);
@@ -34,7 +34,44 @@ describe("NewContactForm", ()=>{
     assert.strictEqual(wrapper.state().numbers.cell, '99999999');
   });
 
-}); // end of describe NewContactForm
+  it("should change state on entry of a more complex data item: email", ()=>{
+    const wrapper = mount(<NewContactForm numbers={{}} emails={{}} socialMedia={{}} fileReaderTest={"test"}/>);
+    const primaryEmailInput = wrapper.find('.primaryEmail-Input');
+
+    assert.strictEqual(wrapper.state().emails.primary, '');
+    primaryEmailInput.simulate('change', {target: {value: 'MatthewKaufman@mlk.com'}} );
+    assert.strictEqual(wrapper.state().emails.primary, 'MatthewKaufman@mlk.com');
+  });
+  it("should change state on entry of a more complex data item: socialMedia", ()=>{
+    const wrapper = mount(<NewContactForm numbers={{}} emails={{}} socialMedia={{}} fileReaderTest={"test"}/>);
+    const facebookInput = wrapper.find('.facebook-Input');
+
+    assert.strictEqual(wrapper.state().socialMedia.facebook, '');
+    facebookInput.simulate('change', {target: {value: 'MatthewLeoKaufman'}} );
+    assert.strictEqual(wrapper.state().socialMedia.facebook, 'MatthewLeoKaufman');
+  });
+  it("should change state on entry of a more complex data item: Notes", ()=>{
+    const wrapper = mount(<NewContactForm numbers={{}} emails={{}} socialMedia={{}} fileReaderTest={"test"}/>);
+    const cellNumberInput = wrapper.find('.notes-input');
+
+    assert.strictEqual(wrapper.state().notes, '');
+    cellNumberInput.simulate('change', {target: {value: 'This is a cool note'}} );
+    assert.strictEqual(wrapper.state().notes, 'This is a cool note');
+  });
+  it("should change state on entry of a more complex data item: image", ()=>{
+    const fileReaderTest = {
+      readAsDataURL: function(image) {
+        return null;
+      }
+    }
+    const wrapper = mount(<NewContactForm numbers={{}} emails={{}} socialMedia={{}} fileReaderTest={fileReaderTest}/>);
+    const imageInput = wrapper.find('.add-image-button');
+
+    assert.strictEqual(wrapper.state().image, '');
+    imageInput.simulate('change', {target: {files: ['This is a sweet image']}} );
+    assert.strictEqual(wrapper.state().image, 'This is a sweet image');
+  });
+});
 
 describe("ContactCard", () => {
   const newContact = contactList[0];
