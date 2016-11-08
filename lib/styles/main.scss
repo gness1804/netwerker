@@ -1,24 +1,25 @@
 @import "buttons.scss";
 @import "forms.scss";
-@import "typography.scss";
 @import "contactCard.scss";
 @import "debug.scss";
 @import "variables.scss";
 
-
-$faded-background: rgba(255,255,255,0.4);
-$breakpoint: 800px;
+@mixin h1-style-desktop {
+  color: $blue;
+  font-size: 50px;
+  margin: auto;
+  text-align: center;
+  padding: 15px 0;
+}
 
 html {
-  // background: $main-background-desktop;
-  font-family:  $second-font;
+  font-family:  $font;
   color: $gray;
-
 }
 
 header{
   background: $header-background;
-  border-bottom: 3px solid $tan;
+  border-bottom: 3px solid $lightgray;
   height: 115px;
   margin-bottom: 15px;
 }
@@ -27,99 +28,18 @@ h1 {
   @include h1-style-desktop;
 }
 
+
+.greeting{
+  color: $blue;
+}
+
 .active-user {
   text-align: center;
     span {
       font-size: 22px;
       font-style: italic;
-      font-weight: bold;
+      font-weight: normal;
     }
-    .auth-button {
-      @include button-standard;
-      float: left;
-      position: absolute;
-      top: 20px;
-      left: 20px;
-
-
-
-
-      &:hover {
-
-
-      }
-
-    }
-} //end of active-user
-
-.signed-in {
-  background-color: #f64747;
-}
-
-.signed-out {
-  background-color: #00aa55;
-}
-
-.add-contact-button {
-  @include add-contact-button;
-  outline: none;
-
-  img {
-
-    &:last-child {
-      display: none;
-    }
-
-  } // end of img
-
-  &:hover {
-
-    img:first-child {
-      display: none;
-    }
-
-    img:last-child {
-      display: inline-block;
-    }
-
-  } // end of &:hover
-
-} // end of .add-contact-button
-
-
-@keyframes rotate {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(45deg);}
-}
-
-.add-button-exit{
-    outline: none;
-    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
-    transform: rotate(45deg);
-    // animation-name: rotate;
-    // animation-duration: 2s;
-    &:hover {
-      animation-name: rotate;
-      animation-duration: 0s;
-      img:first-child {
-        display: none;
-      }
-      img:last-child {
-        display: inline-block;
-      }
-    }
-}
-
-.delete-contact {
-  @include button-standard;
-  background-color: $button-alarm-color;
-  width: 200px;
-
-  &:hover {
-    @include button-standard-hover;
-    background-color: $button-alarm-hover;
-  }
-
 }
 
 .follow-up-label{
@@ -130,15 +50,8 @@ h1 {
   float: right;
 }
 
-.show-followup-list-button {
-  cursor: pointer;
-  margin-left: 10px;
-  right: 30px;
-  width: 40px;
-}
 .search {
   display: block;
-  // width: 300px;
   text-align: center;
   font-size: 25px;
   margin: auto;

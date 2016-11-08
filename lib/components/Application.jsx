@@ -80,7 +80,6 @@ class Application extends Component {
     let pageDisplay;
     let addNewContactClass;
     let addNewContactClassHover;
-    // let auth-button;
 
     if (this.state.showAddForm) {
       addNewContactClass = "add-contact-img add-button-exit"
@@ -125,7 +124,6 @@ class Application extends Component {
 
               <button
                 className= "signed-in auth-button"
-                // {auth-button}
                 onClick={() => signOut()}
               >Sign Out
               </button>
@@ -133,7 +131,6 @@ class Application extends Component {
             :
               <button
                 className= "signed-out auth-button"
-                // {auth-button}
                 onClick={() => signIn()}
               >
               Sign In

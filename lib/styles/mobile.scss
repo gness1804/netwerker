@@ -1,7 +1,3 @@
-$breakpoint: 930px;
-$breakpoint2: 645px;
-
-
 @media screen and (max-width: $breakpoint) and (min-width : $breakpoint2) {
 
     h1 {
@@ -12,9 +8,6 @@ $breakpoint2: 645px;
       span {
         font-size: 22px;
         font-style: italic;
-      }
-      .auth-button {
-
       }
     }
 
@@ -27,54 +20,36 @@ $breakpoint2: 645px;
         margin-left: 8%;
         margin-right: 8%;
       }
-
     }
 
     .contact-Container .contact-card-for-each-contact {
-      // height: 500px;
-
       .fullname {
         font-size: 32px;
         margin-bottom: 20px;
-        // max-width: 250px;
       }
 
       .expanded {
         height: auto;
       }
-
-
     }
 
-  .submit-new-contact-button{
-    @include button-standard
-    width: 300px;
-
-    &:hover{
-      @include button-standard-hover;
-    }
-
-  }
 
   .followup-button{
     @include button-standard;
     width: 200px;
   }
 
-
-
 @media screen and (max-width: $breakpoint2) {
 
   header {
     height: 200px;
   }
+
   h1 {
     font-size: 35px;
     margin-top: 10px;
     margin-bottom: 20px;
-
   }
-
 
   .add-contact-button {
     top: 83px;
@@ -112,7 +87,6 @@ $breakpoint2: 645px;
     img{
       border-radius: 150px;
       width: 180px;
-
     }
   }
 
@@ -142,5 +116,4 @@ $breakpoint2: 645px;
     right: 20px;
     float: none;
   }
-
 }
