@@ -1,15 +1,5 @@
-# fire-bae
-To install the dependencies:
+# Netwerker
 
-`npm install`
+# Hosted on Firebase at:
 
-To fire up a development server:
-
-`npm start`
-
-Once the server is running, you can visit:
-
-http://localhost:8080/webpack-dev-server/ to run your application.
-http://localhost:8080/webpack-dev-server/test.html to run your test suite in the browser.
-
-Make sure to `firebase init` and wireup firebase for your app.
+[Netwerker](https://netwerker-3d622.firebaseapp.com)
